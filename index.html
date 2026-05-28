@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fulfillment Hub · noon JED</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --noon-yellow: #F7C700;
+    --noon-yellow-dim: rgba(247,199,0,0.12);
+    --noon-yellow-border: rgba(247,199,0,0.3);
+    --bg-base: #0e0e0e;
+    --bg-card: #161616;
+    --bg-card-hover: #1e1e1e;
+    --bg-section: #131313;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(247,199,0,0.35);
+    --text-primary: #f0f0f0;
+    --text-secondary: rgba(240,240,240,0.45);
+    --text-muted: rgba(240,240,240,0.25);
+    --green: #1D9E75;
+    --green-bg: rgba(29,158,117,0.12);
+    --blue: #378ADD;
+    --blue-bg: rgba(55,138,221,0.12);
+    --amber: #EF9F27;
+    --amber-bg: rgba(239,159,39,0.12);
+    --purple: #8B7CF6;
+    --purple-bg: rgba(139,124,246,0.12);
+    --coral: #E26B5A;
+    --coral-bg: rgba(226,107,90,0.12);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 18px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(14,14,14,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--noon-yellow);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .logo-mark svg {
+    width: 16px;
+    height: 16px;
+    fill: #0e0e0e;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .logo-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .logo-sub {
+    font-size: 10px;
+    color: var(--noon-yellow);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .live-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green-bg);
+    border: 1px solid rgba(29,158,117,0.25);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--green);
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  .topbar-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 48px 32px 36px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(247,199,0,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--noon-yellow);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .hero-title span {
+    color: var(--noon-yellow);
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    width: fit-content;
+  }
+
+  .hero-stat {
+    padding: 14px 24px;
+    border-right: 1px solid var(--border);
+  }
+
+  .hero-stat:last-child { border-right: none; }
+
+  .hero-stat-val {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--noon-yellow);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 4px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .hero-stat-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  /* ── SEARCH ── */
+  .search-bar {
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    max-width: 480px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 10px 12px 10px 38px;
+    font-size: 13px;
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.15s;
+    outline: none;
+  }
+
+  .search-input::placeholder { color: var(--text-muted); }
+  .search-input:focus { border-color: var(--noon-yellow-border); }
+
+  .search-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+  }
+
+  /* ── LAYOUT ── */
+  .main {
+    padding: 28px 32px 60px;
+    max-width: 1200px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 36px;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.1s; }
+  .section:nth-child(3) { animation-delay: 0.15s; }
+  .section:nth-child(4) { animation-delay: 0.2s; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-icon svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    flex: 1;
+  }
+
+  .section-count {
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2px 9px;
+  }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 10px;
+  }
+
+  /* ── LINK CARD ── */
+  .link-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.15s, border-color 0.15s, transform 0.12s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .link-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--noon-yellow);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .link-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
+    transform: translateY(-1px);
+  }
+
+  .link-card:hover::before { opacity: 1; }
+
+  .link-card.hidden { display: none; }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .card-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .tag-sheet   { background: var(--green-bg);  color: var(--green);  border: 1px solid rgba(29,158,117,0.2); }
+  .tag-dash    { background: var(--blue-bg);   color: var(--blue);   border: 1px solid rgba(55,138,221,0.2); }
+  .tag-platform{ background: var(--purple-bg); color: var(--purple); border: 1px solid rgba(139,124,246,0.2);}
+  .tag-metric  { background: var(--amber-bg);  color: var(--amber);  border: 1px solid rgba(239,159,39,0.2); }
+
+  .card-ext {
+    color: var(--text-muted);
+    transition: color 0.15s;
+  }
+
+  .link-card:hover .card-ext { color: var(--noon-yellow); }
+
+  .card-ext svg { width: 13px; height: 13px; }
+
+  .card-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .card-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  /* ── NO RESULTS ── */
+  .no-results {
+    display: none;
+    text-align: center;
+    padding: 64px 32px;
+    color: var(--text-muted);
+  }
+
+  .no-results svg {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 12px;
+    opacity: 0.3;
+  }
+
+  .no-results p { font-size: 13px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .footer-left {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .footer-left span { color: var(--noon-yellow); font-weight: 500; }
+
+  .footer-right {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .topbar { padding: 0 16px; }
+    .hero { padding: 32px 16px 24px; }
+    .hero-title { font-size: 22px; }
+    .hero-stats { flex-wrap: wrap; }
+    .search-bar { padding: 14px 16px; }
+    .main { padding: 20px 16px 48px; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    footer { padding: 16px; }
+    .topbar-meta { display: none; }
+  }
+
+  @media (max-width: 400px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <a class="logo" href="#">
+    <div class="logo-mark">
+      <svg viewBox="0 0 16 16"><path d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z"/></svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-title">Fulfillment Hub</span>
+      <span class="logo-sub">noon · JED</span>
+    </div>
+  </a>
+  <div class="topbar-right">
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      All systems live
+    </div>
+    <span class="topbar-meta" id="topbarDate"></span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">noon · Jeddah Fulfillment Center</div>
+  <h1 class="hero-title">Operations <span>Command Hub</span></h1>
+  <p class="hero-desc">Single access point for all fulfillment trackers, dashboards, and operational platforms used by the JED team.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-val">18</div>
+      <div class="hero-stat-label">Total links</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">4</div>
+      <div class="hero-stat-label">Categories</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">JED01</div>
+      <div class="hero-stat-label">Site code</div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-bar">
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input class="search-input" id="searchBox" type="text" placeholder="Search trackers, dashboards, platforms…" oninput="filterLinks()" autocomplete="off" spellcheck="false"/>
+  </div>
+  <span class="search-count" id="searchCount">18 tools</span>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- SECTION 1: CT Tracker Performance -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--green-bg)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H5a2 2 0 0 0-2 2"/><path d="M11 21H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.09a2 2 0 0 1 1.41.59l6.92 6.92A2 2 0 0 1 18 12V19"/><path d="M17 17v5"/><path d="M14 20h6"/></svg>
+      </div>
+      <span class="section-label">CT tracker performance</span>
+      <span class="section-count" id="count-ct">5</span>
+    </div>
+    <div class="grid" id="grid-ct">
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1WFC4EW7-Fdb9hEXjN8Rg7B11EbgjewCy5P3ljDUYf_Y/edit?gid=2083001023#gid=2083001023" target="_blank" rel="noopener" data-name="outbound ct tracker performance">
+        <div class="card-top">
+          <span class="card-tag tag-sheet">Sheet</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">Outbound</div>
+        <div class="card-desc">CT tracker · outbound ops</div>
+      </a>
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1YD76qSH1WCRbE6vA4gQnG8lCHEBj9Eajmz9gzzv5cUU/edit?gid=1546987077#gid=1546987077" target="_blank" rel="noopener" data-name="inbound ct tracker performance">
+        <div class="card-top">
+          <span class="card-tag tag-sheet">Sheet</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">Inbound</div>
+        <div class="card-desc">CT tracker · inbound ops</div>
+      </a>
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1f6YG6My5IAFe5Seo05ujeg91Wxdw0liTmQZy2Ot-s0c/edit" target="_blank" rel="noopener" data-name="inventory ct tracker">
+        <div class="card-top">
+          <span class="card-tag tag-sheet">Sheet</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">Inventory</div>
+        <div class="card-desc">CT tracker · inventory</div>
+      </a>
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1m5FTcNW-Yqsr8lypCh98iEVFm_IwDwWnNCfxBuevlII/edit?gid=0#gid=0" target="_blank" rel="noopener" data-name="rtv returns to vendor tracker">
+        <div class="card-top">
+          <span class="card-tag tag-sheet">Sheet</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">RTV</div>
+        <div class="card-desc">Returns to vendor</div>
+      </a>
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1FhxMEvlLrVSiWf1AqrLSnN7TzIznbvwPAo7ougvmF8A/edit#gid=195209178" target="_blank" rel="noopener" data-name="afs performance tracker">
+        <div class="card-top">
+          <span class="card-tag tag-sheet">Sheet</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">AFS</div>
+        <div class="card-desc">AFS performance tracker</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- SECTION 2: OB CT Metric Track Sheet -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--amber-bg)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <span class="section-label">OB CT metric track sheet</span>
+      <span class="section-count" id="count-ob">7</span>
+    </div>
+    <div class="grid" id="grid-ob">
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1YdTke9BgtlLxwUrGVH2rRi12ERoSvDZ-wXJXZ2SVg5c/edit?gid=1649404506#gid=1649404506" target="_blank" rel="noopener" data-name="de hourly capacity l15 last 15 days">
+        <div class="card-top">
+          <span class="card-tag tag-metric">Metric</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">DE hourly cap L_15</div>
+        <div class="card-desc">Hourly capacity · last 15 days</div>
+      </a>
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1YdTke9BgtlLxwUrGVH2rRi12ERoSvDZ-wXJXZ2SVg5c/edit?gid=1649404506#gid=1649404506" target="_blank" rel="noopener" data-name="de tat turnaround time 30 days">
+        <div class="card-top">
+          <span class="card-tag tag-metric">Metric</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">DE TAT_30 days</div>
+        <div class="card-desc">Turnaround time · 30 days</div>
+      </a>
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1kBPNnANnQ6ixeueInIFfjSGFIBG1jhk4CUJDGWLlw1k/edit?gid=1527141221#gid=1527141221" target="_blank" rel="noopener" data-name="hourly de performance yesterday">
+        <div class="card-top">
+          <span class="card-tag tag-metric">Metric</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">DE performance yesterday</div>
+        <div class="card-desc">Hourly DE · yesterday</div>
+      </a>
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1S8fQzNmMls72lpyJ5K6N6T75d_wkjEY3qernHm9WX-I/edit?gid=1939527628#gid=1939527628" target="_blank" rel="noopener" data-name="ob job type service type ips rate outbound">
+        <div class="card-top">
+          <span class="card-tag tag-metric">Metric</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">Job & service type · IPS</div>
+        <div class="card-desc">Job %, service %, IPS rate</div>
+      </a>
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1yZ4VvbkeIOB7LKydr62YIoAY378lCZvRkrBA7-p7Jo0/edit#gid=0" target="_blank" rel="noopener" data-name="cutoff view 7 days all mp marketplace">
+        <div class="card-top">
+          <span class="card-tag tag-metric">Metric</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">Cutoff view · 7 days</div>
+        <div class="card-desc">All MP · cutoff tracking</div>
+      </a>
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1dUsFYJ6XqJvu_R34S02PrMiQLI7GdtxDgNV4aeJxMBY/edit?gid=485600298#gid=485600298" target="_blank" rel="noopener" data-name="ob indicators leg wise tat outbound">
+        <div class="card-top">
+          <span class="card-tag tag-metric">Metric</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">OB indicators leg TAT</div>
+        <div class="card-desc">Leg-wise TAT indicators</div>
+      </a>
+
+      <a class="link-card" href="https://docs.google.com/spreadsheets/d/1nfDQdTr7pyOAQz2axzWCC-sApQlyF86cF6LS60CAYWM/edit?gid=552931606#gid=552931606" target="_blank" rel="noopener" data-name="ob tph throughput per hour indicator outbound">
+        <div class="card-top">
+          <span class="card-tag tag-metric">Metric</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">OB TPH indicator</div>
+        <div class="card-desc">Throughput per hour</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- SECTION 3: OB Dashboard -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--blue-bg)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </div>
+      <span class="section-label">OB dashboard</span>
+      <span class="section-count" id="count-dash">1</span>
+    </div>
+    <div class="grid" id="grid-dash">
+
+      <a class="link-card" href="https://datastudio.google.com/reporting/e47a388a-ba7b-415f-ab62-1515811d8e9a/page/rDj3D?params=%7B%22df3%22:%22include%25EE%2580%25800%25EE%2580%2580IN%25EE%2580%2580JED01%22%7D" target="_blank" rel="noopener" data-name="hourly ob outbound dashboard looker studio jed01">
+        <div class="card-top">
+          <span class="card-tag tag-dash">Dashboard</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">Hourly OB dashboard</div>
+        <div class="card-desc">Looker Studio · JED01 filter</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4: Outbound Platforms -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--purple-bg)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <span class="section-label">Outbound platforms</span>
+      <span class="section-count" id="count-plat">5</span>
+    </div>
+    <div class="grid" id="grid-plat">
+
+      <a class="link-card" href="https://fbn-ops.noon.team/picking/pendency" target="_blank" rel="noopener" data-name="fbn picking pendency noon ops platform">
+        <div class="card-top">
+          <span class="card-tag tag-platform">Platform</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">FBN</div>
+        <div class="card-desc">Picking pendency · noon ops</div>
+      </a>
+
+      <a class="link-card" href="https://express-control.noon.team/reports/multiple_item_tracking" target="_blank" rel="noopener" data-name="express control multiple item tracking platform">
+        <div class="card-top">
+          <span class="card-tag tag-platform">Platform</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">Express</div>
+        <div class="card-desc">Multiple item tracking</div>
+      </a>
+
+      <a class="link-card" href="https://agentone.noon.team/order/" target="_blank" rel="noopener" data-name="agentone order management noon platform">
+        <div class="card-top">
+          <span class="card-tag tag-platform">Platform</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">Agentone</div>
+        <div class="card-desc">Order management · noon</div>
+      </a>
+
+      <a class="link-card" href="https://support-nm.noon.team/" target="_blank" rel="noopener" data-name="namshi agentone support portal platform">
+        <div class="card-top">
+          <span class="card-tag tag-platform">Platform</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">Namshi agentone</div>
+        <div class="card-desc">Support portal · Namshi</div>
+      </a>
+
+      <a class="link-card" href="https://fulfillment-platform.noon.partners/inventory-visibility?project=PRJ522588" target="_blank" rel="noopener" data-name="fulfillment platform inventory visibility prj522588">
+        <div class="card-top">
+          <span class="card-tag tag-platform">Platform</span>
+          <span class="card-ext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+        </div>
+        <div class="card-name">Fulfillment platform</div>
+        <div class="card-desc">Inventory visibility · PRJ522588</div>
+      </a>
+
+    </div>
+  </div>
+
+  <div id="noResults" class="no-results">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M8 11h6"/></svg>
+    <p>No tools matched your search.</p>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-left">noon · Jeddah Fulfillment Center &nbsp;·&nbsp; <span>Operations Hub</span></span>
+  <span class="footer-right" id="footerTime"></span>
+</footer>
+
+<script>
+  const allCards = document.querySelectorAll('.link-card');
+  const totalLinks = allCards.length;
+
+  function filterLinks() {
+    const q = document.getElementById('searchBox').value.toLowerCase().trim();
+    const counts = { ct: 0, ob: 0, dash: 0, plat: 0 };
+    let visible = 0;
+
+    allCards.forEach(card => {
+      const name = (card.dataset.name || '').toLowerCase();
+      const match = !q || name.includes(q);
+      card.classList.toggle('hidden', !match);
+      if (match) {
+        visible++;
+        const grid = card.closest('[id^="grid-"]');
+        if (grid) {
+          const sec = grid.id.replace('grid-', '');
+          counts[sec] = (counts[sec] || 0) + 1;
+        }
+      }
+    });
+
+    Object.keys(counts).forEach(k => {
+      const el = document.getElementById('count-' + k);
+      if (el) el.textContent = counts[k];
+    });
+
+    document.getElementById('searchCount').textContent = q
+      ? visible + ' of ' + totalLinks + ' tools'
+      : totalLinks + ' tools';
+
+    document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  function updateTime() {
+    const now = new Date();
+    const opts = { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', hour12: false };
+    const time = now.toLocaleTimeString('en-SA', opts);
+    const date = now.toLocaleDateString('en-GB', { timeZone: 'Asia/Riyadh', day: '2-digit', month: 'short', year: 'numeric' });
+    const el = document.getElementById('footerTime');
+    if (el) el.textContent = date + '  ·  ' + time + ' AST';
+    const tb = document.getElementById('topbarDate');
+    if (tb) tb.textContent = time + ' AST';
+  }
+
+  updateTime();
+  setInterval(updateTime, 30000);
+</script>
+</body>
+</html>
