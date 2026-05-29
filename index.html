@@ -1,3 +1,6 @@
+bash
+
+cat > /home/claude/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +34,10 @@
   --red:#E26B5A;
   --shared-primary:#8B7CF6;
   --shared-border:rgba(139,124,246,.3);
+  --afs-primary:#EC4899;
+  --afs-secondary:#DB2777;
+  --afs-glow:rgba(236,72,153,.25);
+  --afs-border:rgba(236,72,153,.32);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
@@ -190,6 +197,14 @@ main{padding:0 36px 80px;}
 .shared-board .sb-count{color:var(--shared-primary);}
 .shared-board .sb-meta{background:rgba(139,124,246,.05);}
 
+/* AFS / RTV / SUPERMALL THEME */
+.signboard.afs-board{background:linear-gradient(110deg,rgba(236,72,153,.12) 0%,rgba(219,39,119,.04) 100%);border:1px solid var(--afs-border);box-shadow:0 0 36px var(--afs-glow),inset 0 1px 0 rgba(236,72,153,.12);}
+.afs-board .sb-pillar{background:linear-gradient(180deg,#EC4899,#DB2777);}
+.afs-board .sb-icon-panel{background:rgba(236,72,153,.1);}
+.afs-board .sb-eyebrow{color:var(--afs-primary);}
+.afs-board .sb-count{color:var(--afs-primary);}
+.afs-board .sb-meta{background:rgba(236,72,153,.05);}
+
 /* CARDS */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:11px;}
 .card{
@@ -213,22 +228,27 @@ main{padding:0 36px 80px;}
 .section.audit-section .card:hover::after{opacity:1;background:linear-gradient(90deg,#E26B5A,#c44f3d);}
 .section.shared-section .card:hover{border-color:rgba(139,124,246,.25);background:var(--card-hover);transform:translateY(-2px);}
 .section.shared-section .card:hover::after{opacity:1;background:linear-gradient(90deg,#8B7CF6,#6D60E8);}
+.section.afs-section .card:hover{border-color:var(--afs-border);background:var(--card-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(236,72,153,.09);}
+.section.afs-section .card:hover::after{opacity:1;background:linear-gradient(90deg,var(--afs-primary),var(--afs-secondary));}
+
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px;}
 .badge{font-size:9.5px;padding:3.5px 8px;border-radius:5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
 .section.ob-section .badge{background:rgba(245,158,11,.14);color:#fbbf24;border:1px solid rgba(245,158,11,.18);}
 .section.ib-section .badge{background:rgba(6,182,212,.14);color:#22d3ee;border:1px solid rgba(6,182,212,.18);}
 .section.fc-section .badge{background:rgba(16,185,129,.14);color:#34d399;border:1px solid rgba(16,185,129,.18);}
+.section.afs-section .badge{background:rgba(236,72,153,.14);color:#f472b6;border:1px solid rgba(236,72,153,.18);}
 .badge.sheet{background:rgba(16,185,129,.14)!important;color:#34d399!important;border:1px solid rgba(16,185,129,.2)!important;}
 .badge.dashboard{background:rgba(55,138,221,.14)!important;color:#7bb8ff!important;border:1px solid rgba(55,138,221,.2)!important;}
 .badge.platform{background:rgba(139,124,246,.14)!important;color:#b4a8ff!important;border:1px solid rgba(139,124,246,.2)!important;}
 .badge.sop{background:rgba(247,198,0,.14)!important;color:#ffe16e!important;border:1px solid rgba(247,198,0,.2)!important;}
 .badge.audit{background:rgba(226,107,90,.14)!important;color:#ff9b8e!important;border:1px solid rgba(226,107,90,.2)!important;}
+.badge.afs{background:rgba(236,72,153,.14)!important;color:#f472b6!important;border:1px solid rgba(236,72,153,.2)!important;}
 .card h3{font-size:13.5px;font-weight:600;margin-bottom:4px;line-height:1.3;}
 .card p{font-size:11.5px;color:var(--muted);line-height:1.5;}
 .arrow{position:absolute;right:13px;bottom:12px;font-size:12px;opacity:0;color:var(--muted);transition:.18s;}
 .card:hover .arrow{opacity:1;transform:translate(2px,-2px);}
 
-/* OB/IB DIVIDER */
+/* SECTION DIVIDERS */
 .ob-ib-divider{margin:8px 0 52px;display:flex;align-items:center;}
 .divider-ob-half{flex:1;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(245,158,11,.4) 100%);}
 .divider-ib-half{flex:1;height:1px;background:linear-gradient(90deg,rgba(6,182,212,.4) 0%,transparent 100%);}
@@ -249,6 +269,23 @@ main{padding:0 36px 80px;}
   letter-spacing:2.5px;text-transform:uppercase;padding:6px 14px;
   background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);
   color:var(--ib-primary);border-radius:0 6px 6px 0;
+}
+
+/* IB / AFS DIVIDER */
+.ib-afs-divider{margin:8px 0 52px;display:flex;align-items:center;}
+.divider-ib-left{flex:1;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(6,182,212,.4) 100%);}
+.divider-afs-right{flex:1;height:1px;background:linear-gradient(90deg,rgba(236,72,153,.4) 0%,transparent 100%);}
+.divider-ib-tag2{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:2.5px;text-transform:uppercase;padding:6px 14px;
+  background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);
+  color:var(--ib-primary);border-radius:6px 0 0 6px;
+}
+.divider-afs-tag{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:2.5px;text-transform:uppercase;padding:6px 14px;
+  background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3);
+  color:var(--afs-primary);border-radius:0 6px 6px 0;
 }
 
 /* FOOTER */
@@ -301,7 +338,7 @@ footer{
   <div class="hero-eyebrow">noon ·  Fulfillment Center</div>
   <h2>
     <div>Noon</div>
-    <div class="line2">Operations URL & Dashboard </div>
+    <div class="line2">Operations URL &amp; Dashboard </div>
   </h2>
   <p>Centralized access point for all department operations trackers, dashboards, SOPs, attendance systems, and fulfillment platforms.</p>
 </section>
@@ -727,6 +764,211 @@ footer{
   </div>
 </section>
 
+<!-- IB / AFS DIVIDER -->
+<div class="ib-afs-divider">
+  <div class="divider-ib-left"></div>
+  <div class="divider-center">
+    <div class="divider-ib-tag2">⬆ Inbound</div>
+    <div class="divider-sep">·</div>
+    <div class="divider-afs-tag">AFS / RTV / Supermall ⬇</div>
+  </div>
+  <div class="divider-afs-right"></div>
+</div>
+
+<!-- AFS / RTV / SUPERMALL SECTIONS -->
+<section class="section afs-section">
+  <div class="signboard afs-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">🔄</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">AFS / RTV / Supermall · Metrics &amp; Visibility</span>
+        <div class="sb-title">AFS / RTV / Supermall Metric Track &amp; Visibility Source</div>
+      </div>
+      <div class="sb-meta">
+        <div style="text-align:center;">
+          <div class="sb-count">9</div>
+          <div class="sb-count-label">Links</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/11qo4vVVp46uK0EoxxfS88s3tWB0fpJO65IEzLswe1z0/edit?gid=58258441#gid=58258441" target="_blank">
+      <div class="card-top"><span class="badge">SOS/EOS</span></div>
+      <h3>AFS/RTV SOS / EOS Pendency Report</h3><p>Start of shift and end of shift pendency tracking.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1PlDYyHxQ29L6hB-8Gf3QGmgmIQGnqDoeyo-_M9wO2AU/edit?gid=1637100772#gid=1637100772" target="_blank">
+      <div class="card-top"><span class="badge">NDR_QC</span></div>
+      <h3>Day / Week NDR QC / IPP Tracking</h3><p>Daily and weekly NDR QC and IPP tracking report.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1l5Dc_mYvyp-guFh3Cx1ES3hMMIqb5aswIu3hVAyob2U/edit?gid=1555839590#gid=1555839590" target="_blank">
+      <div class="card-top"><span class="badge">SP_Pendency</span></div>
+      <h3>JED Service Point Pendency View</h3><p>Service point pendency visibility for JED.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1sImaW41Ka9SLYi4w-EzhvCDTgZmIcyy5v9g9Ys5mYqY/edit?usp=drive_open&ouid=114688806273382284993" target="_blank">
+      <div class="card-top"><span class="badge">RTV_SP</span></div>
+      <h3>JED RTV Seller Promise View</h3><p>RTV seller promise tracking for JED operations.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1BOqoD0sVQJCL-fZ8zk3x6OUJqMcnMruiAYYkWwm7Vyw/edit?gid=1978673934#gid=1978673934" target="_blank">
+      <div class="card-top"><span class="badge">NDR_SLP</span></div>
+      <h3>JED NDR SLP Tracking</h3><p>NDR SLP tracking for JED site.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1NTnFVPIZ5v7R_PeDmVGIhyFLTl4ZuuNJTEyEzq451A0/edit?gid=0#gid=0" target="_blank">
+      <div class="card-top"><span class="badge">Serialization</span></div>
+      <h3>Fulfillment Serialization Data – AFS Reference</h3><p>Serialization data sheet for AFS reference.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1zU_sJFyN5ie6vRI6vguxQA3AixmHgxMxfKoIDA4M004/edit?gid=1571812408#gid=1571812408" target="_blank">
+      <div class="card-top"><span class="badge">NDR_Zone</span></div>
+      <h3>NDR QC / Tote / Zone Condition</h3><p>NDR QC, tote, and zone condition monitoring.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1kZQ8YkPHSLLZTiGEYfVsBz3vmnTs8pFj3eWMCsRJhMs/edit?gid=0#gid=0" target="_blank">
+      <div class="card-top"><span class="badge audit">NC</span></div>
+      <h3>AFS NC Tracker</h3><p>AFS non-compliance tracking.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1C6K0-Wj9jEz6vgASDnfTRhHp0E8thFxFwLtT0w94Vjo/edit" target="_blank">
+      <div class="card-top"><span class="badge">HV_Images</span></div>
+      <h3>RTV HV Images</h3><p>High-value item images for RTV operations.</p><span class="arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="section afs-section">
+  <div class="signboard afs-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">📈</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">AFS / RTV · Live Dashboards</span>
+        <div class="sb-title">AFS / RTV Dashboard</div>
+      </div>
+      <div class="sb-meta">
+        <div style="text-align:center;">
+          <div class="sb-count">3</div>
+          <div class="sb-count-label">Links</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/2d3e4d83-8b02-4c2e-8c27-92893bc362b8/page/p_jtx3rrovvd" target="_blank">
+      <div class="card-top"><span class="badge dashboard">Mobile_View</span></div>
+      <h3>Mobile View – NDR / RTV</h3><p>TV / Mobile view for NDR and RTV operations.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/1855ffe1-0386-4e19-97d8-00392dfc3c41/page/18f2C" target="_blank">
+      <div class="card-top"><span class="badge dashboard">QC_Dashboard</span></div>
+      <h3>RMS QC Dashboard</h3><p>Returns management QC performance dashboard.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/0ddecfd2-5bb7-47ca-aea4-eb52df84894f/page/0aFkC" target="_blank">
+      <div class="card-top"><span class="badge dashboard">NC Dashboard</span></div>
+      <h3>QA Audits – Fulfillment KSA</h3><p>QA Audits – Fulfillment KSA dashboard.</p><span class="arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="section afs-section">
+  <div class="signboard afs-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">🚚</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">AFS / RTV · Operational Platforms</span>
+        <div class="sb-title">AFS / RTV Frequently Used Platforms</div>
+      </div>
+      <div class="sb-meta">
+        <div style="text-align:center;">
+          <div class="sb-count">6</div>
+          <div class="sb-count-label">Links</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://fbn-ops.noon.team/ndr/activeShipments?warehouseCode=JED01&page=1&pageSize=10&totalPages=1" target="_blank">
+      <div class="card-top"><span class="badge platform">NDR</span></div>
+      <h3>NDR FBN Pendency</h3><p>Active NDR shipments pendency view.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://fbn-ops.noon.team/ndr/historicalInfo" target="_blank">
+      <div class="card-top"><span class="badge platform">NDR_HIST</span></div>
+      <h3>NDR FBN Historical Report</h3><p>NDR historical shipment information report.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://fbn-ops.noon.team/rtv/reports/eligible-to-pick" target="_blank">
+      <div class="card-top"><span class="badge platform">RTV</span></div>
+      <h3>RTV FBN Pendency</h3><p>RTV eligible-to-pick pendency report.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://fbn-ops.noon.team/cir/history" target="_blank">
+      <div class="card-top"><span class="badge platform">CIR</span></div>
+      <h3>CIR Historical</h3><p>CIR historical data and reports.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://fulfillment-platform.noon.partners/print-barcodes?project=PRJ522588" target="_blank">
+      <div class="card-top"><span class="badge platform">PRINT</span></div>
+      <h3>NDR Serialization Barcode Print</h3><p>NDR serialization barcode printing tool.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/forms/d/e/1FAIpQLScNo7wxXQIM_cd49JHdOW5Es6Xpdi1Bvfwe7p2i47Bt63jlwQ/viewform" target="_blank">
+      <div class="card-top"><span class="badge platform">FORM</span></div>
+      <h3>HV Image Uploader Form</h3><p>High-value item image upload form.</p><span class="arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="section afs-section">
+  <div class="signboard afs-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">🏬</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">Supermall · Reports &amp; Visibility</span>
+        <div class="sb-title">Supermall Operations</div>
+      </div>
+      <div class="sb-meta">
+        <div style="text-align:center;">
+          <div class="sb-count">2</div>
+          <div class="sb-count-label">Links</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1VhlOxntY163xlGxPS-FPr8fU4JOxKrpG_EFo0puhXWY/edit?gid=638585497#gid=638585497" target="_blank">
+      <div class="card-top"><span class="badge sheet">HOURLY</span></div>
+      <h3>Supermall Hourly Script Report</h3><p>Supermall hourly operations script report.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://drive.google.com/drive/folders/1GLJ1GnT8kAYog4BP3tyEzRjlReNI5KVc?usp=sharing" target="_blank">
+      <div class="card-top"><span class="badge sop">DRIVE</span></div>
+      <h3>Supermall Report Drive</h3><p>Supermall reports shared drive folder.</p><span class="arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="section sop-section">
+  <div class="signboard sop-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">📘</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">AFS / RTV · Standard Operating Procedures</span>
+        <div class="sb-title">AFS / RTV Guidelines &amp; SOP</div>
+      </div>
+      <div class="sb-meta">
+        <div style="text-align:center;">
+          <div class="sb-count">2</div>
+          <div class="sb-count-label">Links</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://docs.google.com/presentation/d/1Kg5L1B6R1RGPk96VkDHxs3lrb-OIJM-cTRkcWuH09zE/edit?slide=id.g2e06c4196ef_0_1908#slide=id.g2e06c4196ef_0_1908" target="_blank">
+      <div class="card-top"><span class="badge sop">SOP</span></div>
+      <h3>NDR SOP</h3><p>NDR standard operating procedure guidelines.</p><span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://drive.google.com/drive/folders/1uBRAeMNhIShucsGFolhfFifWkpXjWadG?usp=sharing" target="_blank">
+      <div class="card-top"><span class="badge sop">SOP</span></div>
+      <h3>RTV SOP</h3><p>Returns to vendor standard operating procedure drive folder.</p><span class="arrow">↗</span>
+    </a>
+  </div>
+</section>
+
 <!-- SHARED SECTIONS -->
 <section class="section shared-section">
   <div class="signboard shared-board">
@@ -810,3 +1052,5 @@ searchInput.addEventListener('keyup', function(){
 
 </body>
 </html>
+HTMLEOF
+echo "Done"
