@@ -1,4 +1,3 @@
-~Tamilarasan Vellaikaran~
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,219 +6,470 @@
 <title>noon JED · Fulfillment Operations Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --yellow:#f7c600;
-  --bg:#0f0f0f;
-  --card:#171717;
-  --border:rgba(255,255,255,.08);
+  --bg:#0a0a0a;
+  --card:#141414;
+  --card-hover:#1a1a1a;
+  --border:rgba(255,255,255,.07);
   --text:#f2f2f2;
-  --muted:rgba(255,255,255,.55);
-  --green:#1D9E75;
-  --blue:#378ADD;
+  --muted:rgba(255,255,255,.5);
+
+  /* OB Colors - Warm amber/orange family */
+  --ob-primary:#F59E0B;
+  --ob-secondary:#EF9F27;
+  --ob-glow:rgba(245,158,11,.22);
+  --ob-border:rgba(245,158,11,.3);
+  --ob-bg:rgba(245,158,11,.07);
+
+  /* IB Colors - Cool teal/cyan family */
+  --ib-primary:#06B6D4;
+  --ib-secondary:#0EA5E9;
+  --ib-glow:rgba(6,182,212,.22);
+  --ib-border:rgba(6,182,212,.3);
+  --ib-bg:rgba(6,182,212,.07);
+
+  /* Neutral/Shared */
+  --green:#10B981;
   --purple:#8B7CF6;
-  --orange:#EF9F27;
   --red:#E26B5A;
+  --shared-primary:#8B7CF6;
+  --shared-glow:rgba(139,124,246,.2);
+  --shared-border:rgba(139,124,246,.28);
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-body{
-  font-family:'DM Sans',sans-serif;
+body {
+  font-family:'DM Sans', sans-serif;
   background:var(--bg);
   color:var(--text);
+  overflow-x:hidden;
 }
 
-header{
-  padding:24px 32px;
+/* ── HEADER ── */
+header {
+  padding:20px 36px;
   border-bottom:1px solid var(--border);
   display:flex;
   justify-content:space-between;
   align-items:center;
   position:sticky;
   top:0;
-  background:rgba(15,15,15,.95);
-  backdrop-filter:blur(10px);
+  background:rgba(10,10,10,.96);
+  backdrop-filter:blur(16px);
   z-index:100;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
+.logo { display:flex; align-items:center; gap:14px; }
 
-.logo-box{
-  width:42px;
-  height:42px;
-  border-radius:12px;
+.logo-box {
+  width:44px; height:44px;
+  border-radius:10px;
   background:var(--yellow);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:flex; align-items:center; justify-content:center;
   font-size:22px;
+  box-shadow:0 0 20px rgba(247,198,0,.35);
 }
 
-.logo h1{
-  font-size:20px;
-  font-weight:700;
-}
+.logo h1 { font-size:19px; font-weight:700; letter-spacing:-.3px; }
+.logo p { font-size:11px; color:var(--yellow); letter-spacing:.5px; }
 
-.logo p{
-  font-size:12px;
-  color:var(--yellow);
-}
-
-.live{
-  background:rgba(29,158,117,.15);
-  border:1px solid rgba(29,158,117,.25);
-  color:#59d8ab;
-  padding:8px 14px;
+.live-badge {
+  background:rgba(16,185,129,.12);
+  border:1px solid rgba(16,185,129,.25);
+  color:#34d399;
+  padding:7px 14px;
   border-radius:999px;
-  font-size:12px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.4px;
+  display:flex; align-items:center; gap:6px;
 }
 
-.hero{
-  padding:48px 32px;
+.live-dot {
+  width:7px; height:7px;
+  border-radius:50%;
+  background:#34d399;
+  animation:pulse 2s infinite;
 }
 
-.hero h2{
-  font-size:42px;
-  line-height:1.1;
-  margin-bottom:12px;
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:.5;transform:scale(.8);}
 }
 
-.hero h2 span{
-  color:var(--yellow);
+/* ── HERO ── */
+.hero {
+  padding:44px 36px 28px;
+  position:relative;
 }
 
-.hero p{
-  max-width:720px;
+.hero::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 0%, rgba(247,198,0,.04) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+.hero h2 {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:46px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:-1px;
+  margin-bottom:10px;
+  text-transform:uppercase;
+}
+
+.hero h2 span { color:var(--yellow); }
+
+.hero p {
+  max-width:680px;
   color:var(--muted);
+  font-size:14px;
   line-height:1.7;
 }
 
-.search-box{
-  padding:0 32px 30px;
+/* ── SEARCH ── */
+.search-wrap {
+  padding:0 36px 32px;
 }
 
-.search-box input{
+.search-inner {
+  position:relative;
+  max-width:480px;
+}
+
+.search-icon {
+  position:absolute;
+  left:16px; top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);
+  font-size:15px;
+}
+
+.search-wrap input {
   width:100%;
-  max-width:500px;
-  background:#1b1b1b;
+  background:#161616;
   border:1px solid var(--border);
-  padding:14px 18px;
-  border-radius:14px;
+  padding:13px 18px 13px 42px;
+  border-radius:12px;
   color:white;
   font-size:14px;
+  font-family:'DM Sans', sans-serif;
+  transition:.2s;
+  outline:none;
 }
 
-main{
-  padding:0 32px 60px;
+.search-wrap input:focus {
+  border-color:rgba(247,198,0,.35);
+  background:#1a1a1a;
 }
 
-.section{
-  margin-bottom:40px;
-}
+/* ── MAIN ── */
+main { padding:0 36px 72px; }
 
-.section-header{
+/* ── SIGNBOARD SECTION HEADERS ── */
+.section { margin-bottom:48px; }
+
+.signboard {
   display:flex;
-  align-items:center;
-  gap:14px;
-  margin-bottom:18px;
-}
-
-.section-icon{
-  width:48px;
-  height:48px;
+  align-items:stretch;
+  margin-bottom:20px;
   border-radius:14px;
+  overflow:hidden;
+  position:relative;
+}
+
+/* OB Signboard */
+.signboard.ob {
+  background:linear-gradient(135deg, rgba(245,158,11,.12) 0%, rgba(239,159,39,.06) 100%);
+  border:1px solid var(--ob-border);
+  box-shadow:0 0 32px var(--ob-glow), inset 0 1px 0 rgba(245,158,11,.12);
+}
+
+/* IB Signboard */
+.signboard.ib {
+  background:linear-gradient(135deg, rgba(6,182,212,.12) 0%, rgba(14,165,233,.06) 100%);
+  border:1px solid var(--ib-border);
+  box-shadow:0 0 32px var(--ib-glow), inset 0 1px 0 rgba(6,182,212,.12);
+}
+
+/* Shared/Neutral Signboard */
+.signboard.shared {
+  background:linear-gradient(135deg, rgba(139,124,246,.1) 0%, rgba(139,124,246,.04) 100%);
+  border:1px solid var(--shared-border);
+  box-shadow:0 0 28px var(--shared-glow), inset 0 1px 0 rgba(139,124,246,.1);
+}
+
+.signboard.green-s {
+  background:linear-gradient(135deg, rgba(16,185,129,.1) 0%, rgba(16,185,129,.04) 100%);
+  border:1px solid rgba(16,185,129,.28);
+  box-shadow:0 0 28px rgba(16,185,129,.15), inset 0 1px 0 rgba(16,185,129,.1);
+}
+
+.signboard.yellow-s {
+  background:linear-gradient(135deg, rgba(247,198,0,.1) 0%, rgba(247,198,0,.04) 100%);
+  border:1px solid rgba(247,198,0,.28);
+  box-shadow:0 0 28px rgba(247,198,0,.12), inset 0 1px 0 rgba(247,198,0,.1);
+}
+
+.signboard.red-s {
+  background:linear-gradient(135deg, rgba(226,107,90,.1) 0%, rgba(226,107,90,.04) 100%);
+  border:1px solid rgba(226,107,90,.28);
+  box-shadow:0 0 28px rgba(226,107,90,.12), inset 0 1px 0 rgba(226,107,90,.1);
+}
+
+/* Colour stripe on left */
+.signboard-stripe {
+  width:5px;
+  flex-shrink:0;
+}
+
+.ob .signboard-stripe { background:linear-gradient(180deg, #F59E0B, #EF9F27); }
+.ib .signboard-stripe { background:linear-gradient(180deg, #06B6D4, #0EA5E9); }
+.shared .signboard-stripe { background:linear-gradient(180deg, #8B7CF6, #6D60E8); }
+.green-s .signboard-stripe { background:linear-gradient(180deg, #10B981, #059669); }
+.yellow-s .signboard-stripe { background:linear-gradient(180deg, #f7c600, #d4a900); }
+.red-s .signboard-stripe { background:linear-gradient(180deg, #E26B5A, #c44f3d); }
+
+.signboard-body {
   display:flex;
   align-items:center;
-  justify-content:center;
-  font-size:22px;
+  gap:16px;
+  padding:18px 22px;
+  flex:1;
 }
 
-.green{background:rgba(29,158,117,.15);}
-.orange{background:rgba(239,159,39,.15);}
-.blue{background:rgba(55,138,221,.15);}
-.purple{background:rgba(139,124,246,.15);}
-.yellow{background:rgba(247,198,0,.15);}
-.red{background:rgba(226,107,90,.15);}
-
-.section-title{
+.signboard-icon {
+  width:52px; height:52px;
+  border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
   font-size:24px;
+  flex-shrink:0;
+}
+
+.ob .signboard-icon { background:rgba(245,158,11,.15); }
+.ib .signboard-icon { background:rgba(6,182,212,.15); }
+.shared .signboard-icon { background:rgba(139,124,246,.15); }
+.green-s .signboard-icon { background:rgba(16,185,129,.15); }
+.yellow-s .signboard-icon { background:rgba(247,198,0,.15); }
+.red-s .signboard-icon { background:rgba(226,107,90,.15); }
+
+.signboard-text { flex:1; }
+
+.signboard-tag {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:10px;
   font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:3px;
+  display:block;
 }
 
-.grid{
+.ob .signboard-tag { color:var(--ob-primary); }
+.ib .signboard-tag { color:var(--ib-primary); }
+.shared .signboard-tag { color:var(--shared-primary); }
+.green-s .signboard-tag { color:#10B981; }
+.yellow-s .signboard-tag { color:#f7c600; }
+.red-s .signboard-tag { color:#E26B5A; }
+
+.signboard-title {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:-.3px;
+  text-transform:uppercase;
+  line-height:1;
+  color:var(--text);
+}
+
+.signboard-count {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:13px;
+  font-weight:700;
+  padding:6px 14px;
+  border-radius:999px;
+  letter-spacing:.5px;
+}
+
+.ob .signboard-count { background:rgba(245,158,11,.15); color:var(--ob-primary); border:1px solid rgba(245,158,11,.25); }
+.ib .signboard-count { background:rgba(6,182,212,.15); color:var(--ib-primary); border:1px solid rgba(6,182,212,.25); }
+.shared .signboard-count { background:rgba(139,124,246,.15); color:var(--shared-primary); border:1px solid rgba(139,124,246,.25); }
+.green-s .signboard-count { background:rgba(16,185,129,.15); color:#10B981; border:1px solid rgba(16,185,129,.25); }
+.yellow-s .signboard-count { background:rgba(247,198,0,.15); color:#f7c600; border:1px solid rgba(247,198,0,.25); }
+.red-s .signboard-count { background:rgba(226,107,90,.15); color:#E26B5A; border:1px solid rgba(226,107,90,.25); }
+
+/* ── CARDS GRID ── */
+.grid {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:14px;
+  grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+  gap:12px;
 }
 
-.card{
+.card {
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:18px;
+  border-radius:14px;
+  padding:16px;
   text-decoration:none;
   color:white;
+  transition:.2s ease;
+  display:block;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:2px;
+  opacity:0;
   transition:.2s;
 }
 
-.card:hover{
-  transform:translateY(-3px);
-  border-color:rgba(247,198,0,.35);
+/* OB card hover */
+.section.ob-section .card:hover {
+  border-color:var(--ob-border);
+  background:var(--card-hover);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(245,158,11,.1);
+}
+.section.ob-section .card:hover::before { opacity:1; background:linear-gradient(90deg, var(--ob-primary), var(--ob-secondary)); }
+
+/* IB card hover */
+.section.ib-section .card:hover {
+  border-color:var(--ib-border);
+  background:var(--card-hover);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(6,182,212,.1);
+}
+.section.ib-section .card:hover::before { opacity:1; background:linear-gradient(90deg, var(--ib-primary), var(--ib-secondary)); }
+
+/* Shared card hover */
+.section.shared-section .card:hover,
+.section.green-section .card:hover,
+.section.yellow-section .card:hover,
+.section.red-section .card:hover {
+  border-color:rgba(139,124,246,.3);
+  background:var(--card-hover);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(139,124,246,.08);
 }
 
-.card-top{
+.card-top {
   display:flex;
   justify-content:space-between;
-  margin-bottom:12px;
+  align-items:flex-start;
+  margin-bottom:10px;
 }
 
-.badge{
-  font-size:11px;
-  padding:5px 10px;
-  border-radius:999px;
+.badge {
+  font-size:10px;
+  padding:4px 9px;
+  border-radius:6px;
   font-weight:700;
+  letter-spacing:.4px;
+  text-transform:uppercase;
 }
 
-.sheet{background:rgba(29,158,117,.15);color:#5edbb1;}
-.metric{background:rgba(239,159,39,.15);color:#ffbd5c;}
-.dashboard{background:rgba(55,138,221,.15);color:#7bb8ff;}
-.platform{background:rgba(139,124,246,.15);color:#b4a8ff;}
-.sop{background:rgba(247,198,0,.15);color:#ffe16e;}
-.audit{background:rgba(226,107,90,.15);color:#ff9b8e;}
+/* OB badges */
+.section.ob-section .badge { background:rgba(245,158,11,.15); color:#fbbf24; border:1px solid rgba(245,158,11,.2); }
 
-.card h3{
-  font-size:15px;
-  margin-bottom:6px;
+/* IB badges */
+.section.ib-section .badge { background:rgba(6,182,212,.15); color:#22d3ee; border:1px solid rgba(6,182,212,.2); }
+
+/* Override specific badge types */
+.badge.sheet { background:rgba(16,185,129,.15); color:#34d399; border:1px solid rgba(16,185,129,.2); }
+.badge.dashboard { background:rgba(55,138,221,.15); color:#7bb8ff; border:1px solid rgba(55,138,221,.2); }
+.badge.platform { background:rgba(139,124,246,.15); color:#b4a8ff; border:1px solid rgba(139,124,246,.2); }
+.badge.sop { background:rgba(247,198,0,.15); color:#ffe16e; border:1px solid rgba(247,198,0,.2); }
+.badge.audit { background:rgba(226,107,90,.15); color:#ff9b8e; border:1px solid rgba(226,107,90,.2); }
+
+.card h3 {
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:5px;
+  line-height:1.3;
 }
 
-.card p{
+.card p {
   font-size:12px;
   color:var(--muted);
   line-height:1.5;
 }
 
-footer{
-  border-top:1px solid var(--border);
-  padding:24px 32px;
+.arrow {
+  position:absolute;
+  right:14px;
+  bottom:14px;
+  font-size:13px;
+  opacity:0;
   color:var(--muted);
-  text-align:center;
-  font-size:12px;
+  transition:.2s;
 }
 
-@media(max-width:768px){
-.hero h2{font-size:30px;}
-main, .hero, .search-box, header{padding-left:18px;padding-right:18px;}
+.card:hover .arrow { opacity:1; transform:translate(2px,-2px); }
+
+/* ── DIVIDER between OB and IB ── */
+.ob-ib-divider {
+  margin:20px 0 48px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.ob-ib-divider::before, .ob-ib-divider::after {
+  content:'';
+  flex:1;
+  height:1px;
+}
+
+.ob-ib-divider::before { background:linear-gradient(90deg, transparent, var(--ob-border)); }
+.ob-ib-divider::after { background:linear-gradient(90deg, var(--ib-border), transparent); }
+
+.divider-label {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  padding:6px 16px;
+  border-radius:999px;
+  background:#141414;
+  border:1px solid var(--border);
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top:1px solid var(--border);
+  padding:22px 36px;
+  color:var(--muted);
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.4px;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px) {
+  .hero h2 { font-size:32px; }
+  header, main, .hero, .search-wrap { padding-left:18px; padding-right:18px; }
+  .grid { grid-template-columns:1fr 1fr; }
+  .signboard-title { font-size:20px; }
+}
+
+@media(max-width:480px) {
+  .grid { grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -231,444 +481,608 @@ main, .hero, .search-box, header{padding-left:18px;padding-right:18px;}
     <div class="logo-box">📦</div>
     <div>
       <h1>Fulfillment Operations Hub</h1>
-      <p>noon · JED_Site · Fulfillment
-        Center</p>
+      <p>noon · JED_Site · Fulfillment Center</p>
     </div>
   </div>
-
-  <div class="live">● All Systems Live</div>
+  <div class="live-badge"><span class="live-dot"></span> All Systems Live</div>
 </header>
 
 <section class="hero">
   <h2>Warehouse <span>Operations Dashboard</span></h2>
-  <p>
-    Centralized access point for all Department operations trackers, dashboards,
-    SOPs, attendance systems, and fulfillment platforms.
-  </p>
+  <p>Centralized access point for all department operations trackers, dashboards, SOPs, attendance systems, and fulfillment platforms.</p>
 </section>
 
-<div class="search-box">
-  <input type="text" id="searchInput" placeholder="Search trackers, dashboards, SOPs, platforms...">
+<div class="search-wrap">
+  <div class="search-inner">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search trackers, dashboards, SOPs, platforms…">
+  </div>
 </div>
 
 <main>
 
-<!-- ORDER MAINTAINED EXACTLY AS PROVIDED BY USER -->
+<!-- ════════════════════════════════════════════
+     SHARED / FC PERFORMANCE
+════════════════════════════════════════════ -->
 
-<section class="section">
-  <div class="section-header" style="border-left:4px solid #1D9E75;padding-left:12px;">
-    <div class="section-icon green" style="box-shadow:0 0 18px rgba(29,158,117,.35);font-size:26px;">📦</div>
-    <div class="section-title">Fulfillment_Center_Performance</div>
+<section class="section green-section">
+  <div class="signboard green-s">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">📦</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Shared · FC</span>
+        <div class="signboard-title">Fulfillment CT Performance</div>
+      </div>
+      <div class="signboard-count">8 Links</div>
+    </div>
   </div>
 
   <div class="grid">
-
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1WFC4EW7-Fdb9hEXjN8Rg7B11EbgjewCy5P3ljDUYf_Y/edit?gid=2083001023#gid=2083001023" target="_blank">
       <div class="card-top"><span class="badge sheet">TRACKER</span></div>
-      <h3>Outbound_CT</h3>
+      <h3>Outbound CT</h3>
       <p>Outbound operations tracking and monitoring.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1YD76qSH1WCRbE6vA4gQnG8lCHEBj9Eajmz9gzzv5cUU/edit?gid=1546987077#gid=1546987077" target="_blank">
       <div class="card-top"><span class="badge sheet">TRACKER</span></div>
-      <h3>Inbound_CT</h3>
+      <h3>Inbound CT</h3>
       <p>Inbound fulfillment and receiving tracker.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1f6YG6My5IAFe5Seo05ujeg91Wxdw0liTmQZy2Ot-s0c/edit" target="_blank">
       <div class="card-top"><span class="badge sheet">TRACKER</span></div>
-      <h3>Inventory_CT</h3>
+      <h3>Inventory CT</h3>
       <p>Inventory visibility and stock tracking.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1m5FTcNW-Yqsr8lypCh98iEVFm_IwDwWnNCfxBuevlII/edit?gid=0#gid=0" target="_blank">
       <div class="card-top"><span class="badge sheet">TRACKER</span></div>
-      <h3>RTV_CT</h3>
+      <h3>RTV CT</h3>
       <p>Returns to vendor operational performance monitoring.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1FhxMEvlLrVSiWf1AqrLSnN7TzIznbvwPAo7ougvmF8A/edit#gid=195209178" target="_blank">
       <div class="card-top"><span class="badge sheet">AFS</span></div>
-      <h3>AFS_CT</h3>
+      <h3>AFS CT</h3>
       <p>AFS operational performance monitoring.</p>
+      <span class="arrow">↗</span>
     </a>
-
+     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1NBeqAJLCvpOjvgCT_HorGqYLDJ2UUD3Vhl5n-uC2aRw/edit?gid=804646113#gid=804646113" target="_blank">
+      <div class="card-top"><span class="badge sheet">BMR</span></div>
+      <h3>BMR_ CT</h3>
+      <p>Weekly operational performance monitoring.</p>
+      <span class="arrow">↗</span>
+    </a>
+<a class="card searchable" href="https://docs.google.com/spreadsheets/d/1RfNYSH6z7_0nkpIILsquovu-L5m9NfNk50mzq8UEI2A/edit?gid=2061146295#gid=2061146295" target="_blank">
+      <div class="card-top"><span class="badge sheet">BMR_RCA</span></div>
+      <h3>BMR_ CT</h3>
+      <p>Weekly WMR Call Action Tracker/ Monthly Score improvement Plan.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1RfNYSH6z7_0nkpIILsquovu-L5m9NfNk50mzq8UEI2A/edit?gid=2061146295#gid=2061146295" target="_blank">
+      <div class="card-top"><span class="badge sheet">BMR_RCA</span></div>
+      <h3>BMR_ CT</h3>
+      <p>Weekly WMR Call Action Tracker/ Monthly Score improvement Plan.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1RfNYSH6z7_0nkpIILsquovu-L5m9NfNk50mzq8UEI2A/edit?gid=2061146295#gid=2061146295" target="_blank">
+      <div class="card-top"><span class="badge sheet">Score_Card</span></div>
+      <h3>CT_Performance Scorecard</h3>
+      <p>Performance Scorecard tracking for all FC .</p>
+      <span class="arrow">↗</span>
+    </a>
+    
   </div>
 </section>
 
-<section class="section">
-  <div class="section-header" style="border-left:4px solid #EF9F27;padding-left:12px;">
-    <div class="section-icon orange" style="box-shadow:0 0 18px rgba(239,159,39,.35);font-size:26px;">📊</div>
-    <div class="section-title">OB Metric Track & Visibility Source</div>
+
+<!-- ════════════════════════════════════════════
+     OB SECTIONS
+════════════════════════════════════════════ -->
+
+<section class="section ob-section">
+  <div class="signboard ob">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">📊</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Outbound · Metrics</span>
+        <div class="signboard-title">OB Metric Track &amp; Visibility Source</div>
+      </div>
+      <div class="signboard-count">9 Links</div>
+    </div>
   </div>
 
   <div class="grid">
-
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1YdTke9BgtlLxwUrGVH2rRi12ERoSvDZ-wXJXZ2SVg5c/edit?gid=1649404506#gid=1649404506" target="_blank">
-      <div class="card-top"><span class="badge metric">DE_Capacity</span></div>
-      <h3>DE Hourly Capacity - Last 15 Days</h3>
+      <div class="card-top"><span class="badge">DE_Capacity</span></div>
+      <h3>DE Hourly Capacity – Last 15 Days</h3>
       <p>Hourly capacity tracking for DE operations.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1kBPNnANnQ6ixeueInIFfjSGFIBG1jhk4CUJDGWLlw1k/edit?gid=1527141221#gid=1527141221" target="_blank">
-      <div class="card-top"><span class="badge metric">DE_YESTERDAY</span></div>
+      <div class="card-top"><span class="badge">DE_Yesterday</span></div>
       <h3>Hourly DE Performance</h3>
       <p>Daily outbound DE performance tracker.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1S8fQzNmMls72lpyJ5K6N6T75d_wkjEY3qernHm9WX-I/edit?gid=1939527628#gid=1939527628" target="_blank">
-      <div class="card-top"><span class="badge metric">Job_type_%</span></div>
-      <h3>Job Type & IPS Rate</h3>
+      <div class="card-top"><span class="badge">Job_Type_%</span></div>
+      <h3>Job Type &amp; IPS Rate</h3>
       <p>Job type %, service type %, and IPS rate.</p>
+      <span class="arrow">↗</span>
     </a>
-    
-     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1ERPRGyfkEEN7PK7rVhA4Hu1ALZiVIAVXqpAFoTlp3FY/edit?gid=1061931698#gid=1061931698" target="_blank">
-      <div class="card-top"><span class="badge metric">IPP_JED_OB</span></div>
+
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1ERPRGyfkEEN7PK7rVhA4Hu1ALZiVIAVXqpAFoTlp3FY/edit?gid=1061931698#gid=1061931698" target="_blank">
+      <div class="card-top"><span class="badge">IPP_JED_OB</span></div>
       <h3>IPP Tracking</h3>
       <p>Shift, calendar, and weekly IPP tracking.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1dUsFYJ6XqJvu_R34S02PrMiQLI7GdtxDgNV4aeJxMBY/edit?gid=485600298#gid=485600298" target="_blank">
-      <div class="card-top"><span class="badge metric">Service_TAT</span></div>
-      <h3>OB Indicators - Leg-wise TAT</h3>
+      <div class="card-top"><span class="badge">Service_TAT</span></div>
+      <h3>OB Indicators – Leg-wise TAT</h3>
       <p>Outbound leg-wise TAT indicator monitoring.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1yZ4VvbkeIOB7LKydr62YIoAY378lCZvRkrBA7-p7Jo0/edit#gid=0" target="_blank">
-      <div class="card-top"><span class="badge metric">CUTOFF_View</span></div>
-      <h3>Cutoff View - 7 Days</h3>
+      <div class="card-top"><span class="badge">Cutoff_View</span></div>
+      <h3>Cutoff View – 7 Days</h3>
       <p>Cutoff visibility for all MP operations.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1nfDQdTr7pyOAQz2axzWCC-sApQlyF86cF6LS60CAYWM/edit?gid=552931606#gid=552931606" target="_blank">
-      <div class="card-top"><span class="badge metric">TPH</span></div>
+      <div class="card-top"><span class="badge">TPH</span></div>
       <h3>OB Throughput Per Hour</h3>
       <p>Throughput per hour operational indicator.</p>
+      <span class="arrow">↗</span>
     </a>
-    
-     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1yl6Wzwbpwa8_ppNy7Am6PQkwbyJP_zTLtHymimYQV4U/edit?gid=85582707#gid=85582707" target="_blank">
-      <div class="card-top"><span class="badge metric">Service_TAT_Raw</span></div>
+
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1yl6Wzwbpwa8_ppNy7Am6PQkwbyJP_zTLtHymimYQV4U/edit?gid=85582707#gid=85582707" target="_blank">
+      <div class="card-top"><span class="badge">Service_TAT_Raw</span></div>
       <h3>Leg-wise TAT Raw Data</h3>
       <p>Saudi Arabia leg-wise TAT raw data sheet.</p>
+      <span class="arrow">↗</span>
     </a>
 
-     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1vtEUDBBOlEihMv7EVrMcqJSRGWZn1oqdYSFrarZ3sOU/edit?gid=1370551993#gid=1370551993" target="_blank">
-      <div class="card-top"><span class="badge metric">JED_VIEW</span></div>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1vtEUDBBOlEihMv7EVrMcqJSRGWZn1oqdYSFrarZ3sOU/edit?gid=1370551993#gid=1370551993" target="_blank">
+      <div class="card-top"><span class="badge">JED_View</span></div>
       <h3>OB View</h3>
-      <p>OB/IB/Supermall/RTV/5S operational visibility</p>
+      <p>OB / IB / Supermall / RTV / 5S operational visibility.</p>
+      <span class="arrow">↗</span>
     </a>
-
   </div>
 </section>
 
-<section class="section">
-  <div class="section-header" style="border-left:4px solid #378ADD;padding-left:12px;">
-    <div class="section-icon blue" style="box-shadow:0 0 18px rgba(55,138,221,.35);font-size:26px;">📈</div>
-    <div class="section-title">OB Dashboard</div>
+<section class="section ob-section">
+  <div class="signboard ob">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">📈</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Outbound · Dashboards</span>
+        <div class="signboard-title">OB Dashboard</div>
+      </div>
+      <div class="signboard-count">3 Links</div>
+    </div>
   </div>
 
   <div class="grid">
-
     <a class="card searchable" href="https://datastudio.google.com/reporting/e47a388a-ba7b-415f-ab62-1515811d8e9a/page/rDj3D" target="_blank">
       <div class="card-top"><span class="badge dashboard">OB_Hour_Dashboard</span></div>
       <h3>Hourly Outbound Dashboard</h3>
-      <p>Live outbound dashboard for all Country.</p>
+      <p>Live outbound dashboard for all countries.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/dbcf47e6-fd92-43b4-9b98-e31faafaee73/page/p_uyerahqfud" target="_blank">
       <div class="card-top"><span class="badge dashboard">Productivity</span></div>
       <h3>Fulfillment Productivity</h3>
       <p>Fulfillment productivity dashboard.</p>
-    </a>
-    
-     <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/0ddecfd2-5bb7-47ca-aea4-eb52df84894f/page/p_a4ane64ged" target="_blank">
-      <div class="card-top"><span class="badge dashboard">NC Dashboard</span></div>
-      <h3>QA Audits - Fulfillment KSA</h3>
-      <p>QA Audits - Fulfillment KSA dashboard.</p>
+      <span class="arrow">↗</span>
     </a>
 
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/0ddecfd2-5bb7-47ca-aea4-eb52df84894f/page/p_a4ane64ged" target="_blank">
+      <div class="card-top"><span class="badge dashboard">NC Dashboard</span></div>
+      <h3>QA Audits – Fulfillment KSA</h3>
+      <p>QA Audits – Fulfillment KSA dashboard.</p>
+      <span class="arrow">↗</span>
+    </a>
   </div>
 </section>
 
-<section class="section">
-  <div class="section-header" style="border-left:4px solid #8B7CF6;padding-left:12px;">
-    <div class="section-icon purple" style="box-shadow:0 0 18px rgba(139,124,246,.35);font-size:26px;">🚚</div>
-    <div class="section-title">OB_Frequently Used Platforms</div>
+<section class="section ob-section">
+  <div class="signboard ob">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">🚚</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Outbound · Platforms</span>
+        <div class="signboard-title">OB Frequently Used Platforms</div>
+      </div>
+      <div class="signboard-count">8 Links</div>
+    </div>
   </div>
 
   <div class="grid">
-
     <a class="card searchable" href="https://fbn-ops.noon.team/picking/pendency" target="_blank">
       <div class="card-top"><span class="badge platform">PLATFORM</span></div>
       <h3>FBN Pendency</h3>
-      <p>Outbound All pendency platform.</p>
+      <p>Outbound all pendency platform.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://express-control.noon.team/reports/multiple_item_tracking" target="_blank">
       <div class="card-top"><span class="badge platform">EXPRESS</span></div>
       <h3>Express Control</h3>
       <p>Multiple item shipment tracking.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://agentone.noon.team/order/" target="_blank">
       <div class="card-top"><span class="badge platform">AGENTONE</span></div>
       <h3>AgentOne</h3>
       <p>Order management and support system.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://support-nm.noon.team/" target="_blank">
       <div class="card-top"><span class="badge platform">NAMSHI</span></div>
       <h3>Namshi AgentOne</h3>
       <p>Namshi order support and issue management.</p>
+      <span class="arrow">↗</span>
     </a>
-     <a class="card searchable" href="https://fms-api.noon.team/reports/shipment_details?format=html&awb_nr=PF88194096957S" target="_blank">
+
+    <a class="card searchable" href="https://fms-api.noon.team/reports/shipment_details?format=html&awb_nr=PF88194096957S" target="_blank">
       <div class="card-top"><span class="badge platform">Station_Detail</span></div>
-      <h3>_OB_Station_Detail</h3>
-      <p>OB_QC & Station_Details.</p>
+      <h3>OB Station Detail</h3>
+      <p>OB QC &amp; Station Details.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://fulfillment-platform.noon.partners/inventory-visibility?project=PRJ522588" target="_blank">
       <div class="card-top"><span class="badge platform">FULFILLMENT</span></div>
       <h3>Fulfillment Platform</h3>
       <p>Inventory visibility and fulfillment operations platform.</p>
-    </a>
-      <a class="card searchable" href="https://docs.google.com/spreadsheets/d/19G8ed4MlaQg407uNWigSDbtUrN51QlOFWX5PwGFIeFE/edit?gid=771212518#gid=771212518" target="_blank">
-      <div class="card-top"><span class="badge platform">Hourly Trend</span></div>
-      <h3>JED01 & 04 Hourly Trend</h3>
-      <p>Real-time internal operations report.</p>
+      <span class="arrow">↗</span>
     </a>
 
-       <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1r6lsBBN2LzOL3MbFBbwoRiif0-7Mlf1KEL3OHdLdQYg/edit?gid=0#gid=0" target="_blank">
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/19G8ed4MlaQg407uNWigSDbtUrN51QlOFWX5PwGFIeFE/edit?gid=771212518#gid=771212518" target="_blank">
+      <div class="card-top"><span class="badge platform">Hourly Trend</span></div>
+      <h3>JED01 &amp; 04 Hourly Trend</h3>
+      <p>Real-time internal operations report.</p>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1r6lsBBN2LzOL3MbFBbwoRiif0-7Mlf1KEL3OHdLdQYg/edit?gid=0#gid=0" target="_blank">
       <div class="card-top"><span class="badge platform">LIVE</span></div>
       <h3>Fast Hourly Report</h3>
       <p>Internal hourly operational reporting.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1M52bbUwt4yN0lMVBEm1ol4t3QUB5_vJ-iqnNhK_xKwA/edit?gid=0#gid=0" target="_blank">
       <div class="card-top"><span class="badge platform">LIVE</span></div>
-      <h3>Internal Live_CNF_Report</h3>
+      <h3>Internal Live CNF Report</h3>
       <p>Real-time internal operations report.</p>
+      <span class="arrow">↗</span>
     </a>
-
   </div>
 </section>
 
-<section class="section">
-  <div class="section-header" style="border-left:4px solid #f7c600;padding-left:12px;">
-    <div class="section-icon yellow" style="box-shadow:0 0 18px rgba(247,198,0,.35);font-size:26px;">📘</div>
-    <div class="section-title">OB_Guidelines & SOP</div>
+<section class="section yellow-section">
+  <div class="signboard yellow-s">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">📘</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Outbound · SOPs</span>
+        <div class="signboard-title">OB Guidelines &amp; SOP</div>
+      </div>
+      <div class="signboard-count">4 Links</div>
+    </div>
   </div>
 
   <div class="grid">
-
     <a class="card searchable" href="https://drive.google.com/drive/folders/1QDZM_qSit8juYP8hIpfFcitb9xc5JEC0?usp=drive_link" target="_blank">
       <div class="card-top"><span class="badge sop">SOP</span></div>
       <h3>OB Visual SOP</h3>
       <p>Outbound warehouse visual SOP guidelines.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/presentation/d/16fDKrvM2d-3Lrl0q9aicEDACQYEMtlE1L-yIQ3kq57A/edit" target="_blank">
       <div class="card-top"><span class="badge sop">QC</span></div>
       <h3>QC Guidelines</h3>
       <p>Quality control operational guidelines.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/presentation/d/12D3ZLzWPSOFUNdrgHmkoIlxosDXeYdtP/edit" target="_blank">
       <div class="card-top"><span class="badge sop">PACKAGING</span></div>
-      <h3>Training Module - Packaging SOP</h3>
+      <h3>Training Module – Packaging SOP</h3>
       <p>Packaging SOP training and operational standards.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1BwdcU6g4zv2HG0oHOvlXBMo2kOahpLKuxgYTQ-1iSWc/edit?gid=1752856729#gid=1752856729" target="_blank">
       <div class="card-top"><span class="badge sop">NORMS</span></div>
       <h3>OB Packaging Norms by Category</h3>
       <p>Outbound packaging standards by product category.</p>
+      <span class="arrow">↗</span>
     </a>
-
   </div>
 </section>
 
-<section class="section">
-  <div class="section-header" style="border-left:4px solid #22c55e;padding-left:12px;">
-    <div class="section-icon red" style="box-shadow:0 0 18px rgba(34,197,94,.35);font-size:26px;">✅</div>
-    <div class="section-title">OB_Audit NC Performance</div>
+<section class="section red-section">
+  <div class="signboard red-s">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">✅</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Outbound · Audit</span>
+        <div class="signboard-title">OB Audit NC Performance</div>
+      </div>
+      <div class="signboard-count">3 Links</div>
+    </div>
   </div>
 
   <div class="grid">
-
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1SY0idwi5bGsh0xehriYfueMXV5F08jgAOHzdjjXi0Jk/edit?gid=2105564605#gid=2105564605" target="_blank">
       <div class="card-top"><span class="badge audit">AUDIT</span></div>
       <h3>OB NC Tracker KSA</h3>
       <p>Outbound NC audit tracker for KSA operations.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1MGtrULMKD-qwIChVwQnqfFSmJqUqncjASNgDmGUEL6c/edit?gid=1950990437#gid=1950990437" target="_blank">
       <div class="card-top"><span class="badge audit">NC</span></div>
       <h3>Internal NC Tracker</h3>
       <p>Internal non-compliance tracking system.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1jYpmLnJgCAM0EzEldfU1fy-NvzQz50RURk7kvXhZff0/edit?gid=1951585659#gid=1951585659" target="_blank">
       <div class="card-top"><span class="badge audit">5S</span></div>
       <h3>5S NC Tracker</h3>
       <p>5S warehouse audit and compliance tracker.</p>
+      <span class="arrow">↗</span>
     </a>
-
   </div>
 </section>
 
 
-<section class="section">
-  <div class="section-header" style="border-left:4px solid #E26B5A;padding-left:12px;">
-    <div class="section-icon yellow" style="box-shadow:0 0 18px rgba(226,107,90,.35);font-size:26px;">👥</div>
-    <div class="section-title">UMS Attendance System for JED Site</div>
+<!-- ════════════════════════════════════════════
+     OB / IB DIVIDER
+════════════════════════════════════════════ -->
+<div class="ob-ib-divider">
+  <span class="divider-label">⬆ OUTBOUND &nbsp;&nbsp;·&nbsp;&nbsp; INBOUND ⬇</span>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     IB SECTIONS
+════════════════════════════════════════════ -->
+
+<section class="section ib-section">
+  <div class="signboard ib">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">📊</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Inbound · Metrics</span>
+        <div class="signboard-title">IB Metric Track &amp; Visibility Source</div>
+      </div>
+      <div class="signboard-count">4 Links</div>
+    </div>
   </div>
 
   <div class="grid">
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/16XLbJxO8a8gG0mt44za3f9GKAvIeV-3M0LlKkrhpNUI/edit?gid=555114977#gid=555114977" target="_blank">
+      <div class="card-top"><span class="badge">Live_Productivity</span></div>
+      <h3>Live Productivity for IB</h3>
+      <p>Live productivity tracking for JED01 &amp; JED04.</p>
+      <span class="arrow">↗</span>
+    </a>
 
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1VXbtKHQMdsQvwtF0nuDZBuPBiYVFcIcy_VTVIs_G9v0/edit?gid=1623830002#gid=1623830002" target="_blank">
+      <div class="card-top"><span class="badge">HRV-Green-Channel</span></div>
+      <h3>HRV Green for IB</h3>
+      <p>HRV Green Channel tracking.</p>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1ypFJqQ2v4XE_QRMc7wuP5iqzuRQERT0TA7an47W0Jic/edit?pli=1&gid=0#gid=0" target="_blank">
+      <div class="card-top"><span class="badge">FIFO / SKU</span></div>
+      <h3>FIFO / SKU / Category for IB</h3>
+      <p>IB FIFO adherence, SKU depth &amp; category mix.</p>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1e85eMijrR0m6KYQyHKImnY8H0TjQFuulyfJ-hU-RdqI/edit?gid=80231002#gid=80231002" target="_blank">
+      <div class="card-top"><span class="badge">QMS</span></div>
+      <h3>QMS Report for IB</h3>
+      <p>QMS report adherence check.</p>
+      <span class="arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="section ib-section">
+  <div class="signboard ib">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">📈</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Inbound · Dashboards</span>
+        <div class="signboard-title">IB Dashboard</div>
+      </div>
+      <div class="signboard-count">2 Links</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <a class="card searchable" href="https://datastudio.google.com/reporting/e47a388a-ba7b-415f-ab62-1515811d8e9a/page/rDj3D" target="_blank">
+      <div class="card-top"><span class="badge dashboard">IB_Dashboard</span></div>
+      <h3>Inbound Dashboard 2025</h3>
+      <p>Inbound performance, TAT, utilization, retail view &amp; general reporting.</p>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/2d3e4d83-8b02-4c2e-8c27-92893bc362b8/page/p_g47supfuvd" target="_blank">
+      <div class="card-top"><span class="badge dashboard">Mobile_View</span></div>
+      <h3>TV Inbound Dashboard 2025</h3>
+      <p>TV / Mobile view.</p>
+      <span class="arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+<section class="section ib-section">
+  <div class="signboard ib">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">🚚</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Inbound · Platforms</span>
+        <div class="signboard-title">IB Frequently Used Platforms</div>
+      </div>
+      <div class="signboard-count">5 Links</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <a class="card searchable" href="https://fbn-inbound-scheduler.noon.team/weekly?date=2026-05-28&warehouse=JED01" target="_blank">
+      <div class="card-top"><span class="badge platform">PLATFORM</span></div>
+      <h3>FBN Scheduler</h3>
+      <p>Weekly, monthly, gate-in, QMS &amp; reports.</p>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="card searchable" href="https://wms-api-repl.noon.team/reports/asn_putaway_item_pendency_v2?warehouse_code=JED01&format=html" target="_blank">
+      <div class="card-top"><span class="badge platform">API</span></div>
+      <h3>ASN Putaway</h3>
+      <p>ASN putaway item pendency – warehouse wise.</p>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="card searchable" href="https://fbn-ops.noon.team/picking/pendency" target="_blank">
+      <div class="card-top"><span class="badge platform">PLATFORM</span></div>
+      <h3>FBN View</h3>
+      <p>Inbound ASN view.</p>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="card searchable" href="https://wms-api-repl.noon.team/reports/user_productivity?warehouse_code=JED01&format=html" target="_blank">
+      <div class="card-top"><span class="badge platform">API</span></div>
+      <h3>User Productivity</h3>
+      <p>Reports / user productivity – warehouse wise.</p>
+      <span class="arrow">↗</span>
+    </a>
+
+    <a class="card searchable" href="https://wms-api-repl.noon.team/reports/user_productivity?warehouse_code=JED04&format=html&exref_type=ASN" target="_blank">
+      <div class="card-top"><span class="badge platform">API</span></div>
+      <h3>ASN Productivity Filter</h3>
+      <p>Reports / ASN user productivity – warehouse wise.</p>
+      <span class="arrow">↗</span>
+    </a>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SHARED SECTIONS (Attendance + Tools)
+════════════════════════════════════════════ -->
+
+<section class="section shared-section">
+  <div class="signboard shared">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">👥</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Shared · HR</span>
+        <div class="signboard-title">UMS Attendance System – JED Site</div>
+      </div>
+      <div class="signboard-count">2 Links</div>
+    </div>
+  </div>
+
+  <div class="grid">
     <a class="card searchable" href="https://fbnums.noon.partners/en-sa/attendance?project=PRJ321228&date=2026-05-28&warehouse_code=W00000004A" target="_blank">
       <div class="card-top"><span class="badge sop">UMS</span></div>
       <h3>UMS Attendance System</h3>
       <p>Attendance monitoring system for JED site.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://docs.google.com/presentation/d/1_ygIAvY2aCgD2P_znnK0GjphOrzUQB-LLzKyIoyVEGI/edit" target="_blank">
       <div class="card-top"><span class="badge sop">SOP</span></div>
       <h3>UMS Attendance SOP</h3>
       <p>Attendance policy and SOP documentation.</p>
+      <span class="arrow">↗</span>
     </a>
-
-  
-
   </div>
 </section>
 
-<section class="section">
-  <div class="section-header" style="border-left:4px solid #8B7CF6;padding-left:12px;">
-    <div class="section-icon purple" style="box-shadow:0 0 18px rgba(139,124,246,.35);font-size:26px;">🛠️</div>
-    <div class="section-title">Additional Operations Tools</div>
+<section class="section shared-section">
+  <div class="signboard shared">
+    <div class="signboard-stripe"></div>
+    <div class="signboard-body">
+      <div class="signboard-icon">🛠️</div>
+      <div class="signboard-text">
+        <span class="signboard-tag">Shared · Tools</span>
+        <div class="signboard-title">Additional Operations Tools</div>
+      </div>
+      <div class="signboard-count">4 Links</div>
+    </div>
   </div>
 
   <div class="grid">
-
     <a class="card searchable" href="https://misc-importer.noon.team/import/order_picking" target="_blank">
       <div class="card-top"><span class="badge platform">IMPORT</span></div>
       <h3>Import Order Picking</h3>
       <p>Order picking import management tool.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://misc-importer.noon.team/import/user_service_mapping" target="_blank">
       <div class="card-top"><span class="badge platform">MAPPING</span></div>
       <h3>User Service Mapping</h3>
       <p>User and service allocation management.</p>
+      <span class="arrow">↗</span>
     </a>
 
     <a class="card searchable" href="https://preporting.noon.team/queryengine" target="_blank">
       <div class="card-top"><span class="badge platform">QUERY</span></div>
       <h3>Heartbeat Query Engine</h3>
       <p>Internal reporting and query engine.</p>
+      <span class="arrow">↗</span>
     </a>
-     <a class="card searchable" href="https://wh-query-engine.noon.team/" target="_blank">
+
+    <a class="card searchable" href="https://wh-query-engine.noon.team/" target="_blank">
       <div class="card-top"><span class="badge platform">QUERY</span></div>
       <h3>Thunder Query Engine</h3>
       <p>Internal reporting and query engine.</p>
+      <span class="arrow">↗</span>
     </a>
-     </div>
-
-    <section class="section">
-  <div class="section-header" style="border-left:4px solid #EF9F27;padding-left:12px;">
-    <div class="section-icon orange" style="box-shadow:0 0 18px rgba(239,159,39,.35);font-size:26px;">📊</div>
-    <div class="section-title">IB Metric Track & Visibility Source</div>
-  </div>
-
-  <div class="grid">
-
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/16XLbJxO8a8gG0mt44za3f9GKAvIeV-3M0LlKkrhpNUI/edit?gid=555114977#gid=555114977" target="_blank">
-      <div class="card-top"><span class="badge metric">Live_Productivity</span></div>
-      <h3>Live_Productivity for IB</h3>
-      <p>Live_Productivity tracking for JED01 & JED04.</p>
-    </a>
-
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1VXbtKHQMdsQvwtF0nuDZBuPBiYVFcIcy_VTVIs_G9v0/edit?gid=1623830002#gid=1623830002" target="_blank">
-      <div class="card-top"><span class="badge Metric">HRV-GREEN-CHANNEL</span></div>
-      <h3>HRV-GREEN for IB</h3>
-      <p>HRV-Green_Channel_Tracking.</p>
-    </a>
-     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1ypFJqQ2v4XE_QRMc7wuP5iqzuRQERT0TA7an47W0Jic/edit?pli=1&gid=0#gid=0" target="_blank">
-      <div class="card-top"><span class="badge Metric">FIFO/ SKU</span></div>
-      <h3>FIFO/SKU/Category for IB</h3>
-      <p>IB-FIFO Adhrence & SKU Depth & Category Mix.</p>
-    </a>
-      <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1e85eMijrR0m6KYQyHKImnY8H0TjQFuulyfJ-hU-RdqI/edit?gid=80231002#gid=80231002" target="_blank">
-      <div class="card-top"><span class="badge Metric">QMS</span></div>
-      <h3>QMS Report for IB</h3>
-      <p>QMS Report_ Adherence_check.</p>
-    </a>
-    </section>
-
-<section class="section">
-  <div class="section-header" style="border-left:4px solid #378ADD;padding-left:12px;">
-    <div class="section-icon blue" style="box-shadow:0 0 18px rgba(55,138,221,.35);font-size:26px;">📈</div>
-    <div class="section-title">IB Dashboard</div>
-  </div>
-
-  <div class="grid">
-
-    <a class="card searchable" href="https://datastudio.google.com/reporting/e47a388a-ba7b-415f-ab62-1515811d8e9a/page/rDj3D" target="_blank">
-      <div class="card-top"><span class="badge dashboard">IB_Dashboard</span></div>
-      <h3>Inbound Dashboard 2025</h3>
-      <p>Inbound Performance/ TAT/Utilization/Retail view /General reporting.</p>
-    </a>
-      <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/2d3e4d83-8b02-4c2e-8c27-92893bc362b8/page/p_g47supfuvd" target="_blank">
-      <div class="card-top"><span class="badge dashboard">Mobile__View</span></div>
-      <h3>TV_Inbound_Dashboard 2025</h3>
-      <p>TV/Mobile_view g.</p>
-    </a>
-    </section>
-
-<section class="section">
-  <div class="section-header" style="border-left:4px solid #8B7CF6;padding-left:12px;">
-    <div class="section-icon purple" style="box-shadow:0 0 18px rgba(139,124,246,.35);font-size:26px;">🚚</div>
-    <div class="section-title">IB_Frequently Used Platforms</div>
-  </div>
-
-  <div class="grid">
-
-    <a class="card searchable" href="https://fbn-inbound-scheduler.noon.team/weekly?date=2026-05-28&warehouse=JED01" target="_blank">
-      <div class="card-top"><span class="badge platform">PLATFORM</span></div>
-      <h3>FBN_Scheduler</h3>
-      <p>Weekly,Monthly,gate_in,QMS & Reports.</p>
-    </a>
-      <a class="card searchable" href="https://wms-api-repl.noon.team/reports/asn_putaway_item_pendency_v2?warehouse_code=JED01&format=html" target="_blank">
-      <div class="card-top"><span class="badge platform">API</span></div>
-      <h3>ASN_Putaway</h3>
-      <p>/asn_putaway_item_pendenc view_WH_Wise.</p>
-    </a>
-    
-    <a class="card searchable" href="https://fbn-ops.noon.team/picking/pendency" target="_blank">
-      <div class="card-top"><span class="badge platform">PLATFORM</span></div>
-      <h3>FBN_View</h3>
-      <p>Inbound_ASN_View.</p>
-    </a>
- <a class="card searchable" href="https://wms-api-repl.noon.team/reports/user_productivity?warehouse_code=JED01&format=html" target="_blank">
-      <div class="card-top"><span class="badge platform">API</span></div>
-      <h3>user_productivity</h3>
-      <p>reports/user_productivity?warehouse_wise.</p>
-    </a>
-     <a class="card searchable" href="https://wms-api-repl.noon.team/reports/user_productivity?warehouse_code=JED04&format=html&exref_type=ASN" target="_blank">
-      <div class="card-top"><span class="badge platform">API</span></div>
-      <h3>ASN_productivity_Filter</h3>
-      <p>reports/ASN/user_productivity?warehouse_wise.</p>
-    </a>
-
-    
   </div>
 </section>
 
 </main>
 
 <footer>
-  noon Jeddah Fulfillment Center · Operations Hub · 2026
+  noon Jeddah Fulfillment Center · Operations Hub · 2026 &nbsp;·&nbsp; ~Tamilarasan Vellaikaran~
 </footer>
 
 <script>
@@ -677,14 +1091,12 @@ const cards = document.querySelectorAll('.searchable');
 
 searchInput.addEventListener('keyup', function(){
   const value = this.value.toLowerCase();
-
   cards.forEach(card => {
     const text = card.innerText.toLowerCase();
-    card.style.display = text.includes(value) ? 'block' : 'none';
+    card.style.display = text.includes(value) ? '' : 'none';
   });
 });
 </script>
 
 </body>
 </html>
-```
