@@ -1,4 +1,4 @@
-<TAMILARASN VELLAIKARAN>
+<TAMIL ARASAN VELLAKARAN>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -39,6 +39,11 @@
   --inv-secondary:#10B981;
   --inv-glow:rgba(52,211,153,.25);
   --inv-border:rgba(52,211,153,.32);
+  /* ── NEW: People & Compliance ── */
+  --hr-primary:#FF6B35;
+  --hr-secondary:#F7931E;
+  --hr-glow:rgba(255,107,53,.25);
+  --hr-border:rgba(255,107,53,.32);
   --sidebar-w:230px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -96,7 +101,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);ove
   color:rgba(255,255,255,.4);
 }
 
-/* Colour accents per dept */
 .nav-link.fc-nav:hover,.nav-link.fc-nav.active{color:#34d399;border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.07);}
 .nav-link.fc-nav .nav-count{background:rgba(16,185,129,.12);color:#34d399;}
 .nav-link.ob-nav:hover,.nav-link.ob-nav.active{color:#fbbf24;border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.07);}
@@ -109,6 +113,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);ove
 .nav-link.inv-nav .nav-count{background:rgba(52,211,153,.12);color:#34d399;}
 .nav-link.shared-nav:hover,.nav-link.shared-nav.active{color:#b4a8ff;border-color:rgba(139,124,246,.2);background:rgba(139,124,246,.07);}
 .nav-link.shared-nav .nav-count{background:rgba(139,124,246,.12);color:#b4a8ff;}
+/* NEW */
+.nav-link.hr-nav:hover,.nav-link.hr-nav.active{color:#ff9a70;border-color:rgba(255,107,53,.2);background:rgba(255,107,53,.07);}
+.nav-link.hr-nav .nav-count{background:rgba(255,107,53,.12);color:#ff9a70;}
 
 .nav-divider{height:1px;background:var(--border);margin:8px 10px;}
 
@@ -127,7 +134,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);ove
 /* ── MAIN CONTENT ── */
 .content{margin-left:var(--sidebar-w);flex:1;min-width:0;}
 
-/* HEADER */
 header{
   padding:0 36px;height:64px;
   border-bottom:1px solid var(--border);
@@ -154,7 +160,6 @@ header{
   color:var(--muted);border-left:1px solid var(--border);padding-left:12px;
 }
 
-/* SEARCH */
 .search-wrap{padding:0 36px 32px;}
 .search-inner{position:relative;max-width:460px;}
 .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.4;font-size:13px;}
@@ -166,7 +171,6 @@ header{
 }
 .search-wrap input:focus{border-color:rgba(247,198,0,.3);background:#161616;box-shadow:0 0 0 3px rgba(247,198,0,.06);}
 
-/* HERO */
 .hero{padding:44px 36px 28px;position:relative;overflow:hidden;}
 .hero::after{
   content:'';position:absolute;top:-60px;right:-80px;
@@ -189,19 +193,15 @@ header{
 .hero h2 .line2{color:var(--yellow);}
 .hero p{max-width:580px;color:var(--muted);font-size:13px;line-height:1.75;}
 
-/* MAIN */
 main{padding:0 36px 80px;}
 .section{margin-bottom:48px;scroll-margin-top:80px;}
 
-/* ══════════════════════════════════════
-   SIGNBOARD — upgraded
-══════════════════════════════════════ */
+/* ══ SIGNBOARD ══ */
 .signboard{
   display:flex;align-items:stretch;
   margin-bottom:16px;border-radius:14px;overflow:hidden;
   position:relative;
 }
-/* animated shimmer line at top */
 .signboard::before{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.18) 50%,transparent 100%);
@@ -241,7 +241,7 @@ main{padding:0 36px 80px;}
   text-transform:uppercase;opacity:.5;margin-top:2px;
 }
 
-/* ── COLOUR THEMES ── */
+/* COLOUR THEMES */
 .signboard.fc-board{background:linear-gradient(110deg,rgba(16,185,129,.14) 0%,rgba(16,185,129,.04) 100%);border:1px solid rgba(16,185,129,.3);box-shadow:0 0 40px rgba(16,185,129,.14),inset 0 1px 0 rgba(16,185,129,.14);}
 .fc-board .sb-pillar{background:linear-gradient(180deg,#10B981,#059669);}
 .fc-board .sb-icon-panel{background:rgba(16,185,129,.08);}
@@ -291,13 +291,20 @@ main{padding:0 36px 80px;}
 .afs-board .sb-count{color:var(--afs-primary);}
 .afs-board .sb-meta{background:rgba(236,72,153,.05);}
 
-/* INVENTORY */
 .signboard.inv-board{background:linear-gradient(110deg,rgba(52,211,153,.14) 0%,rgba(16,185,129,.04) 100%);border:1px solid var(--inv-border);box-shadow:0 0 40px var(--inv-glow),inset 0 1px 0 rgba(52,211,153,.14);}
 .inv-board .sb-pillar{background:linear-gradient(180deg,#34D399,#059669);}
 .inv-board .sb-icon-panel{background:rgba(52,211,153,.08);}
 .inv-board .sb-eyebrow{color:var(--inv-primary);}
 .inv-board .sb-count{color:var(--inv-primary);}
 .inv-board .sb-meta{background:rgba(52,211,153,.05);}
+
+/* ══ NEW: People & Compliance ══ */
+.signboard.hr-board{background:linear-gradient(110deg,rgba(255,107,53,.14) 0%,rgba(247,147,30,.04) 100%);border:1px solid var(--hr-border);box-shadow:0 0 40px var(--hr-glow),inset 0 1px 0 rgba(255,107,53,.14);}
+.hr-board .sb-pillar{background:linear-gradient(180deg,#FF6B35,#d94f1a);}
+.hr-board .sb-icon-panel{background:rgba(255,107,53,.08);}
+.hr-board .sb-eyebrow{color:var(--hr-primary);}
+.hr-board .sb-count{color:var(--hr-primary);}
+.hr-board .sb-meta{background:rgba(255,107,53,.05);}
 
 /* CARDS */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
@@ -326,6 +333,10 @@ main{padding:0 36px 80px;}
 .section.afs-section .card:hover::after{opacity:1;background:linear-gradient(90deg,var(--afs-primary),var(--afs-secondary));}
 .section.inv-section .card:hover{border-color:var(--inv-border);background:var(--card-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(52,211,153,.09);}
 .section.inv-section .card:hover::after{opacity:1;background:linear-gradient(90deg,var(--inv-primary),var(--inv-secondary));}
+/* NEW */
+.section.hr-section .card:hover{border-color:var(--hr-border);background:var(--card-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,53,.09);}
+.section.hr-section .card:hover::after{opacity:1;background:linear-gradient(90deg,var(--hr-primary),var(--hr-secondary));}
+.section.hr-section .badge{background:rgba(255,107,53,.14);color:#ff9a70;border:1px solid rgba(255,107,53,.18);}
 
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
 .badge{font-size:9px;padding:3px 7px;border-radius:5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
@@ -358,28 +369,28 @@ main{padding:0 36px 80px;}
   padding:6px 10px;background:#141414;
   border-top:1px solid var(--border);border-bottom:1px solid var(--border);color:var(--muted);
 }
-
 .ob-ib-divider .d-left{background:linear-gradient(90deg,transparent,rgba(245,158,11,.4));}
 .ob-ib-divider .d-right{background:linear-gradient(90deg,rgba(6,182,212,.4),transparent);}
 .ob-ib-divider .d-tag-ob{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--ob-primary);border-radius:6px 0 0 6px;}
 .ob-ib-divider .d-tag-ib{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);color:var(--ib-primary);border-radius:0 6px 6px 0;}
-
 .ib-afs-divider .d-left{background:linear-gradient(90deg,transparent,rgba(6,182,212,.4));}
 .ib-afs-divider .d-right{background:linear-gradient(90deg,rgba(236,72,153,.4),transparent);}
 .ib-afs-divider .d-tag-ib{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);color:var(--ib-primary);border-radius:6px 0 0 6px;}
 .ib-afs-divider .d-tag-afs{background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3);color:var(--afs-primary);border-radius:0 6px 6px 0;}
-
 .afs-inv-divider .d-left{background:linear-gradient(90deg,transparent,rgba(236,72,153,.4));}
 .afs-inv-divider .d-right{background:linear-gradient(90deg,rgba(52,211,153,.4),transparent);}
 .afs-inv-divider .d-tag-afs{background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3);color:var(--afs-primary);border-radius:6px 0 0 6px;}
 .afs-inv-divider .d-tag-inv{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);color:var(--inv-primary);border-radius:0 6px 6px 0;}
-
 .inv-shared-divider .d-left{background:linear-gradient(90deg,transparent,rgba(52,211,153,.4));}
 .inv-shared-divider .d-right{background:linear-gradient(90deg,rgba(139,124,246,.4),transparent);}
 .inv-shared-divider .d-tag-inv{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);color:var(--inv-primary);border-radius:6px 0 0 6px;}
 .inv-shared-divider .d-tag-shared{background:rgba(139,124,246,.1);border:1px solid rgba(139,124,246,.3);color:var(--shared-primary);border-radius:0 6px 6px 0;}
+/* NEW divider */
+.shared-hr-divider .d-left{background:linear-gradient(90deg,transparent,rgba(139,124,246,.4));}
+.shared-hr-divider .d-right{background:linear-gradient(90deg,rgba(255,107,53,.4),transparent);}
+.shared-hr-divider .d-tag-shared{background:rgba(139,124,246,.1);border:1px solid rgba(139,124,246,.3);color:var(--shared-primary);border-radius:6px 0 0 6px;}
+.shared-hr-divider .d-tag-hr{background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.3);color:var(--hr-primary);border-radius:0 6px 6px 0;}
 
-/* FOOTER */
 footer{
   border-top:1px solid var(--border);padding:18px 36px;
   display:flex;align-items:center;justify-content:space-between;
@@ -389,32 +400,16 @@ footer{
 .footer-text{font-size:11px;color:var(--muted);letter-spacing:.3px;}
 .footer-credit{font-size:11px;color:rgba(255,255,255,.2);font-style:italic;}
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .sidebar{display:none;}
-  .content{margin-left:0;}
-}
-@media(max-width:640px){
-  .hero h2{font-size:36px;}
-  header,main,.hero,.search-wrap{padding-left:16px;padding-right:16px;}
-  .grid{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:480px){
-  .grid{grid-template-columns:1fr;}
-  .sb-meta{display:none;}
-}
-
-/* scroll smooth */
+@media(max-width:900px){.sidebar{display:none;}.content{margin-left:0;}}
+@media(max-width:640px){.hero h2{font-size:36px;}header,main,.hero,.search-wrap{padding-left:16px;padding-right:16px;}.grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.grid{grid-template-columns:1fr;}.sb-meta{display:none;}}
 html{scroll-behavior:smooth;}
 </style>
 </head>
 <body>
-
 <div class="layout">
 
-<!-- ══════════════════════════════════
-     SIDEBAR NAV
-══════════════════════════════════ -->
+<!-- SIDEBAR -->
 <nav class="sidebar">
   <div class="sidebar-logo">
     <div class="noon-badge-sm">noon</div>
@@ -423,58 +418,35 @@ html{scroll-behavior:smooth;}
   <div class="sidebar-label">Departments</div>
   <ul class="nav-list">
     <li class="nav-item">
-      <a class="nav-link fc-nav" href="#sec-fc">
-        <span class="nav-icon">📦</span>
-        <span class="nav-text">FC CT Performance</span>
-        <span class="nav-count">8</span>
-      </a>
+      <a class="nav-link fc-nav" href="#sec-fc"><span class="nav-icon">📦</span><span class="nav-text">FC CT Performance</span><span class="nav-count">8</span></a>
     </li>
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
-      <a class="nav-link ob-nav" href="#sec-ob">
-        <span class="nav-icon">📊</span>
-        <span class="nav-text">Outbound</span>
-        <span class="nav-count">28</span>
-      </a>
+      <a class="nav-link ob-nav" href="#sec-ob"><span class="nav-icon">📊</span><span class="nav-text">Outbound</span><span class="nav-count">28</span></a>
     </li>
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
-      <a class="nav-link ib-nav" href="#sec-ib">
-        <span class="nav-icon">📥</span>
-        <span class="nav-text">Inbound</span>
-        <span class="nav-count">13</span>
-      </a>
+      <a class="nav-link ib-nav" href="#sec-ib"><span class="nav-icon">📥</span><span class="nav-text">Inbound</span><span class="nav-count">13</span></a>
     </li>
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
-      <a class="nav-link afs-nav" href="#sec-afs">
-        <span class="nav-icon">🔄</span>
-        <span class="nav-text">AFS / RTV / Supermall</span>
-        <span class="nav-count">22</span>
-      </a>
+      <a class="nav-link afs-nav" href="#sec-afs"><span class="nav-icon">🔄</span><span class="nav-text">AFS / RTV / Supermall</span><span class="nav-count">22</span></a>
     </li>
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
-      <a class="nav-link inv-nav" href="#sec-inv">
-        <span class="nav-icon">🗂️</span>
-        <span class="nav-text">Inventory</span>
-        <span class="nav-count">30</span>
-      </a>
+      <a class="nav-link inv-nav" href="#sec-inv"><span class="nav-icon">🗂️</span><span class="nav-text">Inventory</span><span class="nav-count">30</span></a>
     </li>
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
-      <a class="nav-link shared-nav" href="#sec-shared">
-        <span class="nav-icon">👥</span>
-        <span class="nav-text">UMS Attendance</span>
-        <span class="nav-count">2</span>
-      </a>
+      <a class="nav-link shared-nav" href="#sec-shared"><span class="nav-icon">👥</span><span class="nav-text">UMS Attendance</span><span class="nav-count">2</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link shared-nav" href="#sec-tools">
-        <span class="nav-icon">🛠️</span>
-        <span class="nav-text">Additional Tools</span>
-        <span class="nav-count">2</span>
-      </a>
+      <a class="nav-link shared-nav" href="#sec-tools"><span class="nav-icon">🛠️</span><span class="nav-text">Additional Tools</span><span class="nav-count">6</span></a>
+    </li>
+    <li class="nav-item"><div class="nav-divider"></div></li>
+    <!-- NEW -->
+    <li class="nav-item">
+      <a class="nav-link hr-nav" href="#sec-hr"><span class="nav-icon">⚖️</span><span class="nav-text">People &amp; Compliance</span><span class="nav-count">5</span></a>
     </li>
   </ul>
   <div class="sidebar-footer">
@@ -482,12 +454,9 @@ html{scroll-behavior:smooth;}
   </div>
 </nav>
 
-<!-- ══════════════════════════════════
-     MAIN CONTENT
-══════════════════════════════════ -->
+<!-- MAIN CONTENT -->
 <div class="content">
 
-<!-- HEADER -->
 <header>
   <div class="header-logo">
     <div class="noon-badge">noon</div>
@@ -501,7 +470,6 @@ html{scroll-behavior:smooth;}
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-eyebrow">noon · Fulfillment Center</div>
   <h2>
@@ -511,7 +479,6 @@ html{scroll-behavior:smooth;}
   <p>Centralized access point for all department operations trackers, dashboards, SOPs, attendance systems, and fulfillment platforms.</p>
 </section>
 
-<!-- SEARCH -->
 <div class="search-wrap">
   <div class="search-inner">
     <span class="search-icon">🔍</span>
@@ -521,9 +488,7 @@ html{scroll-behavior:smooth;}
 
 <main>
 
-<!-- ══════════════════════════════════
-     FC CT PERFORMANCE
-══════════════════════════════════ -->
+<!-- FC CT PERFORMANCE -->
 <section id="sec-fc" class="section fc-section">
   <div class="signboard fc-board">
     <div class="sb-pillar"></div>
@@ -534,53 +499,22 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">Fulfillment Center CT Performance</div>
         <div class="sb-subtitle">Cross-department CT trackers, BMR reports &amp; scorecards</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">8</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">8</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1WFC4EW7-Fdb9hEXjN8Rg7B11EbgjewCy5P3ljDUYf_Y/edit?gid=2083001023#gid=2083001023" target="_blank">
-      <div class="card-top"><span class="badge sheet">TRACKER</span></div>
-      <h3>Outbound CT</h3><p>Outbound operations tracking and monitoring.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1YD76qSH1WCRbE6vA4gQnG8lCHEBj9Eajmz9gzzv5cUU/edit?gid=1546987077#gid=1546987077" target="_blank">
-      <div class="card-top"><span class="badge sheet">TRACKER</span></div>
-      <h3>Inbound CT</h3><p>Inbound fulfillment and receiving tracker.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1f6YG6My5IAFe5Seo05ujeg91Wxdw0liTmQZy2Ot-s0c/edit" target="_blank">
-      <div class="card-top"><span class="badge sheet">TRACKER</span></div>
-      <h3>Inventory CT</h3><p>Inventory visibility and stock tracking.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1m5FTcNW-Yqsr8lypCh98iEVFm_IwDwWnNCfxBuevlII/edit?gid=0#gid=0" target="_blank">
-      <div class="card-top"><span class="badge sheet">TRACKER</span></div>
-      <h3>RTV CT</h3><p>Returns to vendor operational performance monitoring.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1FhxMEvlLrVSiWf1AqrLSnN7TzIznbvwPAo7ougvmF8A/edit#gid=195209178" target="_blank">
-      <div class="card-top"><span class="badge sheet">TRACKER</span></div>
-      <h3>AFS CT</h3><p>AFS operational performance monitoring.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1NBeqAJLCvpOjvgCT_HorGqYLDJ2UUD3Vhl5n-uC2aRw/edit?gid=804646113#gid=804646113" target="_blank">
-      <div class="card-top"><span class="badge sheet">BMR</span></div>
-      <h3>BMR CT</h3><p>Weekly operational performance monitoring.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1RfNYSH6z7_0nkpIILsquovu-L5m9NfNk50mzq8UEI2A/edit?gid=2061146295#gid=2061146295" target="_blank">
-      <div class="card-top"><span class="badge sheet">BMR_RCA</span></div>
-      <h3>BMR CT – RCA</h3><p>Weekly WMR call action tracker / monthly score improvement plan.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1RfNYSH6z7_0nkpIILsquovu-L5m9NfNk50mzq8UEI2A/edit?gid=2061146295#gid=2061146295" target="_blank">
-      <div class="card-top"><span class="badge sheet">Score_Card</span></div>
-      <h3>CT Performance Scorecard</h3><p>Performance scorecard tracking for all FC.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1WFC4EW7-Fdb9hEXjN8Rg7B11EbgjewCy5P3ljDUYf_Y/edit?gid=2083001023#gid=2083001023" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Outbound CT</h3><p>Outbound operations tracking and monitoring.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1YD76qSH1WCRbE6vA4gQnG8lCHEBj9Eajmz9gzzv5cUU/edit?gid=1546987077#gid=1546987077" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Inbound CT</h3><p>Inbound fulfillment and receiving tracker.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1f6YG6My5IAFe5Seo05ujeg91Wxdw0liTmQZy2Ot-s0c/edit" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Inventory CT</h3><p>Inventory visibility and stock tracking.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1m5FTcNW-Yqsr8lypCh98iEVFm_IwDwWnNCfxBuevlII/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>RTV CT</h3><p>Returns to vendor operational performance monitoring.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1FhxMEvlLrVSiWf1AqrLSnN7TzIznbvwPAo7ougvmF8A/edit#gid=195209178" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>AFS CT</h3><p>AFS operational performance monitoring.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1NBeqAJLCvpOjvgCT_HorGqYLDJ2UUD3Vhl5n-uC2aRw/edit?gid=804646113#gid=804646113" target="_blank"><div class="card-top"><span class="badge sheet">BMR</span></div><h3>BMR CT</h3><p>Weekly operational performance monitoring.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1RfNYSH6z7_0nkpIILsquovu-L5m9NfNk50mzq8UEI2A/edit?gid=2061146295#gid=2061146295" target="_blank"><div class="card-top"><span class="badge sheet">BMR_RCA</span></div><h3>BMR CT – RCA</h3><p>Weekly WMR call action tracker / monthly score improvement plan.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1RfNYSH6z7_0nkpIILsquovu-L5m9NfNk50mzq8UEI2A/edit?gid=2061146295#gid=2061146295" target="_blank"><div class="card-top"><span class="badge sheet">Score_Card</span></div><h3>CT Performance Scorecard</h3><p>Performance scorecard tracking for all FC.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     OUTBOUND
-══════════════════════════════════ -->
+<!-- OUTBOUND -->
 <section id="sec-ob" class="section ob-section">
   <div class="signboard ob-board">
     <div class="sb-pillar"></div>
@@ -591,55 +525,20 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">OB Metric Track &amp; Visibility Source</div>
         <div class="sb-subtitle">DE capacity, IPS rate, TAT, cutoff &amp; TPH tracking</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">10</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">10</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1YdTke9BgtlLxwUrGVH2rRi12ERoSvDZ-wXJXZ2SVg5c/edit?gid=1649404506#gid=1649404506" target="_blank">
-      <div class="card-top"><span class="badge">DE_Capacity</span></div>
-      <h3>DE Hourly Capacity – Last 15 Days</h3><p>Hourly capacity tracking for DE operations.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1kBPNnANnQ6ixeueInIFfjSGFIBG1jhk4CUJDGWLlw1k/edit?gid=1527141221#gid=1527141221" target="_blank">
-      <div class="card-top"><span class="badge">DE_Yesterday</span></div>
-      <h3>Hourly DE Performance</h3><p>Daily outbound DE performance tracker.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1S8fQzNmMls72lpyJ5K6N6T75d_wkjEY3qernHm9WX-I/edit?gid=1939527628#gid=1939527628" target="_blank">
-      <div class="card-top"><span class="badge">Job_Type_%</span></div>
-      <h3>Job Type &amp; IPS Rate</h3><p>Job type %, service type %, and IPS rate.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1ERPRGyfkEEN7PK7rVhA4Hu1ALZiVIAVXqpAFoTlp3FY/edit?gid=1061931698#gid=1061931698" target="_blank">
-      <div class="card-top"><span class="badge">IPP_JED_OB</span></div>
-      <h3>IPP Tracking</h3><p>Shift, calendar, and weekly IPP tracking.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1dUsFYJ6XqJvu_R34S02PrMiQLI7GdtxDgNV4aeJxMBY/edit?gid=485600298#gid=485600298" target="_blank">
-      <div class="card-top"><span class="badge">Service_TAT</span></div>
-      <h3>OB Indicators – Leg-wise TAT</h3><p>Outbound leg-wise TAT indicator monitoring.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1yZ4VvbkeIOB7LKydr62YIoAY378lCZvRkrBA7-p7Jo0/edit#gid=0" target="_blank">
-      <div class="card-top"><span class="badge">Cutoff_View</span></div>
-      <h3>Cutoff View – 7 Days</h3><p>Cutoff visibility for all MP operations.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1nfDQdTr7pyOAQz2axzWCC-sApQlyF86cF6LS60CAYWM/edit?gid=552931606#gid=552931606" target="_blank">
-      <div class="card-top"><span class="badge">TPH</span></div>
-      <h3>OB Throughput Per Hour</h3><p>Throughput per hour operational indicator.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1yl6Wzwbpwa8_ppNy7Am6PQkwbyJP_zTLtHymimYQV4U/edit?gid=85582707#gid=85582707" target="_blank">
-      <div class="card-top"><span class="badge">Service_TAT_Raw</span></div>
-      <h3>Leg-wise TAT Raw Data</h3><p>Saudi Arabia leg-wise TAT raw data sheet.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1vtEUDBBOlEihMv7EVrMcqJSRGWZn1oqdYSFrarZ3sOU/edit?gid=1370551993#gid=1370551993" target="_blank">
-      <div class="card-top"><span class="badge">JED_View</span></div>
-      <h3>OB View</h3><p>OB / IB / Supermall / RTV / 5S operational visibility.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1lRmT_j0Kvqft8m36KEakK9A8xlgqPTKQRp9wBtVaKl0/edit?gid=1573566450#gid=1573566450" target="_blank">
-      <div class="card-top"><span class="badge">OB Morning_View</span></div>
-      <h3>OB Morning View</h3><p>OB yesterday metric visibility raw.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1YdTke9BgtlLxwUrGVH2rRi12ERoSvDZ-wXJXZ2SVg5c/edit?gid=1649404506#gid=1649404506" target="_blank"><div class="card-top"><span class="badge">DE_Capacity</span></div><h3>DE Hourly Capacity – Last 15 Days</h3><p>Hourly capacity tracking for DE operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1kBPNnANnQ6ixeueInIFfjSGFIBG1jhk4CUJDGWLlw1k/edit?gid=1527141221#gid=1527141221" target="_blank"><div class="card-top"><span class="badge">DE_Yesterday</span></div><h3>Hourly DE Performance</h3><p>Daily outbound DE performance tracker.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1S8fQzNmMls72lpyJ5K6N6T75d_wkjEY3qernHm9WX-I/edit?gid=1939527628#gid=1939527628" target="_blank"><div class="card-top"><span class="badge">Job_Type_%</span></div><h3>Job Type &amp; IPS Rate</h3><p>Job type %, service type %, and IPS rate.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1ERPRGyfkEEN7PK7rVhA4Hu1ALZiVIAVXqpAFoTlp3FY/edit?gid=1061931698#gid=1061931698" target="_blank"><div class="card-top"><span class="badge">IPP_JED_OB</span></div><h3>IPP Tracking</h3><p>Shift, calendar, and weekly IPP tracking.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1dUsFYJ6XqJvu_R34S02PrMiQLI7GdtxDgNV4aeJxMBY/edit?gid=485600298#gid=485600298" target="_blank"><div class="card-top"><span class="badge">Service_TAT</span></div><h3>OB Indicators – Leg-wise TAT</h3><p>Outbound leg-wise TAT indicator monitoring.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1yZ4VvbkeIOB7LKydr62YIoAY378lCZvRkrBA7-p7Jo0/edit#gid=0" target="_blank"><div class="card-top"><span class="badge">Cutoff_View</span></div><h3>Cutoff View – 7 Days</h3><p>Cutoff visibility for all MP operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1nfDQdTr7pyOAQz2axzWCC-sApQlyF86cF6LS60CAYWM/edit?gid=552931606#gid=552931606" target="_blank"><div class="card-top"><span class="badge">TPH</span></div><h3>OB Throughput Per Hour</h3><p>Throughput per hour operational indicator.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1yl6Wzwbpwa8_ppNy7Am6PQkwbyJP_zTLtHymimYQV4U/edit?gid=85582707#gid=85582707" target="_blank"><div class="card-top"><span class="badge">Service_TAT_Raw</span></div><h3>Leg-wise TAT Raw Data</h3><p>Saudi Arabia leg-wise TAT raw data sheet.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1vtEUDBBOlEihMv7EVrMcqJSRGWZn1oqdYSFrarZ3sOU/edit?gid=1370551993#gid=1370551993" target="_blank"><div class="card-top"><span class="badge">JED_View</span></div><h3>OB View</h3><p>OB / IB / Supermall / RTV / 5S operational visibility.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1lRmT_j0Kvqft8m36KEakK9A8xlgqPTKQRp9wBtVaKl0/edit?gid=1573566450#gid=1573566450" target="_blank"><div class="card-top"><span class="badge">OB Morning_View</span></div><h3>OB Morning View</h3><p>OB yesterday metric visibility raw.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -653,31 +552,14 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">OB Dashboard</div>
         <div class="sb-subtitle">Hourly, productivity, NC &amp; TV/mobile views</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">4</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">4</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://datastudio.google.com/reporting/e47a388a-ba7b-415f-ab62-1515811d8e9a/page/rDj3D" target="_blank">
-      <div class="card-top"><span class="badge dashboard">OB_Hour_Dashboard</span></div>
-      <h3>Hourly Outbound Dashboard</h3><p>Live outbound dashboard for all countries.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/dbcf47e6-fd92-43b4-9b98-e31faafaee73/page/p_uyerahqfud" target="_blank">
-      <div class="card-top"><span class="badge dashboard">Productivity</span></div>
-      <h3>Fulfillment Productivity</h3><p>Fulfillment productivity dashboard.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/0ddecfd2-5bb7-47ca-aea4-eb52df84894f/page/p_a4ane64ged" target="_blank">
-      <div class="card-top"><span class="badge dashboard">NC Dashboard</span></div>
-      <h3>QA Audits – Fulfillment KSA</h3><p>QA Audits – Fulfillment KSA dashboard.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/2d3e4d83-8b02-4c2e-8c27-92893bc362b8/page/p_g47supfuvd" target="_blank">
-      <div class="card-top"><span class="badge dashboard">Mobile_View</span></div>
-      <h3>Outbound TV Dashboard</h3><p>TV / Mobile view.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://datastudio.google.com/reporting/e47a388a-ba7b-415f-ab62-1515811d8e9a/page/rDj3D" target="_blank"><div class="card-top"><span class="badge dashboard">OB_Hour_Dashboard</span></div><h3>Hourly Outbound Dashboard</h3><p>Live outbound dashboard for all countries.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/dbcf47e6-fd92-43b4-9b98-e31faafaee73/page/p_uyerahqfud" target="_blank"><div class="card-top"><span class="badge dashboard">Productivity</span></div><h3>Fulfillment Productivity</h3><p>Fulfillment productivity dashboard.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/0ddecfd2-5bb7-47ca-aea4-eb52df84894f/page/p_a4ane64ged" target="_blank"><div class="card-top"><span class="badge dashboard">NC Dashboard</span></div><h3>QA Audits – Fulfillment KSA</h3><p>QA Audits – Fulfillment KSA dashboard.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/2d3e4d83-8b02-4c2e-8c27-92893bc362b8/page/p_g47supfuvd" target="_blank"><div class="card-top"><span class="badge dashboard">Mobile_View</span></div><h3>Outbound TV Dashboard</h3><p>TV / Mobile view.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -691,12 +573,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">OB Frequently Used Platforms</div>
         <div class="sb-subtitle">FBN pendency, express control, AgentOne &amp; live reports</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">11</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">11</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -724,12 +601,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">OB Guidelines &amp; SOP</div>
         <div class="sb-subtitle">Visual SOP, QC guidelines &amp; packaging standards</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">4</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">4</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -750,12 +622,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">OB Audit NC Performance</div>
         <div class="sb-subtitle">NC trackers, internal compliance &amp; 5S audits</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">3</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">3</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -769,16 +636,12 @@ html{scroll-behavior:smooth;}
 <div class="dept-divider ob-ib-divider">
   <div class="d-left"></div>
   <div class="d-center">
-    <div class="d-tag d-tag-ob">⬆ Outbound</div>
-    <div class="d-sep">·</div>
-    <div class="d-tag d-tag-ib">Inbound ⬇</div>
+    <div class="d-tag d-tag-ob">⬆ Outbound</div><div class="d-sep">·</div><div class="d-tag d-tag-ib">Inbound ⬇</div>
   </div>
   <div class="d-right"></div>
 </div>
 
-<!-- ══════════════════════════════════
-     INBOUND
-══════════════════════════════════ -->
+<!-- INBOUND -->
 <section id="sec-ib" class="section ib-section">
   <div class="signboard ib-board">
     <div class="sb-pillar"></div>
@@ -789,12 +652,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">IB Metric Track &amp; Visibility Source</div>
         <div class="sb-subtitle">Live productivity, HRV green channel, FIFO &amp; QMS</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">4</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">4</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -815,12 +673,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">IB Dashboard</div>
         <div class="sb-subtitle">Performance, TAT, utilization &amp; TV/mobile views</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">3</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">3</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -840,12 +693,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">IB Frequently Used Platforms</div>
         <div class="sb-subtitle">FBN scheduler, ASN putaway, NC tracker &amp; productivity</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">6</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">6</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -862,16 +710,12 @@ html{scroll-behavior:smooth;}
 <div class="dept-divider ib-afs-divider">
   <div class="d-left"></div>
   <div class="d-center">
-    <div class="d-tag d-tag-ib">⬆ Inbound</div>
-    <div class="d-sep">·</div>
-    <div class="d-tag d-tag-afs">AFS / RTV / Supermall ⬇</div>
+    <div class="d-tag d-tag-ib">⬆ Inbound</div><div class="d-sep">·</div><div class="d-tag d-tag-afs">AFS / RTV / Supermall ⬇</div>
   </div>
   <div class="d-right"></div>
 </div>
 
-<!-- ══════════════════════════════════
-     AFS / RTV / SUPERMALL
-══════════════════════════════════ -->
+<!-- AFS / RTV / SUPERMALL -->
 <section id="sec-afs" class="section afs-section">
   <div class="signboard afs-board">
     <div class="sb-pillar"></div>
@@ -882,12 +726,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">AFS / RTV / Supermall Metric Track &amp; Visibility</div>
         <div class="sb-subtitle">SOS/EOS pendency, NDR QC, service point &amp; seller promise</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">9</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">9</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -913,12 +752,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">AFS / RTV Dashboard</div>
         <div class="sb-subtitle">Mobile/TV view, RMS QC &amp; NC dashboards</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">3</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">3</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -938,12 +772,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">AFS / RTV Frequently Used Platforms</div>
         <div class="sb-subtitle">NDR pendency, RTV eligibility, CIR history &amp; barcode print</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">6</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">6</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -966,12 +795,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">Supermall Operations</div>
         <div class="sb-subtitle">Hourly script reports &amp; shared drive folder</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">2</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">2</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -990,12 +814,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">AFS / RTV Guidelines &amp; SOP</div>
         <div class="sb-subtitle">NDR &amp; RTV standard operating procedure documentation</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">2</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">2</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -1008,16 +827,12 @@ html{scroll-behavior:smooth;}
 <div class="dept-divider afs-inv-divider">
   <div class="d-left"></div>
   <div class="d-center">
-    <div class="d-tag d-tag-afs">⬆ AFS / RTV</div>
-    <div class="d-sep">·</div>
-    <div class="d-tag d-tag-inv">Inventory ⬇</div>
+    <div class="d-tag d-tag-afs">⬆ AFS / RTV</div><div class="d-sep">·</div><div class="d-tag d-tag-inv">Inventory ⬇</div>
   </div>
   <div class="d-right"></div>
 </div>
 
-<!-- ══════════════════════════════════
-     INVENTORY  ← NEW
-══════════════════════════════════ -->
+<!-- INVENTORY -->
 <section id="sec-inv" class="section inv-section">
   <div class="signboard inv-board">
     <div class="sb-pillar"></div>
@@ -1028,12 +843,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">Inventory Metric Track &amp; Visibility Source</div>
         <div class="sb-subtitle">PST coverage, WT pendency, mislabel, ICQA, ageing &amp; JLM</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">17</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">17</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -1067,12 +877,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">Inventory Dashboard</div>
         <div class="sb-subtitle">Ops-inventory, VMS, seller recon &amp; partner warehouse views</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">4</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">4</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -1093,12 +898,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">Inventory Frequently Used Platforms</div>
         <div class="sb-subtitle">Barcode print, box images, stock access &amp; IBPS tools</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">5</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">5</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -1120,12 +920,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">Inventory Guidelines &amp; SOP</div>
         <div class="sb-subtitle">Stocktake, replenishment, damaged inventory &amp; storage SOPs</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">7</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">7</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -1149,12 +944,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">Inventory Audit NC Performance</div>
         <div class="sb-subtitle">INV audit NC, IB NC, AFS NC &amp; 5S audit trackers</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">4</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">4</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -1169,16 +959,12 @@ html{scroll-behavior:smooth;}
 <div class="dept-divider inv-shared-divider">
   <div class="d-left"></div>
   <div class="d-center">
-    <div class="d-tag d-tag-inv">⬆ Inventory</div>
-    <div class="d-sep">·</div>
-    <div class="d-tag d-tag-shared">Shared Tools ⬇</div>
+    <div class="d-tag d-tag-inv">⬆ Inventory</div><div class="d-sep">·</div><div class="d-tag d-tag-shared">Shared Tools ⬇</div>
   </div>
   <div class="d-right"></div>
 </div>
 
-<!-- ══════════════════════════════════
-     SHARED SECTIONS
-══════════════════════════════════ -->
+<!-- SHARED -->
 <section id="sec-shared" class="section shared-section">
   <div class="signboard shared-board">
     <div class="sb-pillar"></div>
@@ -1189,12 +975,7 @@ html{scroll-behavior:smooth;}
         <div class="sb-title">UMS Attendance System – JED Site</div>
         <div class="sb-subtitle">Attendance monitoring &amp; policy documentation for JED</div>
       </div>
-      <div class="sb-meta">
-        <div style="text-align:center;">
-          <div class="sb-count">2</div>
-          <div class="sb-count-label">Links</div>
-        </div>
-      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">2</div><div class="sb-count-label">Links</div></div></div>
     </div>
   </div>
   <div class="grid">
@@ -1211,24 +992,84 @@ html{scroll-behavior:smooth;}
       <div class="sb-text">
         <span class="sb-eyebrow">Shared · Internal Tools &amp; Engines</span>
         <div class="sb-title">Additional Operations Tools</div>
-        <div class="sb-subtitle">Heartbeat &amp; Thunder query engines for internal reporting</div>
+        <div class="sb-subtitle">Heartbeat, Thunder &amp; BigQuery engines, Jira &amp; Zoho platforms</div>
+      </div>
+      <div class="sb-meta"><div style="text-align:center;"><div class="sb-count">6</div><div class="sb-count-label">Links</div></div></div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://preporting.noon.team/queryengine" target="_blank"><div class="card-top"><span class="badge platform">QUERY</span></div><h3>Heartbeat Query Engine</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://wh-query-engine.noon.team/" target="_blank"><div class="card-top"><span class="badge platform">QUERY</span></div><h3>Thunder Query Engine</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://console.cloud.google.com/bigquery?project=noonbicfcxlb&j=bq:EU:bquxjob_352543e2_17405a62178&page=queryresults&pli=1&ws=!1m0" target="_blank"><div class="card-top"><span class="badge platform">QUERY</span></div><h3>Big Query Engine</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://next-square.atlassian.net/servicedesk/customer/portals" target="_blank"><div class="card-top"><span class="badge platform">Jira</span></div><h3>Jira Platform</h3><p>Service desk and project management platform.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://help.noon.com/agent/nooncs/noon-customer-service-1/tickets/list/my-cases" target="_blank"><div class="card-top"><span class="badge platform">Zoho</span></div><h3>Zoho CX Platform</h3><p>Customer experience ticketing platform.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://support.noon.partners/agent/noondemo/seller-support/tickets/list/my-cases?view=compact" target="_blank"><div class="card-top"><span class="badge platform">Zoho</span></div><h3>Zoho Seller Support Platform</h3><p>Seller support ticketing and case management.</p><span class="arrow">↗</span></a>
+  </div>
+</section>
+
+<!-- SHARED / PEOPLE & COMPLIANCE DIVIDER -->
+<div class="dept-divider shared-hr-divider">
+  <div class="d-left"></div>
+  <div class="d-center">
+    <div class="d-tag d-tag-shared">⬆ Shared Tools</div>
+    <div class="d-sep">·</div>
+    <div class="d-tag d-tag-hr">People &amp; Compliance ⬇</div>
+  </div>
+  <div class="d-right"></div>
+</div>
+
+<!-- ══════════════════════════════════
+     PEOPLE & COMPLIANCE  ← NEW
+══════════════════════════════════ -->
+<section id="sec-hr" class="section hr-section">
+  <div class="signboard hr-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">⚖️</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">People &amp; Compliance · Warnings, Recovery &amp; Manpower</span>
+        <div class="sb-title">Manpower, Warnings &amp; 3PL Recovery</div>
+        <div class="sb-subtitle">Process deviation warnings, 3PL deductions &amp; KSA manpower tracking</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
-          <div class="sb-count">2</div>
+          <div class="sb-count">5</div>
           <div class="sb-count-label">Links</div>
         </div>
       </div>
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://preporting.noon.team/queryengine" target="_blank"><div class="card-top"><span class="badge platform">QUERY</span></div><h3>Heartbeat Query Engine</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
-    <a class="card searchable" href="https://wh-query-engine.noon.team/" target="_blank"><div class="card-top"><span class="badge platform">QUERY</span></div><h3>Thunder Query Engine</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
-        <a class="card searchable" href="https://console.cloud.google.com/bigquery?project=noonbicfcxlb&j=bq:EU:bquxjob_352543e2_17405a62178&page=queryresults&pli=1&ws=!1m0" target="_blank"><div class="card-top"><span class="badge platform">QUERY</span></div><h3>Big Query Engine</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
-        <a class="card searchable" href="https://next-square.atlassian.net/servicedesk/customer/portals"_blank"><div class="card-top"><span class="badge platform">Zira</span></div><h3>Zira platform</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
-        <a class="card searchable" href="https://help.noon.com/agent/nooncs/noon-customer-service-1/tickets/list/my-cases"_blank"><div class="card-top"><span class="badge platform">Zoho</span></div><h3>Zoho_CX_ platform</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
-        <a class="card searchable" href="https://support.noon.partners/agent/noondemo/seller-support/tickets/list/my-cases?view=compact"_blank"><div class="card-top"><span class="badge platform">Zoho</span></div><h3>Zoho_Seller_Support_ platform</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
-
+    <a class="card searchable" href="https://docs.google.com/forms/d/e/1FAIpQLSfEExYPsRzd746Hv_a8x43W2sikmXEt5Z_IXiM4jM9jtHnjwA/viewform" target="_blank">
+      <div class="card-top"><span class="badge">WARNING</span></div>
+      <h3>Process Deviation Warning Letters</h3>
+      <p>Raise process deviation warning letters for Fulfillment operations.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1D-jSUFitoZWHplY-ug1KIbqm_EreHLHaBkIifizSOuc/edit?gid=1745402680#gid=1745402680" target="_blank">
+      <div class="card-top"><span class="badge sheet">RESPONSE</span></div>
+      <h3>Warning Letters – Response Sheet</h3>
+      <p>Process deviation warning letters submission response tracker.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/forms/d/e/1FAIpQLSftv9BSCT158gnedO-dAUBor9C-IcwNk3uL2u2UHHVhAxUf6g/viewform" target="_blank">
+      <div class="card-top"><span class="badge">3PL</span></div>
+      <h3>3PL Recovery / Deduction Form</h3>
+      <p>Submit 3PL recovery and deduction entries for Fulfillment.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1SB6s5XzT4t9a2DELJDt0aFV1faAp0kGfxXKalgkXEwA/edit?gid=61364367#gid=61364367" target="_blank">
+      <div class="card-top"><span class="badge sheet">RESPONSE</span></div>
+      <h3>3PL Recovery – Response Sheet</h3>
+      <p>3PL recovery and deduction submissions response tracker.</p>
+      <span class="arrow">↗</span>
+    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1bP6gZcQlzZzC60zhgi0gOQkW6sGQVpGF9alqNr9QKy4/edit?gid=1867857541#gid=1867857541" target="_blank">
+      <div class="card-top"><span class="badge sheet">MANPOWER</span></div>
+      <h3>KSA Manpower – Fulfillment</h3>
+      <p>KSA manpower headcount and resource allocation tracker.</p>
+      <span class="arrow">↗</span>
+    </a>
   </div>
 </section>
 
@@ -1247,7 +1088,6 @@ html{scroll-behavior:smooth;}
 </div><!-- .layout -->
 
 <script>
-// Search
 const searchInput = document.getElementById('searchInput');
 const cards = document.querySelectorAll('.searchable');
 searchInput.addEventListener('keyup', function(){
@@ -1257,7 +1097,6 @@ searchInput.addEventListener('keyup', function(){
   });
 });
 
-// Active nav highlight on scroll
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
 
