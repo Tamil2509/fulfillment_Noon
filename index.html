@@ -1,9 +1,8 @@
-'Tamilarasan Vellaikaran'
-<!DOCTYPE html>
+<TAMILARASN VELLAIKARAN>
 <html lang="en">
 <head>
-<meta charset="UTF-5" />
-<meta name="viewport" content="width=device-width, initial-scale=0.8" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>noon JED · Fulfillment Operations Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,178 +35,275 @@
   --afs-secondary:#DB2777;
   --afs-glow:rgba(236,72,153,.25);
   --afs-border:rgba(236,72,153,.32);
+  --inv-primary:#34D399;
+  --inv-secondary:#10B981;
+  --inv-glow:rgba(52,211,153,.25);
+  --inv-border:rgba(52,211,153,.32);
+  --sidebar-w:230px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 
+/* ── LAYOUT SHELL ── */
+.layout{display:flex;min-height:100vh;}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--sidebar-w);flex-shrink:0;
+  position:fixed;top:0;left:0;height:100vh;
+  background:#0c0c0c;border-right:1px solid var(--border);
+  z-index:300;display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.sidebar-logo{
+  padding:16px 18px 14px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;flex-shrink:0;
+}
+.noon-badge-sm{
+  background:#F7C600;border-radius:6px;
+  padding:4px 9px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:17px;font-weight:900;color:#000;line-height:1;
+  box-shadow:0 0 14px rgba(247,198,0,.35);
+}
+.sidebar-logo-text{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.4px;line-height:1.3;}
+.sidebar-logo-text strong{display:block;color:var(--text);font-size:12px;font-weight:700;}
+
+.sidebar-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:rgba(255,255,255,.25);padding:14px 18px 6px;flex-shrink:0;
+}
+
+.nav-list{list-style:none;padding:0 8px;overflow-y:auto;flex:1;padding-bottom:16px;}
+.nav-item{margin-bottom:3px;}
+.nav-link{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;border-radius:9px;
+  text-decoration:none;color:var(--muted);
+  font-size:12px;font-weight:500;
+  transition:.15s;cursor:pointer;border:1px solid transparent;
+  background:none;width:100%;text-align:left;
+}
+.nav-link:hover{color:var(--text);background:rgba(255,255,255,.05);}
+.nav-link.active{color:var(--text);background:rgba(255,255,255,.07);border-color:var(--border);}
+.nav-icon{font-size:14px;flex-shrink:0;width:18px;text-align:center;}
+.nav-text{flex:1;line-height:1.3;}
+.nav-count{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  padding:2px 6px;border-radius:4px;background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.4);
+}
+
+/* Colour accents per dept */
+.nav-link.fc-nav:hover,.nav-link.fc-nav.active{color:#34d399;border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.07);}
+.nav-link.fc-nav .nav-count{background:rgba(16,185,129,.12);color:#34d399;}
+.nav-link.ob-nav:hover,.nav-link.ob-nav.active{color:#fbbf24;border-color:rgba(245,158,11,.2);background:rgba(245,158,11,.07);}
+.nav-link.ob-nav .nav-count{background:rgba(245,158,11,.12);color:#fbbf24;}
+.nav-link.ib-nav:hover,.nav-link.ib-nav.active{color:#22d3ee;border-color:rgba(6,182,212,.2);background:rgba(6,182,212,.07);}
+.nav-link.ib-nav .nav-count{background:rgba(6,182,212,.12);color:#22d3ee;}
+.nav-link.afs-nav:hover,.nav-link.afs-nav.active{color:#f472b6;border-color:rgba(236,72,153,.2);background:rgba(236,72,153,.07);}
+.nav-link.afs-nav .nav-count{background:rgba(236,72,153,.12);color:#f472b6;}
+.nav-link.inv-nav:hover,.nav-link.inv-nav.active{color:#34d399;border-color:rgba(52,211,153,.2);background:rgba(52,211,153,.07);}
+.nav-link.inv-nav .nav-count{background:rgba(52,211,153,.12);color:#34d399;}
+.nav-link.shared-nav:hover,.nav-link.shared-nav.active{color:#b4a8ff;border-color:rgba(139,124,246,.2);background:rgba(139,124,246,.07);}
+.nav-link.shared-nav .nav-count{background:rgba(139,124,246,.12);color:#b4a8ff;}
+
+.nav-divider{height:1px;background:var(--border);margin:8px 10px;}
+
+.sidebar-footer{
+  padding:12px 18px;border-top:1px solid var(--border);flex-shrink:0;
+}
+.live-badge-sm{
+  background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.22);
+  color:#34d399;padding:5px 10px;border-radius:999px;
+  font-size:10px;font-weight:600;letter-spacing:.5px;
+  display:flex;align-items:center;gap:5px;
+}
+.live-dot{width:5px;height:5px;border-radius:50%;background:#34d399;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.75);}}
+
+/* ── MAIN CONTENT ── */
+.content{margin-left:var(--sidebar-w);flex:1;min-width:0;}
+
 /* HEADER */
 header{
-  padding:0 36px;height:68px;
+  padding:0 36px;height:64px;
   border-bottom:1px solid var(--border);
   display:flex;justify-content:space-between;align-items:center;
   position:sticky;top:0;
   background:rgba(8,8,8,.97);backdrop-filter:blur(20px);z-index:200;
 }
-.header-logo{display:flex;align-items:center;gap:18px;}
+.header-logo{display:flex;align-items:center;gap:16px;}
 .noon-badge{
   background:#F7C600;border-radius:8px;
   padding:5px 12px;
   font-family:'Barlow Condensed',sans-serif;
   font-size:22px;font-weight:900;
-  color:#000;letter-spacing:-0.5px;
-  line-height:1;
+  color:#000;letter-spacing:-0.5px;line-height:1;
   box-shadow:0 0 20px rgba(247,198,0,.4);
 }
-.header-hub{border-left:1px solid rgba(255,255,255,.1);padding-left:18px;}
-.header-hub h1{font-size:15px;font-weight:700;letter-spacing:-.3px;}
-.header-hub p{font-size:11px;color:var(--yellow);letter-spacing:.5px;margin-top:1px;}
-.header-right{display:flex;align-items:center;gap:14px;}
+.header-hub{border-left:1px solid rgba(255,255,255,.1);padding-left:16px;}
+.header-hub h1{font-size:14px;font-weight:700;letter-spacing:-.3px;}
+.header-hub p{font-size:10px;color:var(--yellow);letter-spacing:.5px;margin-top:1px;}
+.header-right{display:flex;align-items:center;gap:12px;}
 .site-label{
   font-family:'Barlow Condensed',sans-serif;
   font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--muted);border-left:1px solid var(--border);padding-left:14px;
+  color:var(--muted);border-left:1px solid var(--border);padding-left:12px;
 }
-.live-badge{
-  background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.22);
-  color:#34d399;padding:6px 13px;border-radius:999px;
-  font-size:11px;font-weight:600;letter-spacing:.5px;
-  display:flex;align-items:center;gap:6px;
-}
-.live-dot{width:6px;height:6px;border-radius:50%;background:#34d399;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.75);}}
-
-/* HERO */
-.hero{padding:52px 36px 32px;position:relative;overflow:hidden;}
-.hero::after{
-  content:'';position:absolute;top:-60px;right:-80px;
-  width:500px;height:500px;
-  background:radial-gradient(circle,rgba(247,198,0,.06) 0%,transparent 65%);
-  pointer-events:none;
-}
-.hero-eyebrow{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
-  color:var(--yellow);margin-bottom:10px;
-  display:flex;align-items:center;gap:8px;
-}
-.hero-eyebrow::before{content:'';display:block;width:28px;height:2px;background:var(--yellow);}
-.hero h2{
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:54px;font-weight:900;line-height:.95;
-  letter-spacing:-1.5px;text-transform:uppercase;margin-bottom:14px;
-}
-.hero h2 .line2{color:var(--yellow);}
-.hero p{max-width:600px;color:var(--muted);font-size:13.5px;line-height:1.75;}
 
 /* SEARCH */
-.search-wrap{padding:0 36px 36px;}
+.search-wrap{padding:0 36px 32px;}
 .search-inner{position:relative;max-width:460px;}
-.search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);opacity:.4;font-size:14px;}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.4;font-size:13px;}
 .search-wrap input{
   width:100%;background:#111;border:1px solid var(--border);
-  padding:12px 18px 12px 40px;border-radius:10px;
-  color:white;font-size:13.5px;font-family:'DM Sans',sans-serif;
+  padding:11px 16px 11px 38px;border-radius:10px;
+  color:white;font-size:13px;font-family:'DM Sans',sans-serif;
   transition:.2s;outline:none;
 }
 .search-wrap input:focus{border-color:rgba(247,198,0,.3);background:#161616;box-shadow:0 0 0 3px rgba(247,198,0,.06);}
 
+/* HERO */
+.hero{padding:44px 36px 28px;position:relative;overflow:hidden;}
+.hero::after{
+  content:'';position:absolute;top:-60px;right:-80px;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(247,198,0,.05) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--yellow);margin-bottom:8px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-eyebrow::before{content:'';display:block;width:24px;height:2px;background:var(--yellow);}
+.hero h2{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:48px;font-weight:900;line-height:.95;
+  letter-spacing:-1.5px;text-transform:uppercase;margin-bottom:12px;
+}
+.hero h2 .line2{color:var(--yellow);}
+.hero p{max-width:580px;color:var(--muted);font-size:13px;line-height:1.75;}
+
 /* MAIN */
 main{padding:0 36px 80px;}
-.section{margin-bottom:52px;}
+.section{margin-bottom:48px;scroll-margin-top:80px;}
 
-/* SIGNBOARD */
+/* ══════════════════════════════════════
+   SIGNBOARD — upgraded
+══════════════════════════════════════ */
 .signboard{
   display:flex;align-items:stretch;
-  margin-bottom:18px;border-radius:16px;overflow:hidden;
+  margin-bottom:16px;border-radius:14px;overflow:hidden;
+  position:relative;
 }
-.sb-pillar{width:8px;flex-shrink:0;}
+/* animated shimmer line at top */
+.signboard::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.18) 50%,transparent 100%);
+  z-index:1;pointer-events:none;
+}
+.sb-pillar{width:6px;flex-shrink:0;}
 .sb-body{flex:1;display:flex;align-items:center;overflow:hidden;}
 .sb-icon-panel{
-  width:76px;flex-shrink:0;
+  width:72px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
-  font-size:30px;align-self:stretch;
+  font-size:28px;align-self:stretch;
 }
-.sb-text{flex:1;padding:16px 20px;}
+.sb-text{flex:1;padding:14px 18px;}
 .sb-eyebrow{
   font-family:'Barlow Condensed',sans-serif;
-  font-size:9.5px;font-weight:700;letter-spacing:2.5px;
-  text-transform:uppercase;margin-bottom:2px;display:block;opacity:.7;
+  font-size:9px;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;margin-bottom:3px;display:flex;align-items:center;gap:6px;
 }
+.sb-eyebrow::before{content:'';display:inline-block;width:16px;height:1.5px;border-radius:2px;background:currentColor;opacity:.7;}
 .sb-title{
   font-family:'Barlow Condensed',sans-serif;
-  font-size:23px;font-weight:900;
+  font-size:22px;font-weight:900;
   letter-spacing:-.2px;text-transform:uppercase;line-height:1;
 }
+.sb-subtitle{font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:.2px;}
 .sb-meta{
   display:flex;align-items:center;padding:0 22px;
   flex-shrink:0;border-left:1px solid rgba(255,255,255,.06);align-self:stretch;
 }
 .sb-count{
   font-family:'Barlow Condensed',sans-serif;
-  font-size:32px;font-weight:900;line-height:1;margin-right:5px;
+  font-size:36px;font-weight:900;line-height:1;margin-right:6px;
 }
 .sb-count-label{
   font-family:'Barlow Condensed',sans-serif;
-  font-size:10px;font-weight:700;letter-spacing:1.5px;
+  font-size:9px;font-weight:700;letter-spacing:1.5px;
   text-transform:uppercase;opacity:.5;margin-top:2px;
 }
 
 /* ── COLOUR THEMES ── */
-.signboard.fc-board{background:linear-gradient(110deg,rgba(16,185,129,.11) 0%,rgba(16,185,129,.04) 100%);border:1px solid rgba(16,185,129,.3);box-shadow:0 0 36px rgba(16,185,129,.14),inset 0 1px 0 rgba(16,185,129,.12);}
+.signboard.fc-board{background:linear-gradient(110deg,rgba(16,185,129,.14) 0%,rgba(16,185,129,.04) 100%);border:1px solid rgba(16,185,129,.3);box-shadow:0 0 40px rgba(16,185,129,.14),inset 0 1px 0 rgba(16,185,129,.14);}
 .fc-board .sb-pillar{background:linear-gradient(180deg,#10B981,#059669);}
-.fc-board .sb-icon-panel{background:rgba(16,185,129,.1);}
+.fc-board .sb-icon-panel{background:rgba(16,185,129,.08);}
 .fc-board .sb-eyebrow{color:#10B981;}
 .fc-board .sb-count{color:#10B981;}
 .fc-board .sb-meta{background:rgba(16,185,129,.05);}
 
-.signboard.ob-board{background:linear-gradient(110deg,rgba(245,158,11,.12) 0%,rgba(239,159,39,.04) 100%);border:1px solid var(--ob-border);box-shadow:0 0 36px var(--ob-glow),inset 0 1px 0 rgba(245,158,11,.12);}
+.signboard.ob-board{background:linear-gradient(110deg,rgba(245,158,11,.14) 0%,rgba(239,159,39,.04) 100%);border:1px solid var(--ob-border);box-shadow:0 0 40px var(--ob-glow),inset 0 1px 0 rgba(245,158,11,.14);}
 .ob-board .sb-pillar{background:linear-gradient(180deg,#F59E0B,#d97706);}
-.ob-board .sb-icon-panel{background:rgba(245,158,11,.1);}
+.ob-board .sb-icon-panel{background:rgba(245,158,11,.08);}
 .ob-board .sb-eyebrow{color:var(--ob-primary);}
 .ob-board .sb-count{color:var(--ob-primary);}
 .ob-board .sb-meta{background:rgba(245,158,11,.05);}
 
-.signboard.ib-board{background:linear-gradient(110deg,rgba(6,182,212,.12) 0%,rgba(14,165,233,.04) 100%);border:1px solid var(--ib-border);box-shadow:0 0 36px var(--ib-glow),inset 0 1px 0 rgba(6,182,212,.12);}
+.signboard.ib-board{background:linear-gradient(110deg,rgba(6,182,212,.14) 0%,rgba(14,165,233,.04) 100%);border:1px solid var(--ib-border);box-shadow:0 0 40px var(--ib-glow),inset 0 1px 0 rgba(6,182,212,.14);}
 .ib-board .sb-pillar{background:linear-gradient(180deg,#06B6D4,#0284c7);}
-.ib-board .sb-icon-panel{background:rgba(6,182,212,.1);}
+.ib-board .sb-icon-panel{background:rgba(6,182,212,.08);}
 .ib-board .sb-eyebrow{color:var(--ib-primary);}
 .ib-board .sb-count{color:var(--ib-primary);}
 .ib-board .sb-meta{background:rgba(6,182,212,.05);}
 
-.signboard.sop-board{background:linear-gradient(110deg,rgba(247,198,0,.1) 0%,rgba(247,198,0,.03) 100%);border:1px solid rgba(247,198,0,.28);box-shadow:0 0 28px rgba(247,198,0,.1),inset 0 1px 0 rgba(247,198,0,.1);}
+.signboard.sop-board{background:linear-gradient(110deg,rgba(247,198,0,.12) 0%,rgba(247,198,0,.03) 100%);border:1px solid rgba(247,198,0,.28);box-shadow:0 0 32px rgba(247,198,0,.1),inset 0 1px 0 rgba(247,198,0,.12);}
 .sop-board .sb-pillar{background:linear-gradient(180deg,#f7c600,#d4a900);}
-.sop-board .sb-icon-panel{background:rgba(247,198,0,.1);}
+.sop-board .sb-icon-panel{background:rgba(247,198,0,.08);}
 .sop-board .sb-eyebrow{color:#f7c600;}
 .sop-board .sb-count{color:#f7c600;}
 .sop-board .sb-meta{background:rgba(247,198,0,.05);}
 
-.signboard.audit-board{background:linear-gradient(110deg,rgba(226,107,90,.1) 0%,rgba(226,107,90,.03) 100%);border:1px solid rgba(226,107,90,.28);box-shadow:0 0 28px rgba(226,107,90,.1),inset 0 1px 0 rgba(226,107,90,.1);}
+.signboard.audit-board{background:linear-gradient(110deg,rgba(226,107,90,.12) 0%,rgba(226,107,90,.03) 100%);border:1px solid rgba(226,107,90,.28);box-shadow:0 0 32px rgba(226,107,90,.1),inset 0 1px 0 rgba(226,107,90,.12);}
 .audit-board .sb-pillar{background:linear-gradient(180deg,#E26B5A,#c44f3d);}
-.audit-board .sb-icon-panel{background:rgba(226,107,90,.1);}
+.audit-board .sb-icon-panel{background:rgba(226,107,90,.08);}
 .audit-board .sb-eyebrow{color:#E26B5A;}
 .audit-board .sb-count{color:#E26B5A;}
 .audit-board .sb-meta{background:rgba(226,107,90,.05);}
 
-.signboard.shared-board{background:linear-gradient(110deg,rgba(139,124,246,.1) 0%,rgba(139,124,246,.03) 100%);border:1px solid var(--shared-border);box-shadow:0 0 28px rgba(139,124,246,.15),inset 0 1px 0 rgba(139,124,246,.1);}
+.signboard.shared-board{background:linear-gradient(110deg,rgba(139,124,246,.12) 0%,rgba(139,124,246,.03) 100%);border:1px solid var(--shared-border);box-shadow:0 0 32px rgba(139,124,246,.15),inset 0 1px 0 rgba(139,124,246,.12);}
 .shared-board .sb-pillar{background:linear-gradient(180deg,#8B7CF6,#6D60E8);}
-.shared-board .sb-icon-panel{background:rgba(139,124,246,.1);}
+.shared-board .sb-icon-panel{background:rgba(139,124,246,.08);}
 .shared-board .sb-eyebrow{color:var(--shared-primary);}
 .shared-board .sb-count{color:var(--shared-primary);}
 .shared-board .sb-meta{background:rgba(139,124,246,.05);}
 
-/* AFS / RTV / SUPERMALL THEME */
-.signboard.afs-board{background:linear-gradient(110deg,rgba(236,72,153,.12) 0%,rgba(219,39,119,.04) 100%);border:1px solid var(--afs-border);box-shadow:0 0 36px var(--afs-glow),inset 0 1px 0 rgba(236,72,153,.12);}
+.signboard.afs-board{background:linear-gradient(110deg,rgba(236,72,153,.14) 0%,rgba(219,39,119,.04) 100%);border:1px solid var(--afs-border);box-shadow:0 0 40px var(--afs-glow),inset 0 1px 0 rgba(236,72,153,.14);}
 .afs-board .sb-pillar{background:linear-gradient(180deg,#EC4899,#DB2777);}
-.afs-board .sb-icon-panel{background:rgba(236,72,153,.1);}
+.afs-board .sb-icon-panel{background:rgba(236,72,153,.08);}
 .afs-board .sb-eyebrow{color:var(--afs-primary);}
 .afs-board .sb-count{color:var(--afs-primary);}
 .afs-board .sb-meta{background:rgba(236,72,153,.05);}
 
+/* INVENTORY */
+.signboard.inv-board{background:linear-gradient(110deg,rgba(52,211,153,.14) 0%,rgba(16,185,129,.04) 100%);border:1px solid var(--inv-border);box-shadow:0 0 40px var(--inv-glow),inset 0 1px 0 rgba(52,211,153,.14);}
+.inv-board .sb-pillar{background:linear-gradient(180deg,#34D399,#059669);}
+.inv-board .sb-icon-panel{background:rgba(52,211,153,.08);}
+.inv-board .sb-eyebrow{color:var(--inv-primary);}
+.inv-board .sb-count{color:var(--inv-primary);}
+.inv-board .sb-meta{background:rgba(52,211,153,.05);}
+
 /* CARDS */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:11px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
 .card{
   background:var(--card);border:1px solid var(--border);
-  border-radius:12px;padding:15px;text-decoration:none;color:white;
+  border-radius:12px;padding:14px;text-decoration:none;color:white;
   transition:.18s ease;display:block;position:relative;overflow:hidden;
 }
 .card::after{
@@ -228,94 +324,168 @@ main{padding:0 36px 80px;}
 .section.shared-section .card:hover::after{opacity:1;background:linear-gradient(90deg,#8B7CF6,#6D60E8);}
 .section.afs-section .card:hover{border-color:var(--afs-border);background:var(--card-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(236,72,153,.09);}
 .section.afs-section .card:hover::after{opacity:1;background:linear-gradient(90deg,var(--afs-primary),var(--afs-secondary));}
+.section.inv-section .card:hover{border-color:var(--inv-border);background:var(--card-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(52,211,153,.09);}
+.section.inv-section .card:hover::after{opacity:1;background:linear-gradient(90deg,var(--inv-primary),var(--inv-secondary));}
 
-.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px;}
-.badge{font-size:9.5px;padding:3.5px 8px;border-radius:5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.badge{font-size:9px;padding:3px 7px;border-radius:5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
 .section.ob-section .badge{background:rgba(245,158,11,.14);color:#fbbf24;border:1px solid rgba(245,158,11,.18);}
 .section.ib-section .badge{background:rgba(6,182,212,.14);color:#22d3ee;border:1px solid rgba(6,182,212,.18);}
 .section.fc-section .badge{background:rgba(16,185,129,.14);color:#34d399;border:1px solid rgba(16,185,129,.18);}
 .section.afs-section .badge{background:rgba(236,72,153,.14);color:#f472b6;border:1px solid rgba(236,72,153,.18);}
+.section.inv-section .badge{background:rgba(52,211,153,.14);color:#34d399;border:1px solid rgba(52,211,153,.18);}
 .badge.sheet{background:rgba(16,185,129,.14)!important;color:#34d399!important;border:1px solid rgba(16,185,129,.2)!important;}
 .badge.dashboard{background:rgba(55,138,221,.14)!important;color:#7bb8ff!important;border:1px solid rgba(55,138,221,.2)!important;}
 .badge.platform{background:rgba(139,124,246,.14)!important;color:#b4a8ff!important;border:1px solid rgba(139,124,246,.2)!important;}
 .badge.sop{background:rgba(247,198,0,.14)!important;color:#ffe16e!important;border:1px solid rgba(247,198,0,.2)!important;}
 .badge.audit{background:rgba(226,107,90,.14)!important;color:#ff9b8e!important;border:1px solid rgba(226,107,90,.2)!important;}
-.badge.afs{background:rgba(236,72,153,.14)!important;color:#f472b6!important;border:1px solid rgba(236,72,153,.2)!important;}
-.card h3{font-size:13.5px;font-weight:600;margin-bottom:4px;line-height:1.3;}
-.card p{font-size:11.5px;color:var(--muted);line-height:1.5;}
-.arrow{position:absolute;right:13px;bottom:12px;font-size:12px;opacity:0;color:var(--muted);transition:.18s;}
+.card h3{font-size:13px;font-weight:600;margin-bottom:3px;line-height:1.3;}
+.card p{font-size:11px;color:var(--muted);line-height:1.5;}
+.arrow{position:absolute;right:12px;bottom:11px;font-size:11px;opacity:0;color:var(--muted);transition:.18s;}
 .card:hover .arrow{opacity:1;transform:translate(2px,-2px);}
 
 /* SECTION DIVIDERS */
-.ob-ib-divider{margin:8px 0 52px;display:flex;align-items:center;}
-.divider-ob-half{flex:1;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(245,158,11,.4) 100%);}
-.divider-ib-half{flex:1;height:1px;background:linear-gradient(90deg,rgba(6,182,212,.4) 0%,transparent 100%);}
-.divider-center{display:flex;align-items:center;margin:0 2px;}
-.divider-ob-tag{
+.dept-divider{margin:8px 0 48px;display:flex;align-items:center;}
+.dept-divider .d-left{flex:1;height:1px;}
+.dept-divider .d-right{flex:1;height:1px;}
+.dept-divider .d-center{display:flex;align-items:center;margin:0 2px;}
+.d-tag{
   font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;
   letter-spacing:2.5px;text-transform:uppercase;padding:6px 14px;
-  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);
-  color:var(--ob-primary);border-radius:6px 0 0 6px;
 }
-.divider-sep{
+.d-sep{
   font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
   padding:6px 10px;background:#141414;
   border-top:1px solid var(--border);border-bottom:1px solid var(--border);color:var(--muted);
 }
-.divider-ib-tag{
-  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;
-  letter-spacing:2.5px;text-transform:uppercase;padding:6px 14px;
-  background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);
-  color:var(--ib-primary);border-radius:0 6px 6px 0;
-}
 
-/* IB / AFS DIVIDER */
-.ib-afs-divider{margin:8px 0 52px;display:flex;align-items:center;}
-.divider-ib-left{flex:1;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(6,182,212,.4) 100%);}
-.divider-afs-right{flex:1;height:1px;background:linear-gradient(90deg,rgba(236,72,153,.4) 0%,transparent 100%);}
-.divider-ib-tag2{
-  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;
-  letter-spacing:2.5px;text-transform:uppercase;padding:6px 14px;
-  background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);
-  color:var(--ib-primary);border-radius:6px 0 0 6px;
-}
-.divider-afs-tag{
-  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;
-  letter-spacing:2.5px;text-transform:uppercase;padding:6px 14px;
-  background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3);
-  color:var(--afs-primary);border-radius:0 6px 6px 0;
-}
+.ob-ib-divider .d-left{background:linear-gradient(90deg,transparent,rgba(245,158,11,.4));}
+.ob-ib-divider .d-right{background:linear-gradient(90deg,rgba(6,182,212,.4),transparent);}
+.ob-ib-divider .d-tag-ob{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--ob-primary);border-radius:6px 0 0 6px;}
+.ob-ib-divider .d-tag-ib{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);color:var(--ib-primary);border-radius:0 6px 6px 0;}
+
+.ib-afs-divider .d-left{background:linear-gradient(90deg,transparent,rgba(6,182,212,.4));}
+.ib-afs-divider .d-right{background:linear-gradient(90deg,rgba(236,72,153,.4),transparent);}
+.ib-afs-divider .d-tag-ib{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);color:var(--ib-primary);border-radius:6px 0 0 6px;}
+.ib-afs-divider .d-tag-afs{background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3);color:var(--afs-primary);border-radius:0 6px 6px 0;}
+
+.afs-inv-divider .d-left{background:linear-gradient(90deg,transparent,rgba(236,72,153,.4));}
+.afs-inv-divider .d-right{background:linear-gradient(90deg,rgba(52,211,153,.4),transparent);}
+.afs-inv-divider .d-tag-afs{background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.3);color:var(--afs-primary);border-radius:6px 0 0 6px;}
+.afs-inv-divider .d-tag-inv{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);color:var(--inv-primary);border-radius:0 6px 6px 0;}
+
+.inv-shared-divider .d-left{background:linear-gradient(90deg,transparent,rgba(52,211,153,.4));}
+.inv-shared-divider .d-right{background:linear-gradient(90deg,rgba(139,124,246,.4),transparent);}
+.inv-shared-divider .d-tag-inv{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);color:var(--inv-primary);border-radius:6px 0 0 6px;}
+.inv-shared-divider .d-tag-shared{background:rgba(139,124,246,.1);border:1px solid rgba(139,124,246,.3);color:var(--shared-primary);border-radius:0 6px 6px 0;}
 
 /* FOOTER */
 footer{
-  border-top:1px solid var(--border);padding:20px 36px;
+  border-top:1px solid var(--border);padding:18px 36px;
   display:flex;align-items:center;justify-content:space-between;
 }
-.footer-left{display:flex;align-items:center;gap:12px;}
-.footer-noon{
-  background:#F7C600;border-radius:5px;
-  padding:3px 9px;
-  font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#000;
-}
+.footer-left{display:flex;align-items:center;gap:10px;}
+.footer-noon{background:#F7C600;border-radius:5px;padding:3px 8px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:900;color:#000;}
 .footer-text{font-size:11px;color:var(--muted);letter-spacing:.3px;}
 .footer-credit{font-size:11px;color:rgba(255,255,255,.2);font-style:italic;}
 
 /* RESPONSIVE */
-@media(max-width:768px){
-  .hero h2{font-size:38px;}
-  header,main,.hero,.search-wrap{padding-left:18px;padding-right:18px;}
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .content{margin-left:0;}
+}
+@media(max-width:640px){
+  .hero h2{font-size:36px;}
+  header,main,.hero,.search-wrap{padding-left:16px;padding-right:16px;}
   .grid{grid-template-columns:1fr 1fr;}
-  .sb-title{font-size:17px;}
-  .sb-count{font-size:22px;}
-  .sb-meta{padding:0 14px;}
 }
 @media(max-width:480px){
   .grid{grid-template-columns:1fr;}
   .sb-meta{display:none;}
 }
+
+/* scroll smooth */
+html{scroll-behavior:smooth;}
 </style>
 </head>
 <body>
+
+<div class="layout">
+
+<!-- ══════════════════════════════════
+     SIDEBAR NAV
+══════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="noon-badge-sm">noon</div>
+    <div class="sidebar-logo-text"><strong>Ops Hub</strong>KSA · JED</div>
+  </div>
+  <div class="sidebar-label">Departments</div>
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a class="nav-link fc-nav" href="#sec-fc">
+        <span class="nav-icon">📦</span>
+        <span class="nav-text">FC CT Performance</span>
+        <span class="nav-count">8</span>
+      </a>
+    </li>
+    <li class="nav-item"><div class="nav-divider"></div></li>
+    <li class="nav-item">
+      <a class="nav-link ob-nav" href="#sec-ob">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Outbound</span>
+        <span class="nav-count">28</span>
+      </a>
+    </li>
+    <li class="nav-item"><div class="nav-divider"></div></li>
+    <li class="nav-item">
+      <a class="nav-link ib-nav" href="#sec-ib">
+        <span class="nav-icon">📥</span>
+        <span class="nav-text">Inbound</span>
+        <span class="nav-count">13</span>
+      </a>
+    </li>
+    <li class="nav-item"><div class="nav-divider"></div></li>
+    <li class="nav-item">
+      <a class="nav-link afs-nav" href="#sec-afs">
+        <span class="nav-icon">🔄</span>
+        <span class="nav-text">AFS / RTV / Supermall</span>
+        <span class="nav-count">22</span>
+      </a>
+    </li>
+    <li class="nav-item"><div class="nav-divider"></div></li>
+    <li class="nav-item">
+      <a class="nav-link inv-nav" href="#sec-inv">
+        <span class="nav-icon">🗂️</span>
+        <span class="nav-text">Inventory</span>
+        <span class="nav-count">30</span>
+      </a>
+    </li>
+    <li class="nav-item"><div class="nav-divider"></div></li>
+    <li class="nav-item">
+      <a class="nav-link shared-nav" href="#sec-shared">
+        <span class="nav-icon">👥</span>
+        <span class="nav-text">UMS Attendance</span>
+        <span class="nav-count">2</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link shared-nav" href="#sec-tools">
+        <span class="nav-icon">🛠️</span>
+        <span class="nav-text">Additional Tools</span>
+        <span class="nav-count">2</span>
+      </a>
+    </li>
+  </ul>
+  <div class="sidebar-footer">
+    <div class="live-badge-sm"><span class="live-dot"></span>All Systems Live</div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════ -->
+<div class="content">
 
 <!-- HEADER -->
 <header>
@@ -323,20 +493,20 @@ footer{
     <div class="noon-badge">noon</div>
     <div class="header-hub">
       <h1>Fulfillment Operations Hub</h1>
+      <p>KSA · JED · 2026</p>
     </div>
   </div>
   <div class="header-right">
     <div class="site-label">KSA · JED</div>
-    <div class="live-badge"><span class="live-dot"></span>All Systems Live</div>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">noon ·  Fulfillment Center</div>
+  <div class="hero-eyebrow">noon · Fulfillment Center</div>
   <h2>
     <div>Noon</div>
-    <div class="line2">Operations URL &amp; Dashboard </div>
+    <div class="line2">Operations URL &amp; Dashboard</div>
   </h2>
   <p>Centralized access point for all department operations trackers, dashboards, SOPs, attendance systems, and fulfillment platforms.</p>
 </section>
@@ -351,8 +521,10 @@ footer{
 
 <main>
 
-<!-- FC SHARED -->
-<section class="section fc-section">
+<!-- ══════════════════════════════════
+     FC CT PERFORMANCE
+══════════════════════════════════ -->
+<section id="sec-fc" class="section fc-section">
   <div class="signboard fc-board">
     <div class="sb-pillar"></div>
     <div class="sb-body">
@@ -360,6 +532,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Shared · FC · Performance</span>
         <div class="sb-title">Fulfillment Center CT Performance</div>
+        <div class="sb-subtitle">Cross-department CT trackers, BMR reports &amp; scorecards</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -405,8 +578,10 @@ footer{
   </div>
 </section>
 
-<!-- OB SECTIONS -->
-<section class="section ob-section">
+<!-- ══════════════════════════════════
+     OUTBOUND
+══════════════════════════════════ -->
+<section id="sec-ob" class="section ob-section">
   <div class="signboard ob-board">
     <div class="sb-pillar"></div>
     <div class="sb-body">
@@ -414,10 +589,11 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Outbound · Metrics &amp; Visibility</span>
         <div class="sb-title">OB Metric Track &amp; Visibility Source</div>
+        <div class="sb-subtitle">DE capacity, IPS rate, TAT, cutoff &amp; TPH tracking</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
-          <div class="sb-count">9</div>
+          <div class="sb-count">10</div>
           <div class="sb-count-label">Links</div>
         </div>
       </div>
@@ -460,9 +636,9 @@ footer{
       <div class="card-top"><span class="badge">JED_View</span></div>
       <h3>OB View</h3><p>OB / IB / Supermall / RTV / 5S operational visibility.</p><span class="arrow">↗</span>
     </a>
-     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1vtEUDBBOlEihMv7EVrMcqJSRGWZn1oqdYSFrarZ3sOU/edit?gid=1370551993#gid=1370551993" target="_blank">
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1vtEUDBBOlEihMv7EVrMcqJSRGWZn1oqdYSFrarZ3sOU/edit?gid=1370551993#gid=1370551993" target="_blank">
       <div class="card-top"><span class="badge">Morning_View</span></div>
-      <h3>OB Morning View</h3><p>OB Yeterday metric visibility raw.</p><span class="arrow">↗</span>
+      <h3>OB Morning View</h3><p>OB yesterday metric visibility raw.</p><span class="arrow">↗</span>
     </a>
   </div>
 </section>
@@ -475,6 +651,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Outbound · Live Dashboards</span>
         <div class="sb-title">OB Dashboard</div>
+        <div class="sb-subtitle">Hourly, productivity, NC &amp; TV/mobile views</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -512,6 +689,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Outbound · Operational Platforms</span>
         <div class="sb-title">OB Frequently Used Platforms</div>
+        <div class="sb-subtitle">FBN pendency, express control, AgentOne &amp; live reports</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -522,50 +700,17 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://fbn-ops.noon.team/picking/pendency" target="_blank">
-      <div class="card-top"><span class="badge platform">PLATFORM</span></div>
-      <h3>FBN Pendency</h3><p>Outbound all pendency platform.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://express-control.noon.team/reports/multiple_item_tracking" target="_blank">
-      <div class="card-top"><span class="badge platform">EXPRESS</span></div>
-      <h3>Express Control</h3><p>Multiple item shipment tracking.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://agentone.noon.team/order/" target="_blank">
-      <div class="card-top"><span class="badge platform">AGENTONE</span></div>
-      <h3>AgentOne</h3><p>Order management and support system.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://support-nm.noon.team/" target="_blank">
-      <div class="card-top"><span class="badge platform">NAMSHI</span></div>
-      <h3>Namshi AgentOne</h3><p>Namshi order support and issue management.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://fms-api.noon.team/reports/shipment_details?format=html&awb_nr=PF88194096957S" target="_blank">
-      <div class="card-top"><span class="badge platform">Station_Detail</span></div>
-      <h3>OB Station Detail</h3><p>OB QC &amp; Station Details.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://fulfillment-platform.noon.partners/inventory-visibility?project=PRJ522588" target="_blank">
-      <div class="card-top"><span class="badge platform">FULFILLMENT</span></div>
-      <h3>Fulfillment Platform</h3><p>Inventory visibility and fulfillment operations platform.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/19G8ed4MlaQg407uNWigSDbtUrN51QlOFWX5PwGFIeFE/edit?gid=771212518#gid=771212518" target="_blank">
-      <div class="card-top"><span class="badge platform">Hourly Trend</span></div>
-      <h3>JED01 &amp; 04 Hourly Trend</h3><p>Real-time internal operations report.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1r6lsBBN2LzOL3MbFBbwoRiif0-7Mlf1KEL3OHdLdQYg/edit?gid=0#gid=0" target="_blank">
-      <div class="card-top"><span class="badge platform">LIVE</span></div>
-      <h3>Fast Hourly Report</h3><p>Internal hourly operational reporting.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1M52bbUwt4yN0lMVBEm1ol4t3QUB5_vJ-iqnNhK_xKwA/edit?gid=0#gid=0" target="_blank">
-      <div class="card-top"><span class="badge platform">LIVE</span></div>
-      <h3>Internal Live CNF Report</h3><p>Real-time internal operations report.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://misc-importer.noon.team/import/order_picking" target="_blank">
-      <div class="card-top"><span class="badge platform">IMPORT</span></div>
-      <h3>Import Order Picking</h3><p>Order picking import management tool.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://misc-importer.noon.team/import/user_service_mapping" target="_blank">
-      <div class="card-top"><span class="badge platform">MAPPING</span></div>
-      <h3>User Service Mapping</h3><p>User and service allocation management.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://fbn-ops.noon.team/picking/pendency" target="_blank"><div class="card-top"><span class="badge platform">PLATFORM</span></div><h3>FBN Pendency</h3><p>Outbound all pendency platform.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://express-control.noon.team/reports/multiple_item_tracking" target="_blank"><div class="card-top"><span class="badge platform">EXPRESS</span></div><h3>Express Control</h3><p>Multiple item shipment tracking.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://agentone.noon.team/order/" target="_blank"><div class="card-top"><span class="badge platform">AGENTONE</span></div><h3>AgentOne</h3><p>Order management and support system.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://support-nm.noon.team/" target="_blank"><div class="card-top"><span class="badge platform">NAMSHI</span></div><h3>Namshi AgentOne</h3><p>Namshi order support and issue management.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://fms-api.noon.team/reports/shipment_details?format=html&awb_nr=PF88194096957S" target="_blank"><div class="card-top"><span class="badge platform">Station_Detail</span></div><h3>OB Station Detail</h3><p>OB QC &amp; Station Details.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://fulfillment-platform.noon.partners/inventory-visibility?project=PRJ522588" target="_blank"><div class="card-top"><span class="badge platform">FULFILLMENT</span></div><h3>Fulfillment Platform</h3><p>Inventory visibility and fulfillment operations platform.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/19G8ed4MlaQg407uNWigSDbtUrN51QlOFWX5PwGFIeFE/edit?gid=771212518#gid=771212518" target="_blank"><div class="card-top"><span class="badge platform">Hourly Trend</span></div><h3>JED01 &amp; 04 Hourly Trend</h3><p>Real-time internal operations report.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1r6lsBBN2LzOL3MbFBbwoRiif0-7Mlf1KEL3OHdLdQYg/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge platform">LIVE</span></div><h3>Fast Hourly Report</h3><p>Internal hourly operational reporting.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1M52bbUwt4yN0lMVBEm1ol4t3QUB5_vJ-iqnNhK_xKwA/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge platform">LIVE</span></div><h3>Internal Live CNF Report</h3><p>Real-time internal operations report.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://misc-importer.noon.team/import/order_picking" target="_blank"><div class="card-top"><span class="badge platform">IMPORT</span></div><h3>Import Order Picking</h3><p>Order picking import management tool.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://misc-importer.noon.team/import/user_service_mapping" target="_blank"><div class="card-top"><span class="badge platform">MAPPING</span></div><h3>User Service Mapping</h3><p>User and service allocation management.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -577,6 +722,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Outbound · Standard Operating Procedures</span>
         <div class="sb-title">OB Guidelines &amp; SOP</div>
+        <div class="sb-subtitle">Visual SOP, QC guidelines &amp; packaging standards</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -587,22 +733,10 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://drive.google.com/drive/folders/1QDZM_qSit8juYP8hIpfFcitb9xc5JEC0?usp=drive_link" target="_blank">
-      <div class="card-top"><span class="badge sop">SOP</span></div>
-      <h3>OB Visual SOP</h3><p>Outbound warehouse visual SOP guidelines.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/presentation/d/16fDKrvM2d-3Lrl0q9aicEDACQYEMtlE1L-yIQ3kq57A/edit" target="_blank">
-      <div class="card-top"><span class="badge sop">QC</span></div>
-      <h3>QC Guidelines</h3><p>Quality control operational guidelines.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/presentation/d/12D3ZLzWPSOFUNdrgHmkoIlxosDXeYdtP/edit" target="_blank">
-      <div class="card-top"><span class="badge sop">PACKAGING</span></div>
-      <h3>Training Module – Packaging SOP</h3><p>Packaging SOP training and operational standards.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1BwdcU6g4zv2HG0oHOvlXBMo2kOahpLKuxgYTQ-1iSWc/edit?gid=1752856729#gid=1752856729" target="_blank">
-      <div class="card-top"><span class="badge sop">NORMS</span></div>
-      <h3>OB Packaging Norms by Category</h3><p>Outbound packaging standards by product category.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://drive.google.com/drive/folders/1QDZM_qSit8juYP8hIpfFcitb9xc5JEC0?usp=drive_link" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>OB Visual SOP</h3><p>Outbound warehouse visual SOP guidelines.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/presentation/d/16fDKrvM2d-3Lrl0q9aicEDACQYEMtlE1L-yIQ3kq57A/edit" target="_blank"><div class="card-top"><span class="badge sop">QC</span></div><h3>QC Guidelines</h3><p>Quality control operational guidelines.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/presentation/d/12D3ZLzWPSOFUNdrgHmkoIlxosDXeYdtP/edit" target="_blank"><div class="card-top"><span class="badge sop">PACKAGING</span></div><h3>Training Module – Packaging SOP</h3><p>Packaging SOP training and operational standards.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1BwdcU6g4zv2HG0oHOvlXBMo2kOahpLKuxgYTQ-1iSWc/edit?gid=1752856729#gid=1752856729" target="_blank"><div class="card-top"><span class="badge sop">NORMS</span></div><h3>OB Packaging Norms by Category</h3><p>Outbound packaging standards by product category.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -614,6 +748,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Outbound · Audit &amp; Compliance</span>
         <div class="sb-title">OB Audit NC Performance</div>
+        <div class="sb-subtitle">NC trackers, internal compliance &amp; 5S audits</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -624,34 +759,27 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1SY0idwi5bGsh0xehriYfueMXV5F08jgAOHzdjjXi0Jk/edit?gid=2105564605#gid=2105564605" target="_blank">
-      <div class="card-top"><span class="badge audit">AUDIT</span></div>
-      <h3>OB NC Tracker KSA</h3><p>Outbound NC audit tracker for KSA operations.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1MGtrULMKD-qwIChVwQnqfFSmJqUqncjASNgDmGUEL6c/edit?gid=1950990437#gid=1950990437" target="_blank">
-      <div class="card-top"><span class="badge audit">NC</span></div>
-      <h3>Internal NC Tracker</h3><p>Internal non-compliance tracking system.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1jYpmLnJgCAM0EzEldfU1fy-NvzQz50RURk7kvXhZff0/edit?gid=1951585659#gid=1951585659" target="_blank">
-      <div class="card-top"><span class="badge audit">5S</span></div>
-      <h3>5S NC Tracker</h3><p>5S warehouse audit and compliance tracker.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1SY0idwi5bGsh0xehriYfueMXV5F08jgAOHzdjjXi0Jk/edit?gid=2105564605#gid=2105564605" target="_blank"><div class="card-top"><span class="badge audit">AUDIT</span></div><h3>OB NC Tracker KSA</h3><p>Outbound NC audit tracker for KSA operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1MGtrULMKD-qwIChVwQnqfFSmJqUqncjASNgDmGUEL6c/edit?gid=1950990437#gid=1950990437" target="_blank"><div class="card-top"><span class="badge audit">NC</span></div><h3>Internal NC Tracker</h3><p>Internal non-compliance tracking system.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1jYpmLnJgCAM0EzEldfU1fy-NvzQz50RURk7kvXhZff0/edit?gid=1951585659#gid=1951585659" target="_blank"><div class="card-top"><span class="badge audit">5S</span></div><h3>5S NC Tracker</h3><p>5S warehouse audit and compliance tracker.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
 <!-- OB / IB DIVIDER -->
-<div class="ob-ib-divider">
-  <div class="divider-ob-half"></div>
-  <div class="divider-center">
-    <div class="divider-ob-tag">⬆ Outbound</div>
-    <div class="divider-sep">·</div>
-    <div class="divider-ib-tag">Inbound ⬇</div>
+<div class="dept-divider ob-ib-divider">
+  <div class="d-left"></div>
+  <div class="d-center">
+    <div class="d-tag d-tag-ob">⬆ Outbound</div>
+    <div class="d-sep">·</div>
+    <div class="d-tag d-tag-ib">Inbound ⬇</div>
   </div>
-  <div class="divider-ib-half"></div>
+  <div class="d-right"></div>
 </div>
 
-<!-- IB SECTIONS -->
-<section class="section ib-section">
+<!-- ══════════════════════════════════
+     INBOUND
+══════════════════════════════════ -->
+<section id="sec-ib" class="section ib-section">
   <div class="signboard ib-board">
     <div class="sb-pillar"></div>
     <div class="sb-body">
@@ -659,6 +787,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Inbound · Metrics &amp; Visibility</span>
         <div class="sb-title">IB Metric Track &amp; Visibility Source</div>
+        <div class="sb-subtitle">Live productivity, HRV green channel, FIFO &amp; QMS</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -669,22 +798,10 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/16XLbJxO8a8gG0mt44za3f9GKAvIeV-3M0LlKkrhpNUI/edit?gid=555114977#gid=555114977" target="_blank">
-      <div class="card-top"><span class="badge">Live_Productivity</span></div>
-      <h3>Live Productivity for IB</h3><p>Live productivity tracking for JED01 &amp; JED04.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1VXbtKHQMdsQvwtF0nuDZBuPBiYVFcIcy_VTVIs_G9v0/edit?gid=1623830002#gid=1623830002" target="_blank">
-      <div class="card-top"><span class="badge">HRV-Green-Channel</span></div>
-      <h3>HRV Green for IB</h3><p>HRV Green Channel tracking.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1ypFJqQ2v4XE_QRMc7wuP5iqzuRQERT0TA7an47W0Jic/edit?pli=1&gid=0#gid=0" target="_blank">
-      <div class="card-top"><span class="badge">FIFO / SKU</span></div>
-      <h3>FIFO / SKU / Category for IB</h3><p>IB FIFO adherence, SKU depth &amp; category mix.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1e85eMijrR0m6KYQyHKImnY8H0TjQFuulyfJ-hU-RdqI/edit?gid=80231002#gid=80231002" target="_blank">
-      <div class="card-top"><span class="badge">QMS</span></div>
-      <h3>QMS Report for IB</h3><p>QMS report adherence check.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/16XLbJxO8a8gG0mt44za3f9GKAvIeV-3M0LlKkrhpNUI/edit?gid=555114977#gid=555114977" target="_blank"><div class="card-top"><span class="badge">Live_Productivity</span></div><h3>Live Productivity for IB</h3><p>Live productivity tracking for JED01 &amp; JED04.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1VXbtKHQMdsQvwtF0nuDZBuPBiYVFcIcy_VTVIs_G9v0/edit?gid=1623830002#gid=1623830002" target="_blank"><div class="card-top"><span class="badge">HRV-Green-Channel</span></div><h3>HRV Green for IB</h3><p>HRV Green Channel tracking.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1ypFJqQ2v4XE_QRMc7wuP5iqzuRQERT0TA7an47W0Jic/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge">FIFO / SKU</span></div><h3>FIFO / SKU / Category for IB</h3><p>IB FIFO adherence, SKU depth &amp; category mix.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1e85eMijrR0m6KYQyHKImnY8H0TjQFuulyfJ-hU-RdqI/edit?gid=80231002#gid=80231002" target="_blank"><div class="card-top"><span class="badge">QMS</span></div><h3>QMS Report for IB</h3><p>QMS report adherence check.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -696,6 +813,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Inbound · Live Dashboards</span>
         <div class="sb-title">IB Dashboard</div>
+        <div class="sb-subtitle">Performance, TAT, utilization &amp; TV/mobile views</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -706,18 +824,9 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://datastudio.google.com/reporting/e47a388a-ba7b-415f-ab62-1515811d8e9a/page/rDj3D" target="_blank">
-      <div class="card-top"><span class="badge dashboard">IB_Dashboard</span></div>
-      <h3>Inbound Dashboard 2025</h3><p>Inbound performance, TAT, utilization, retail view &amp; general reporting.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/2d3e4d83-8b02-4c2e-8c27-92893bc362b8/page/p_g47supfuvd" target="_blank">
-      <div class="card-top"><span class="badge dashboard">Mobile_View</span></div>
-      <h3>Inbound TV Dashboard</h3><p>TV / Mobile view.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/0ddecfd2-5bb7-47ca-aea4-eb52df84894f/page/p_a4ane64ged" target="_blank">
-      <div class="card-top"><span class="badge dashboard">NC Dashboard</span></div>
-      <h3>QA Audits – Fulfillment KSA</h3><p>QA Audits – Fulfillment KSA dashboard.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://datastudio.google.com/reporting/e47a388a-ba7b-415f-ab62-1515811d8e9a/page/rDj3D" target="_blank"><div class="card-top"><span class="badge dashboard">IB_Dashboard</span></div><h3>Inbound Dashboard 2025</h3><p>Inbound performance, TAT, utilization &amp; retail view.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/2d3e4d83-8b02-4c2e-8c27-92893bc362b8/page/p_g47supfuvd" target="_blank"><div class="card-top"><span class="badge dashboard">Mobile_View</span></div><h3>Inbound TV Dashboard</h3><p>TV / Mobile view.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/0ddecfd2-5bb7-47ca-aea4-eb52df84894f/page/p_a4ane64ged" target="_blank"><div class="card-top"><span class="badge dashboard">NC Dashboard</span></div><h3>QA Audits – Fulfillment KSA</h3><p>QA Audits – Fulfillment KSA dashboard.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -729,6 +838,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Inbound · Operational Platforms</span>
         <div class="sb-title">IB Frequently Used Platforms</div>
+        <div class="sb-subtitle">FBN scheduler, ASN putaway, NC tracker &amp; productivity</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -739,53 +849,38 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://fbn-inbound-scheduler.noon.team/weekly?date=2026-05-28&warehouse=JED01" target="_blank">
-      <div class="card-top"><span class="badge platform">PLATFORM</span></div>
-      <h3>FBN Scheduler</h3><p>Weekly, monthly, gate-in, QMS &amp; reports.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://wms-api-repl.noon.team/reports/asn_putaway_item_pendency_v2?warehouse_code=JED01&format=html" target="_blank">
-      <div class="card-top"><span class="badge platform">API</span></div>
-      <h3>ASN Putaway</h3><p>ASN putaway item pendency – warehouse wise.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://fbn-ops.noon.team/picking/pendency" target="_blank">
-      <div class="card-top"><span class="badge platform">PLATFORM</span></div>
-      <h3>FBN View</h3><p>Inbound ASN view.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1SY0idwi5bGsh0xehriYfueMXV5F08jgAOHzdjjXi0Jk/edit?gid=2105564605#gid=2105564605" target="_blank">
-      <div class="card-top"><span class="badge platform">AUDIT</span></div>
-      <h3>IB NC Tracker KSA</h3><p>Inbound NC audit tracker for KSA operations.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://wms-api-repl.noon.team/reports/user_productivity?warehouse_code=JED01&format=html" target="_blank">
-      <div class="card-top"><span class="badge platform">API</span></div>
-      <h3>User Productivity</h3><p>Reports / user productivity – warehouse wise.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://wms-api-repl.noon.team/reports/user_productivity?warehouse_code=JED04&format=html&exref_type=ASN" target="_blank">
-      <div class="card-top"><span class="badge platform">API</span></div>
-      <h3>ASN Productivity Filter</h3><p>Reports / ASN user productivity – warehouse wise.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://fbn-inbound-scheduler.noon.team/weekly?date=2026-05-28&warehouse=JED01" target="_blank"><div class="card-top"><span class="badge platform">PLATFORM</span></div><h3>FBN Scheduler</h3><p>Weekly, monthly, gate-in, QMS &amp; reports.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://wms-api-repl.noon.team/reports/asn_putaway_item_pendency_v2?warehouse_code=JED01&format=html" target="_blank"><div class="card-top"><span class="badge platform">API</span></div><h3>ASN Putaway</h3><p>ASN putaway item pendency – warehouse wise.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://fbn-ops.noon.team/picking/pendency" target="_blank"><div class="card-top"><span class="badge platform">PLATFORM</span></div><h3>FBN View</h3><p>Inbound ASN view.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1SY0idwi5bGsh0xehriYfueMXV5F08jgAOHzdjjXi0Jk/edit?gid=2105564605#gid=2105564605" target="_blank"><div class="card-top"><span class="badge platform">AUDIT</span></div><h3>IB NC Tracker KSA</h3><p>Inbound NC audit tracker for KSA operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://wms-api-repl.noon.team/reports/user_productivity?warehouse_code=JED01&format=html" target="_blank"><div class="card-top"><span class="badge platform">API</span></div><h3>User Productivity</h3><p>Reports / user productivity – warehouse wise.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://wms-api-repl.noon.team/reports/user_productivity?warehouse_code=JED04&format=html&exref_type=ASN" target="_blank"><div class="card-top"><span class="badge platform">API</span></div><h3>ASN Productivity Filter</h3><p>Reports / ASN user productivity – warehouse wise.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
 <!-- IB / AFS DIVIDER -->
-<div class="ib-afs-divider">
-  <div class="divider-ib-left"></div>
-  <div class="divider-center">
-    <div class="divider-ib-tag2">⬆ Inbound</div>
-    <div class="divider-sep">·</div>
-    <div class="divider-afs-tag">AFS / RTV / Supermall ⬇</div>
+<div class="dept-divider ib-afs-divider">
+  <div class="d-left"></div>
+  <div class="d-center">
+    <div class="d-tag d-tag-ib">⬆ Inbound</div>
+    <div class="d-sep">·</div>
+    <div class="d-tag d-tag-afs">AFS / RTV / Supermall ⬇</div>
   </div>
-  <div class="divider-afs-right"></div>
+  <div class="d-right"></div>
 </div>
 
-<!-- AFS / RTV / SUPERMALL SECTIONS -->
-<section class="section afs-section">
+<!-- ══════════════════════════════════
+     AFS / RTV / SUPERMALL
+══════════════════════════════════ -->
+<section id="sec-afs" class="section afs-section">
   <div class="signboard afs-board">
     <div class="sb-pillar"></div>
     <div class="sb-body">
       <div class="sb-icon-panel">🔄</div>
       <div class="sb-text">
         <span class="sb-eyebrow">AFS / RTV / Supermall · Metrics &amp; Visibility</span>
-        <div class="sb-title">AFS / RTV / Supermall Metric Track &amp; Visibility Source</div>
+        <div class="sb-title">AFS / RTV / Supermall Metric Track &amp; Visibility</div>
+        <div class="sb-subtitle">SOS/EOS pendency, NDR QC, service point &amp; seller promise</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -796,42 +891,15 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/11qo4vVVp46uK0EoxxfS88s3tWB0fpJO65IEzLswe1z0/edit?gid=58258441#gid=58258441" target="_blank">
-      <div class="card-top"><span class="badge">SOS/EOS</span></div>
-      <h3>AFS/RTV SOS / EOS Pendency Report</h3><p>Start of shift and end of shift pendency tracking.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1PlDYyHxQ29L6hB-8Gf3QGmgmIQGnqDoeyo-_M9wO2AU/edit?gid=1637100772#gid=1637100772" target="_blank">
-      <div class="card-top"><span class="badge">NDR_QC</span></div>
-      <h3>Day / Week NDR QC / IPP Tracking</h3><p>Daily and weekly NDR QC and IPP tracking report.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1l5Dc_mYvyp-guFh3Cx1ES3hMMIqb5aswIu3hVAyob2U/edit?gid=1555839590#gid=1555839590" target="_blank">
-      <div class="card-top"><span class="badge">SP_Pendency</span></div>
-      <h3>JED Service Point Pendency View</h3><p>Service point pendency visibility for JED.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1sImaW41Ka9SLYi4w-EzhvCDTgZmIcyy5v9g9Ys5mYqY/edit?usp=drive_open&ouid=114688806273382284993" target="_blank">
-      <div class="card-top"><span class="badge">RTV_SP</span></div>
-      <h3>JED RTV Seller Promise View</h3><p>RTV seller promise tracking for JED operations.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1BOqoD0sVQJCL-fZ8zk3x6OUJqMcnMruiAYYkWwm7Vyw/edit?gid=1978673934#gid=1978673934" target="_blank">
-      <div class="card-top"><span class="badge">NDR_SLP</span></div>
-      <h3>JED NDR SLP Tracking</h3><p>NDR SLP tracking for JED site.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1NTnFVPIZ5v7R_PeDmVGIhyFLTl4ZuuNJTEyEzq451A0/edit?gid=0#gid=0" target="_blank">
-      <div class="card-top"><span class="badge">Serialization</span></div>
-      <h3>Fulfillment Serialization Data – AFS Reference</h3><p>Serialization data sheet for AFS reference.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1zU_sJFyN5ie6vRI6vguxQA3AixmHgxMxfKoIDA4M004/edit?gid=1571812408#gid=1571812408" target="_blank">
-      <div class="card-top"><span class="badge">NDR_Zone</span></div>
-      <h3>NDR QC / Tote / Zone Condition</h3><p>NDR QC, tote, and zone condition monitoring.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1kZQ8YkPHSLLZTiGEYfVsBz3vmnTs8pFj3eWMCsRJhMs/edit?gid=0#gid=0" target="_blank">
-      <div class="card-top"><span class="badge audit">NC</span></div>
-      <h3>AFS NC Tracker</h3><p>AFS non-compliance tracking.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1C6K0-Wj9jEz6vgASDnfTRhHp0E8thFxFwLtT0w94Vjo/edit" target="_blank">
-      <div class="card-top"><span class="badge">HV_Images</span></div>
-      <h3>RTV HV Images</h3><p>High-value item images for RTV operations.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/11qo4vVVp46uK0EoxxfS88s3tWB0fpJO65IEzLswe1z0/edit?gid=58258441#gid=58258441" target="_blank"><div class="card-top"><span class="badge">SOS/EOS</span></div><h3>AFS/RTV SOS / EOS Pendency Report</h3><p>Start of shift and end of shift pendency tracking.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1PlDYyHxQ29L6hB-8Gf3QGmgmIQGnqDoeyo-_M9wO2AU/edit?gid=1637100772#gid=1637100772" target="_blank"><div class="card-top"><span class="badge">NDR_QC</span></div><h3>Day / Week NDR QC / IPP Tracking</h3><p>Daily and weekly NDR QC and IPP tracking report.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1l5Dc_mYvyp-guFh3Cx1ES3hMMIqb5aswIu3hVAyob2U/edit?gid=1555839590#gid=1555839590" target="_blank"><div class="card-top"><span class="badge">SP_Pendency</span></div><h3>JED Service Point Pendency View</h3><p>Service point pendency visibility for JED.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1sImaW41Ka9SLYi4w-EzhvCDTgZmIcyy5v9g9Ys5mYqY/edit?usp=drive_open&ouid=114688806273382284993" target="_blank"><div class="card-top"><span class="badge">RTV_SP</span></div><h3>JED RTV Seller Promise View</h3><p>RTV seller promise tracking for JED operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1BOqoD0sVQJCL-fZ8zk3x6OUJqMcnMruiAYYkWwm7Vyw/edit?gid=1978673934#gid=1978673934" target="_blank"><div class="card-top"><span class="badge">NDR_SLP</span></div><h3>JED NDR SLP Tracking</h3><p>NDR SLP tracking for JED site.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1NTnFVPIZ5v7R_PeDmVGIhyFLTl4ZuuNJTEyEzq451A0/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge">Serialization</span></div><h3>Fulfillment Serialization Data – AFS Reference</h3><p>Serialization data sheet for AFS reference.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1zU_sJFyN5ie6vRI6vguxQA3AixmHgxMxfKoIDA4M004/edit?gid=1571812408#gid=1571812408" target="_blank"><div class="card-top"><span class="badge">NDR_Zone</span></div><h3>NDR QC / Tote / Zone Condition</h3><p>NDR QC, tote, and zone condition monitoring.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1kZQ8YkPHSLLZTiGEYfVsBz3vmnTs8pFj3eWMCsRJhMs/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge audit">NC</span></div><h3>AFS NC Tracker</h3><p>AFS non-compliance tracking.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1C6K0-Wj9jEz6vgASDnfTRhHp0E8thFxFwLtT0w94Vjo/edit" target="_blank"><div class="card-top"><span class="badge">HV_Images</span></div><h3>RTV HV Images</h3><p>High-value item images for RTV operations.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -843,6 +911,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">AFS / RTV · Live Dashboards</span>
         <div class="sb-title">AFS / RTV Dashboard</div>
+        <div class="sb-subtitle">Mobile/TV view, RMS QC &amp; NC dashboards</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -853,18 +922,9 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/2d3e4d83-8b02-4c2e-8c27-92893bc362b8/page/p_jtx3rrovvd" target="_blank">
-      <div class="card-top"><span class="badge dashboard">Mobile_View</span></div>
-      <h3>Mobile View – NDR / RTV</h3><p>TV / Mobile view for NDR and RTV operations.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/1855ffe1-0386-4e19-97d8-00392dfc3c41/page/18f2C" target="_blank">
-      <div class="card-top"><span class="badge dashboard">QC_Dashboard</span></div>
-      <h3>RMS QC Dashboard</h3><p>Returns management QC performance dashboard.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/0ddecfd2-5bb7-47ca-aea4-eb52df84894f/page/0aFkC" target="_blank">
-      <div class="card-top"><span class="badge dashboard">NC Dashboard</span></div>
-      <h3>QA Audits – Fulfillment KSA</h3><p>QA Audits – Fulfillment KSA dashboard.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/2d3e4d83-8b02-4c2e-8c27-92893bc362b8/page/p_jtx3rrovvd" target="_blank"><div class="card-top"><span class="badge dashboard">Mobile_View</span></div><h3>Mobile View – NDR / RTV</h3><p>TV / Mobile view for NDR and RTV operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/1855ffe1-0386-4e19-97d8-00392dfc3c41/page/18f2C" target="_blank"><div class="card-top"><span class="badge dashboard">QC_Dashboard</span></div><h3>RMS QC Dashboard</h3><p>Returns management QC performance dashboard.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/0ddecfd2-5bb7-47ca-aea4-eb52df84894f/page/0aFkC" target="_blank"><div class="card-top"><span class="badge dashboard">NC Dashboard</span></div><h3>QA Audits – Fulfillment KSA</h3><p>QA Audits – Fulfillment KSA dashboard.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -876,6 +936,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">AFS / RTV · Operational Platforms</span>
         <div class="sb-title">AFS / RTV Frequently Used Platforms</div>
+        <div class="sb-subtitle">NDR pendency, RTV eligibility, CIR history &amp; barcode print</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -886,30 +947,12 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://fbn-ops.noon.team/ndr/activeShipments?warehouseCode=JED01&page=1&pageSize=10&totalPages=1" target="_blank">
-      <div class="card-top"><span class="badge platform">NDR</span></div>
-      <h3>NDR FBN Pendency</h3><p>Active NDR shipments pendency view.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://fbn-ops.noon.team/ndr/historicalInfo" target="_blank">
-      <div class="card-top"><span class="badge platform">NDR_HIST</span></div>
-      <h3>NDR FBN Historical Report</h3><p>NDR historical shipment information report.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://fbn-ops.noon.team/rtv/reports/eligible-to-pick" target="_blank">
-      <div class="card-top"><span class="badge platform">RTV</span></div>
-      <h3>RTV FBN Pendency</h3><p>RTV eligible-to-pick pendency report.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://fbn-ops.noon.team/cir/history" target="_blank">
-      <div class="card-top"><span class="badge platform">CIR</span></div>
-      <h3>CIR Historical</h3><p>CIR historical data and reports.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://fulfillment-platform.noon.partners/print-barcodes?project=PRJ522588" target="_blank">
-      <div class="card-top"><span class="badge platform">PRINT</span></div>
-      <h3>NDR Serialization Barcode Print</h3><p>NDR serialization barcode printing tool.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/forms/d/e/1FAIpQLScNo7wxXQIM_cd49JHdOW5Es6Xpdi1Bvfwe7p2i47Bt63jlwQ/viewform" target="_blank">
-      <div class="card-top"><span class="badge platform">FORM</span></div>
-      <h3>HV Image Uploader Form</h3><p>High-value item image upload form.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://fbn-ops.noon.team/ndr/activeShipments?warehouseCode=JED01&page=1&pageSize=10&totalPages=1" target="_blank"><div class="card-top"><span class="badge platform">NDR</span></div><h3>NDR FBN Pendency</h3><p>Active NDR shipments pendency view.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://fbn-ops.noon.team/ndr/historicalInfo" target="_blank"><div class="card-top"><span class="badge platform">NDR_HIST</span></div><h3>NDR FBN Historical Report</h3><p>NDR historical shipment information report.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://fbn-ops.noon.team/rtv/reports/eligible-to-pick" target="_blank"><div class="card-top"><span class="badge platform">RTV</span></div><h3>RTV FBN Pendency</h3><p>RTV eligible-to-pick pendency report.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://fbn-ops.noon.team/cir/history" target="_blank"><div class="card-top"><span class="badge platform">CIR</span></div><h3>CIR Historical</h3><p>CIR historical data and reports.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://fulfillment-platform.noon.partners/print-barcodes?project=PRJ522588" target="_blank"><div class="card-top"><span class="badge platform">PRINT</span></div><h3>NDR Serialization Barcode Print</h3><p>NDR serialization barcode printing tool.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/forms/d/e/1FAIpQLScNo7wxXQIM_cd49JHdOW5Es6Xpdi1Bvfwe7p2i47Bt63jlwQ/viewform" target="_blank"><div class="card-top"><span class="badge platform">FORM</span></div><h3>HV Image Uploader Form</h3><p>High-value item image upload form.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -921,6 +964,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Supermall · Reports &amp; Visibility</span>
         <div class="sb-title">Supermall Operations</div>
+        <div class="sb-subtitle">Hourly script reports &amp; shared drive folder</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -931,14 +975,8 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1VhlOxntY163xlGxPS-FPr8fU4JOxKrpG_EFo0puhXWY/edit?gid=638585497#gid=638585497" target="_blank">
-      <div class="card-top"><span class="badge sheet">HOURLY</span></div>
-      <h3>Supermall Hourly Script Report</h3><p>Supermall hourly operations script report.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://drive.google.com/drive/folders/1GLJ1GnT8kAYog4BP3tyEzRjlReNI5KVc?usp=sharing" target="_blank">
-      <div class="card-top"><span class="badge sop">DRIVE</span></div>
-      <h3>Supermall Report Drive</h3><p>Supermall reports shared drive folder.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1VhlOxntY163xlGxPS-FPr8fU4JOxKrpG_EFo0puhXWY/edit?gid=638585497#gid=638585497" target="_blank"><div class="card-top"><span class="badge sheet">HOURLY</span></div><h3>Supermall Hourly Script Report</h3><p>Supermall hourly operations script report.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://drive.google.com/drive/folders/1GLJ1GnT8kAYog4BP3tyEzRjlReNI5KVc?usp=sharing" target="_blank"><div class="card-top"><span class="badge sop">DRIVE</span></div><h3>Supermall Report Drive</h3><p>Supermall reports shared drive folder.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -950,6 +988,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">AFS / RTV · Standard Operating Procedures</span>
         <div class="sb-title">AFS / RTV Guidelines &amp; SOP</div>
+        <div class="sb-subtitle">NDR &amp; RTV standard operating procedure documentation</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -960,19 +999,187 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://docs.google.com/presentation/d/1Kg5L1B6R1RGPk96VkDHxs3lrb-OIJM-cTRkcWuH09zE/edit?slide=id.g2e06c4196ef_0_1908#slide=id.g2e06c4196ef_0_1908" target="_blank">
-      <div class="card-top"><span class="badge sop">SOP</span></div>
-      <h3>NDR SOP</h3><p>NDR standard operating procedure guidelines.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://drive.google.com/drive/folders/1uBRAeMNhIShucsGFolhfFifWkpXjWadG?usp=sharing" target="_blank">
-      <div class="card-top"><span class="badge sop">SOP</span></div>
-      <h3>RTV SOP</h3><p>Returns to vendor standard operating procedure drive folder.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://docs.google.com/presentation/d/1Kg5L1B6R1RGPk96VkDHxs3lrb-OIJM-cTRkcWuH09zE/edit?slide=id.g2e06c4196ef_0_1908#slide=id.g2e06c4196ef_0_1908" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>NDR SOP</h3><p>NDR standard operating procedure guidelines.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://drive.google.com/drive/folders/1uBRAeMNhIShucsGFolhfFifWkpXjWadG?usp=sharing" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>RTV SOP</h3><p>Returns to vendor standard operating procedure drive folder.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
-<!-- SHARED SECTIONS -->
-<section class="section shared-section">
+<!-- AFS / INV DIVIDER -->
+<div class="dept-divider afs-inv-divider">
+  <div class="d-left"></div>
+  <div class="d-center">
+    <div class="d-tag d-tag-afs">⬆ AFS / RTV</div>
+    <div class="d-sep">·</div>
+    <div class="d-tag d-tag-inv">Inventory ⬇</div>
+  </div>
+  <div class="d-right"></div>
+</div>
+
+<!-- ══════════════════════════════════
+     INVENTORY  ← NEW
+══════════════════════════════════ -->
+<section id="sec-inv" class="section inv-section">
+  <div class="signboard inv-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">🗂️</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">Inventory · Metrics &amp; Visibility</span>
+        <div class="sb-title">Inventory Metric Track &amp; Visibility Source</div>
+        <div class="sb-subtitle">PST coverage, WT pendency, mislabel, ICQA, ageing &amp; JLM</div>
+      </div>
+      <div class="sb-meta">
+        <div style="text-align:center;">
+          <div class="sb-count">17</div>
+          <div class="sb-count-label">Links</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1q3fuLAufC_i7pBV2HEs-bKJ7buG3Khzef76L9feWJzc/edit?gid=692387379#gid=692387379" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>PST Coverage View Jan–Jun 2026</h3><p>PST coverage cycle tracker for the first half of 2026.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1buxz2LKjfQw5Bkpcydv0bDgwcNsolTa27lBq-s4IyhY/edit?gid=1541663738#gid=1541663738" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>WT Pendency</h3><p>Warehouse transfer pendency tracking.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1--xgSNJpholAUrgg2xb4j462w_U7qRjS0fLbjo5FQvY/edit?gid=1529808176#gid=1529808176" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Mislabel Researching Pendency – ISC</h3><p>Mislabel research pendency for ISC operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1LlulL2-3lPxiNU2PeJqR2ctntykVx3Q58bLG1KQgqJc/edit?gid=514503516#gid=514503516" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Supermall Back Transfer</h3><p>Supermall back transfer visibility tracker.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1Xa-WAPtLmZEsDRJE1OQX7Kv80iaOyw9BCDrX9pV0Ceo/edit?gid=289941163#gid=289941163" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>2026 ICQA Routine Tracker – Sup/TL</h3><p>ICQA routine activity tracker for supervisors and TLs.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1uefOWlimXPkgcBUlO0-xZF_UeeWHaxvkvLMVB3mMmu4/edit?gid=1868757442#gid=1868757442" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Out of System / UNI / Scrap Clearance</h3><p>Out-of-system, UNI items and scrap clearance tracker.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/11lSUU-gkOPNKlh8uNJCSxMnamkYdFK6A6hPEWYDwZeA/edit?gid=375306304#gid=375306304" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>JED01 CFT View</h3><p>Cross-functional team view for JED01.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/document/d/1tdej_Aov1JKgqCTkqkaofqbDYN_hXzggtwBU6pumOPQ/edit?tab=t.0#heading=h.ngq4sk73nhd7" target="_blank"><div class="card-top"><span class="badge sheet">SQL</span></div><h3>Daily SQL</h3><p>Daily SQL queries reference document.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1uxUF54jafeULOvvkBKAVNwtchh3tvZYAkmTsta9J_GA/edit?gid=1279524711#gid=1279524711" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>JED Inventory Non-Live Ageing View 2026</h3><p>Non-live inventory ageing visibility for JED.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1H_C6cu_P-hNl5XyF0nxHn6G-HVOxkU738rKSq2bLlvo/edit?gid=269858052#gid=269858052" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Inbound Putaway Audit JED01/JED04 V2 2026</h3><p>Putaway audit tracker for JED01 and JED04.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1iPtASlTo3SXcCZbOuGcIhKFYqe2bVlI0xyU4KwvYHYs/edit?gid=1425243415#gid=1425243415" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>JED VMS Based Transfer 2026</h3><p>VMS-based transfer visibility for JED.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1QHNpMLOZbzYbIpa21trGxTzgCobpzpsvfsf7pLOlro0/edit?gid=443728708#gid=443728708" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>JED01 &amp; JED04 WHs Inv Adj View</h3><p>Inventory adjustment view for JED01 and JED04.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1icooyNaJQciM1tXZ0O8VN8rYv5BrBSZTMTMSU9vXjsg/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Overall JLM 2026</h3><p>Overall JLM tracker for 2026.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1VRHJ_gaSPVo7d_ZS_2bgwVWbyvT3djqSdSh6W0osEIQ/edit?gid=1755592504#gid=1755592504" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>DMR Call</h3><p>Daily management review call tracker.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/11Fha9ggJMgHrGaT-feJsr3Aa8oCLqZ8v67M1IlbvRo4/edit?gid=1412486175#gid=1412486175" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Stocktake Productivity JED V3</h3><p>Stocktake productivity tracker for JED.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1VSImZxgbXEj168lxB8grrZwVSi2QSaZb41UfjSUXY9Q/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Stock Adjustment</h3><p>Inventory stock adjustment tracker.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1JZpTqIF8123Gxi0BihyW9B_qayWHy_5NfhvHZNXeq0g/edit?gid=1918891606#gid=1918891606" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Non-Live JED</h3><p>Non-live inventory tracker for JED.</p><span class="arrow">↗</span></a>
+  </div>
+</section>
+
+<section class="section inv-section">
+  <div class="signboard inv-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">📈</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">Inventory · Live Dashboards</span>
+        <div class="sb-title">Inventory Dashboard</div>
+        <div class="sb-subtitle">Ops-inventory, VMS, seller recon &amp; partner warehouse views</div>
+      </div>
+      <div class="sb-meta">
+        <div style="text-align:center;">
+          <div class="sb-count">4</div>
+          <div class="sb-count-label">Links</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://datastudio.google.com/reporting/1gIdlJSQWckHhVvufSs251lSIBapVdv_i/page/p_m5g5tzrq7c?params=%7B%22df244%22:%22include%25EE%2580%25800%25EE%2580%2580IN%25EE%2580%2580JED01%25EE%2580%2580JED04%25EE%2580%2580JED05%25EE%2580%2580JEDBK07%25EE%2580%2580JEDBK06%22%7D" target="_blank"><div class="card-top"><span class="badge dashboard">Ops_Inv</span></div><h3>Ops-Inventory Dashboard</h3><p>Inventory dashboard for JED01, JED04, JED05 &amp; BK sites.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://datastudio.google.com/u/0/reporting/03eaccbb-bf59-4cdf-a311-a132c5a51452/page/p_z9rcsys1vc" target="_blank"><div class="card-top"><span class="badge dashboard">VMS</span></div><h3>VMS Dashboard</h3><p>VMS performance and visibility dashboard.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://datastudio.google.com/reporting/ac13b641-f852-461a-a7e7-884f30ccf4f1/page/p_ileayf72dd" target="_blank"><div class="card-top"><span class="badge dashboard">Seller_Recon</span></div><h3>Seller Recon Payout Dashboard</h3><p>Seller reconciliation and payout dashboard.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://datastudio.google.com/reporting/8e783d68-8060-4b47-9bec-93cb5f665454/page/A1cfC" target="_blank"><div class="card-top"><span class="badge dashboard">Partner_WHS</span></div><h3>Partner WHS View Dashboard</h3><p>Partner warehouse view dashboard.</p><span class="arrow">↗</span></a>
+  </div>
+</section>
+
+<section class="section inv-section">
+  <div class="signboard inv-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">🔧</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">Inventory · Operational Platforms</span>
+        <div class="sb-title">Inventory Frequently Used Platforms</div>
+        <div class="sb-subtitle">Barcode print, box images, stock access &amp; IBPS tools</div>
+      </div>
+      <div class="sb-meta">
+        <div style="text-align:center;">
+          <div class="sb-count">5</div>
+          <div class="sb-count-label">Links</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://printdesk.noon.team/fbnrepl/wms-barcode?warehouse_code=JED01&tote_code=PG97074380077S" target="_blank"><div class="card-top"><span class="badge platform">PRINT</span></div><h3>Back Transfer Barcode Print</h3><p>Barcode print tool for back transfer operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://printdesk.noon.team/namshi/wms-barcode?id_partner=35759&pbarcode=236111254467" target="_blank"><div class="card-top"><span class="badge platform">PRINT</span></div><h3>Normal Barcode Print</h3><p>Standard barcode printing for warehouse items.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://team-wms-api.noon.team/item_box/BXH90001292669A/images" target="_blank"><div class="card-top"><span class="badge platform">API</span></div><h3>Mislabel Box Image</h3><p>WMS API view for mislabel box images.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://fbn-ops.noon.team/box/PC41260957985S" target="_blank"><div class="card-top"><span class="badge platform">IBPS</span></div><h3>IBPS Box Image</h3><p>IBPS box image viewer for FBN operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://misc-importer.noon.team/import/fbn_stocktake_user_misc" target="_blank"><div class="card-top"><span class="badge platform">ACCESS</span></div><h3>Stock Access New Role</h3><p>Stock access role assignment via misc importer.</p><span class="arrow">↗</span></a>
+  </div>
+</section>
+
+<section class="section sop-section">
+  <div class="signboard sop-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">📘</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">Inventory · Standard Operating Procedures</span>
+        <div class="sb-title">Inventory Guidelines &amp; SOP</div>
+        <div class="sb-subtitle">Stocktake, replenishment, damaged inventory &amp; storage SOPs</div>
+      </div>
+      <div class="sb-meta">
+        <div style="text-align:center;">
+          <div class="sb-count">7</div>
+          <div class="sb-count-label">Links</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://docs.google.com/document/d/1Y_XZf2Gt3tOhHHkS82K66zNsRAlOqmb1NZbkUzW4gNs/edit?tab=t.0#heading=h.h37lu45z3wwy" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>FBN Stocktake Flow – Non-Fungible Items</h3><p>SOP for FBN stocktake hygiene breaches with non-fungible items.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/document/d/1mFYlwGAhhu52jqERnc88nT6xFdiZa7kOTw9udSPsipQ/edit?tab=t.0#heading=h.pn8dj6e8kz6z" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>Stock Take &amp; Locate Inventory App SOPs</h3><p>SOPs for stock take and inventory locate application.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/document/d/1eIQo4QZNl7C_U6AvArkAHo6IJPSN6xDuUTeSxACKXuk/edit?tab=t.0#heading=h.dtankapa37jx" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>Replenishment Application SOPs</h3><p>Standard operating procedures for replenishment application.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/document/d/1akSNUwCq3fua2JkaijdOjVyH-ru2r5Ns8jjK6VtY-D4/edit?tab=t.0" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>Damaged Inventory Movement / Disposal</h3><p>SOP for damaged inventory movement and disposal procedures.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/document/d/1ti4hQIQ9M2ipcCDH1MY5_hNewSDqnyNfiRFEANzj5rU/edit?tab=t.0" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>Loss Handling SOP – INV-03</h3><p>Inventory loss handling standard operating procedure.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/presentation/d/1JDf4TXRJlL1nmnapatGcQb01bmaM1pD3qzJ646iGV18/edit?slide=id.g389d00f1428_0_59#slide=id.g389d00f1428_0_59" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>Stock Take &amp; Locate – FBN App</h3><p>FBN app stock take and locate inventory training.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/document/d/1SLuudBEsNrR03XqIPvGhmDQnswcGDpMVNSPKE8is4Lo/edit?tab=t.0" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>Storage Guidelines – Temperature Controlled</h3><p>Temperature-controlled storage guidelines and standards.</p><span class="arrow">↗</span></a>
+  </div>
+</section>
+
+<section class="section audit-section">
+  <div class="signboard audit-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel">✅</div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">Inventory · Audit &amp; Compliance</span>
+        <div class="sb-title">Inventory Audit NC Performance</div>
+        <div class="sb-subtitle">INV audit NC, IB NC, AFS NC &amp; 5S audit trackers</div>
+      </div>
+      <div class="sb-meta">
+        <div style="text-align:center;">
+          <div class="sb-count">4</div>
+          <div class="sb-count-label">Links</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1dwA_jyHQTXfRr1okWFQs-3pgV8r_9vh406F2A7RfLXM/edit?gid=2131636576#gid=2131636576" target="_blank"><div class="card-top"><span class="badge audit">AUDIT</span></div><h3>KSA INV Audit NC Tracker</h3><p>Inventory audit NC tracker for KSA operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/10idFTiv2v_s9cYLHwg8EvJbE5h769pXmb8Sy8GdayVc/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge audit">NC</span></div><h3>IB NC Tracker KSA</h3><p>Inbound NC tracker for KSA inventory operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1kZQ8YkPHSLLZTiGEYfVsBz3vmnTs8pFj3eWMCsRJhMs/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge audit">NC</span></div><h3>AFS NC Tracker KSA</h3><p>AFS non-compliance tracker for KSA operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1jYpmLnJgCAM0EzEldfU1fy-NvzQz50RURk7kvXhZff0/edit?gid=1669307584#gid=1669307584" target="_blank"><div class="card-top"><span class="badge audit">5S</span></div><h3>KSA 5S Audit 2026</h3><p>KSA 5S audit responses for 2026.</p><span class="arrow">↗</span></a>
+  </div>
+</section>
+
+<!-- INV / SHARED DIVIDER -->
+<div class="dept-divider inv-shared-divider">
+  <div class="d-left"></div>
+  <div class="d-center">
+    <div class="d-tag d-tag-inv">⬆ Inventory</div>
+    <div class="d-sep">·</div>
+    <div class="d-tag d-tag-shared">Shared Tools ⬇</div>
+  </div>
+  <div class="d-right"></div>
+</div>
+
+<!-- ══════════════════════════════════
+     SHARED SECTIONS
+══════════════════════════════════ -->
+<section id="sec-shared" class="section shared-section">
   <div class="signboard shared-board">
     <div class="sb-pillar"></div>
     <div class="sb-body">
@@ -980,6 +1187,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Shared · Human Resources</span>
         <div class="sb-title">UMS Attendance System – JED Site</div>
+        <div class="sb-subtitle">Attendance monitoring &amp; policy documentation for JED</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -990,18 +1198,12 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://fbnums.noon.partners/en-sa/attendance?project=PRJ321228&date=2026-05-28&warehouse_code=W00000004A" target="_blank">
-      <div class="card-top"><span class="badge sop">UMS</span></div>
-      <h3>UMS Attendance System</h3><p>Attendance monitoring system for JED site.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://docs.google.com/presentation/d/1_ygIAvY2aCgD2P_znnK0GjphOrzUQB-LLzKyIoyVEGI/edit" target="_blank">
-      <div class="card-top"><span class="badge sop">SOP</span></div>
-      <h3>UMS Attendance SOP</h3><p>Attendance policy and SOP documentation.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://fbnums.noon.partners/en-sa/attendance?project=PRJ321228&date=2026-05-28&warehouse_code=W00000004A" target="_blank"><div class="card-top"><span class="badge sop">UMS</span></div><h3>UMS Attendance System</h3><p>Attendance monitoring system for JED site.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/presentation/d/1_ygIAvY2aCgD2P_znnK0GjphOrzUQB-LLzKyIoyVEGI/edit" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>UMS Attendance SOP</h3><p>Attendance policy and SOP documentation.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
-<section class="section shared-section">
+<section id="sec-tools" class="section shared-section">
   <div class="signboard shared-board">
     <div class="sb-pillar"></div>
     <div class="sb-body">
@@ -1009,6 +1211,7 @@ footer{
       <div class="sb-text">
         <span class="sb-eyebrow">Shared · Internal Tools &amp; Engines</span>
         <div class="sb-title">Additional Operations Tools</div>
+        <div class="sb-subtitle">Heartbeat &amp; Thunder query engines for internal reporting</div>
       </div>
       <div class="sb-meta">
         <div style="text-align:center;">
@@ -1019,14 +1222,8 @@ footer{
     </div>
   </div>
   <div class="grid">
-    <a class="card searchable" href="https://preporting.noon.team/queryengine" target="_blank">
-      <div class="card-top"><span class="badge platform">QUERY</span></div>
-      <h3>Heartbeat Query Engine</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span>
-    </a>
-    <a class="card searchable" href="https://wh-query-engine.noon.team/" target="_blank">
-      <div class="card-top"><span class="badge platform">QUERY</span></div>
-      <h3>Thunder Query Engine</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span>
-    </a>
+    <a class="card searchable" href="https://preporting.noon.team/queryengine" target="_blank"><div class="card-top"><span class="badge platform">QUERY</span></div><h3>Heartbeat Query Engine</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://wh-query-engine.noon.team/" target="_blank"><div class="card-top"><span class="badge platform">QUERY</span></div><h3>Thunder Query Engine</h3><p>Internal reporting and query engine.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -1041,7 +1238,11 @@ footer{
   <span class="footer-credit">~Tamilarasan Vellaikaran~</span>
 </footer>
 
+</div><!-- .content -->
+</div><!-- .layout -->
+
 <script>
+// Search
 const searchInput = document.getElementById('searchInput');
 const cards = document.querySelectorAll('.searchable');
 searchInput.addEventListener('keyup', function(){
@@ -1050,9 +1251,24 @@ searchInput.addEventListener('keyup', function(){
     card.style.display = card.innerText.toLowerCase().includes(value) ? '' : 'none';
   });
 });
+
+// Active nav highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+function updateActiveNav(){
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if(top <= 100) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateActiveNav, {passive:true});
+updateActiveNav();
 </script>
 
 </body>
 </html>
-HTMLEOF
-echo "Done"
