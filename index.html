@@ -43,6 +43,10 @@
   --hr-secondary:#F7931E;
   --hr-glow:rgba(255,107,53,.25);
   --hr-border:rgba(255,107,53,.32);
+  --tech-primary:#3B82F6;
+  --tech-secondary:#6366F1;
+  --tech-glow:rgba(59,130,246,.25);
+  --tech-border:rgba(59,130,246,.32);
   --sidebar-w:230px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -110,6 +114,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);ove
 .nav-link.shared-nav .nav-count{background:rgba(139,124,246,.12);color:#b4a8ff;}
 .nav-link.hr-nav:hover,.nav-link.hr-nav.active{color:#ff9a70;border-color:rgba(255,107,53,.2);background:rgba(255,107,53,.07);}
 .nav-link.hr-nav .nav-count{background:rgba(255,107,53,.12);color:#ff9a70;}
+.nav-link.tech-nav:hover,.nav-link.tech-nav.active{color:#93c5fd;border-color:rgba(59,130,246,.2);background:rgba(59,130,246,.07);}
+.nav-link.tech-nav .nav-count{background:rgba(59,130,246,.12);color:#93c5fd;}
 .nav-divider{height:1px;background:var(--border);margin:8px 10px;}
 .sidebar-footer{padding:12px 18px;border-top:1px solid var(--border);flex-shrink:0;}
 .live-badge-sm{
@@ -376,6 +382,18 @@ main{padding:0 36px 80px;}
 .hr-board .sb-meta{background:rgba(255,107,53,.06);}
 .hr-board .sb-title{color:#f0f0f0;}
 
+.signboard.tech-board{
+  background:linear-gradient(115deg,rgba(59,130,246,.18) 0%,rgba(99,102,241,.05) 60%,rgba(37,99,235,.1) 100%);
+  border:1px solid var(--tech-border);
+  box-shadow:0 0 50px var(--tech-glow),0 2px 0 rgba(59,130,246,.25) inset,0 -1px 0 rgba(0,0,0,.5) inset;
+}
+.tech-board .sb-pillar{background:linear-gradient(180deg,#3B82F6 0%,#93c5fd 50%,#2563EB 100%);}
+.tech-board .sb-icon-panel{background:rgba(59,130,246,.1);color:#3B82F6;}
+.tech-board .sb-eyebrow{color:var(--tech-primary);}
+.tech-board .sb-count{color:#93c5fd;text-shadow:0 0 20px rgba(147,197,253,.5);}
+.tech-board .sb-meta{background:rgba(59,130,246,.06);}
+.tech-board .sb-title{color:#f0f0f0;}
+
 /* CARDS */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
 .card{
@@ -406,6 +424,9 @@ main{padding:0 36px 80px;}
 .section.hr-section .card:hover{border-color:var(--hr-border);background:var(--card-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,53,.09);}
 .section.hr-section .card:hover::after{opacity:1;background:linear-gradient(90deg,var(--hr-primary),var(--hr-secondary));}
 .section.hr-section .badge{background:rgba(255,107,53,.14);color:#ff9a70;border:1px solid rgba(255,107,53,.18);}
+.section.tech-section .card:hover{border-color:var(--tech-border);background:var(--card-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(59,130,246,.09);}
+.section.tech-section .card:hover::after{opacity:1;background:linear-gradient(90deg,var(--tech-primary),var(--tech-secondary));}
+.section.tech-section .badge{background:rgba(59,130,246,.14);color:#93c5fd;border:1px solid rgba(59,130,246,.18);}
 
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
 .badge{font-size:9px;padding:3px 7px;border-radius:5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
@@ -458,6 +479,10 @@ main{padding:0 36px 80px;}
 .shared-hr-divider .d-right{background:linear-gradient(90deg,rgba(255,107,53,.4),transparent);}
 .shared-hr-divider .d-tag-shared{background:rgba(139,124,246,.1);border:1px solid rgba(139,124,246,.3);color:var(--shared-primary);border-radius:6px 0 0 6px;}
 .shared-hr-divider .d-tag-hr{background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.3);color:var(--hr-primary);border-radius:0 6px 6px 0;}
+.hr-tech-divider .d-left{background:linear-gradient(90deg,transparent,rgba(255,107,53,.4));}
+.hr-tech-divider .d-right{background:linear-gradient(90deg,rgba(59,130,246,.4),transparent);}
+.hr-tech-divider .d-tag-hr{background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.3);color:var(--hr-primary);border-radius:6px 0 0 6px;}
+.hr-tech-divider .d-tag-tech{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:var(--tech-primary);border-radius:0 6px 6px 0;}
 
 footer{
   border-top:1px solid var(--border);padding:18px 36px;
@@ -514,6 +539,10 @@ html{scroll-behavior:smooth;}
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
       <a class="nav-link hr-nav" href="#sec-hr"><span class="nav-icon">⚖️</span><span class="nav-text">People &amp; Compliance</span><span class="nav-count">5</span></a>
+    </li>
+    <li class="nav-item"><div class="nav-divider"></div></li>
+    <li class="nav-item">
+      <a class="nav-link tech-nav" href="#sec-tech"><span class="nav-icon">💻</span><span class="nav-text">Tech</span><span class="nav-count">3</span></a>
     </li>
   </ul>
   <div class="sidebar-footer">
@@ -1201,6 +1230,41 @@ html{scroll-behavior:smooth;}
       <p>KSA manpower headcount and resource allocation tracker.</p>
       <span class="arrow">↗</span>
     </a>
+  </div>
+</section>
+
+<!-- HR / TECH DIVIDER -->
+<div class="dept-divider hr-tech-divider">
+  <div class="d-left"></div>
+  <div class="d-center">
+    <div class="d-tag d-tag-hr">⬆ People &amp; Compliance</div>
+    <div class="d-sep">·</div>
+    <div class="d-tag d-tag-tech">Tech ⬇</div>
+  </div>
+  <div class="d-right"></div>
+</div>
+
+<!-- TECH -->
+<section id="sec-tech" class="section tech-section">
+  <div class="signboard tech-board">
+    <div class="sb-pillar"></div>
+    <div class="sb-body">
+      <div class="sb-icon-panel"><span class="sb-icon">💻</span></div>
+      <div class="sb-text">
+        <span class="sb-eyebrow">Tech · Support, SOP &amp; Cost Control</span>
+        <div class="sb-title">Tech Support &amp; Systems</div>
+        <div class="sb-subtitle">FBN helpcenter, tech SOP &amp; BigQuery cost control dashboard</div>
+      </div>
+      <div class="sb-meta">
+        <div class="sb-stat-wrap"><div class="sb-count">3</div><div class="sb-count-label">Links</div></div>
+        <div class="sb-status"><span class="sb-status-dot"></span>Live</div>
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card searchable" href="https://fbn-helpcenter.noon.team/home" target="_blank"><div class="card-top"><span class="badge platform">PLATFORM</span></div><h3>FBN Helpcenter</h3><p>Technical helpcenter and support portal for FBN systems.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://docs.google.com/document/d/1g0zu2lAAhiwn9xv2GJBwRZuBWgS8M9-G_kgs3ngTl1o/edit?tab=t.0" target="_blank"><div class="card-top"><span class="badge sop">SOP</span></div><h3>Tech SOP</h3><p>Standard operating procedure documentation for tech operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" href="https://script.google.com/a/macros/noon.com/s/AKfycbwv3UDheZlVD0MOh0I5OlryPLnqwWdtjFuQLnZEQGxVTriIGW57XQRQYDp1liMOr6XTCg/exec" target="_blank"><div class="card-top"><span class="badge dashboard">BQ_Cost_Control</span></div><h3>BigQuery Cost Control Dashboard</h3><p>Macro-linked dashboard for BigQuery cost control monitoring.</p><span class="arrow">↗</span></a>
   </div>
 </section>
 
