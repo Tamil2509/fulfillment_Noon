@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#080808" />
+<meta name="description" content="Jeddah Fulfillment Operations Hub — a searchable index of trackers, dashboards, SOPs, and operational platforms." />
 <title>noon JED · Fulfillment Operations Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -493,9 +495,104 @@ footer{
 .footer-text{font-size:11px;color:var(--muted);letter-spacing:.3px;}
 .footer-credit{font-size:11px;color:rgba(255,255,255,.2);font-style:italic;}
 
-@media(max-width:900px){.sidebar{display:none;}.content{margin-left:0;}}
-@media(max-width:640px){.hero h2{font-size:36px;}header,main,.hero,.search-wrap{padding-left:16px;padding-right:16px;}.grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:480px){.grid{grid-template-columns:1fr;}.sb-meta{display:none;}}
+/* ══ 2026 COMMAND CENTER REFRESH ══ */
+body{
+  background:
+    radial-gradient(circle at 82% -8%,rgba(247,198,0,.095),transparent 28rem),
+    radial-gradient(circle at 8% 38%,rgba(6,182,212,.045),transparent 26rem),
+    #080808;
+}
+body.nav-open{overflow:hidden;}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 72%);
+}
+.sidebar{width:248px;background:rgba(10,10,10,.93);backdrop-filter:blur(22px);box-shadow:18px 0 70px rgba(0,0,0,.28);}
+.content{margin-left:248px;}
+.sidebar-logo{padding:20px 18px 17px;}
+.sidebar-close{display:none;margin-left:auto;width:32px;height:32px;border:1px solid var(--border);border-radius:9px;background:#141414;color:var(--muted);font-size:18px;cursor:pointer;}
+.nav-link{padding:10px 12px;border-radius:11px;}
+.nav-link:focus-visible,.card:focus-visible,.priority-link:focus-visible,.filter-chip:focus-visible,.menu-button:focus-visible,.clear-search:focus-visible,.back-to-top:focus-visible{outline:2px solid var(--yellow);outline-offset:3px;}
+.sidebar-footer .live-badge-sm{justify-content:center;background:rgba(247,198,0,.06);border-color:rgba(247,198,0,.16);color:#e8c94a;}
+.sidebar-footer .live-dot{background:var(--yellow);animation:none;}
+header{height:72px;padding:0 40px;background:rgba(8,8,8,.82);border-bottom-color:rgba(255,255,255,.075);}
+.menu-button{display:none;width:38px;height:38px;border:1px solid var(--border);border-radius:11px;background:#121212;color:var(--text);font-size:18px;cursor:pointer;}
+.header-pill{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid rgba(247,198,0,.16);border-radius:999px;background:rgba(247,198,0,.055);color:#efd55c;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;}
+.header-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--yellow);box-shadow:0 0 10px rgba(247,198,0,.65);}
+.sidebar-scrim{display:none;position:fixed;inset:0;background:rgba(0,0,0,.68);backdrop-filter:blur(4px);z-index:250;}
+.hero{padding:58px 40px 34px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);align-items:end;gap:36px;}
+.hero::before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(247,198,0,.35),transparent);}
+.hero-copy{position:relative;z-index:1;}
+.hero h2{font-size:clamp(48px,5.4vw,76px);max-width:780px;line-height:.9;letter-spacing:-2.5px;}
+.hero p{font-size:14px;max-width:650px;}
+.hero-stats{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px;}
+.hero-stat{min-width:120px;padding:10px 13px;border:1px solid var(--border);border-radius:11px;background:rgba(255,255,255,.025);}
+.hero-stat strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:22px;line-height:1;color:#fff;}
+.hero-stat span{display:block;margin-top:4px;color:var(--muted);font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;}
+.priority-panel{position:relative;z-index:1;border:1px solid rgba(247,198,0,.16);border-radius:18px;padding:16px;background:linear-gradient(145deg,rgba(247,198,0,.075),rgba(255,255,255,.018));box-shadow:0 18px 70px rgba(0,0,0,.3);}
+.priority-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff;}
+.priority-head span{color:var(--yellow);font-size:9px;letter-spacing:1.3px;}
+.priority-links{display:grid;gap:7px;}
+.priority-link{display:flex;align-items:center;gap:11px;padding:10px;border:1px solid rgba(255,255,255,.065);border-radius:11px;background:rgba(6,6,6,.58);color:var(--text);text-decoration:none;transition:.18s ease;}
+.priority-link:hover{border-color:rgba(247,198,0,.3);background:rgba(247,198,0,.055);transform:translateX(2px);}
+.priority-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:rgba(247,198,0,.1);font-size:14px;}
+.priority-copy{min-width:0;flex:1;}
+.priority-copy strong{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.priority-copy small{display:block;margin-top:2px;color:var(--muted);font-size:9px;}
+.priority-arrow{color:var(--yellow);font-size:12px;}
+.search-wrap{padding:0 40px 38px;}
+.search-toolbar{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid rgba(255,255,255,.07);border-radius:16px;background:rgba(15,15,15,.78);backdrop-filter:blur(16px);box-shadow:0 14px 42px rgba(0,0,0,.22);}
+.search-inner{width:min(430px,100%);max-width:none;flex:0 1 430px;}
+.search-wrap input{height:44px;padding-right:76px;background:#0c0c0c;border-radius:11px;}
+.search-wrap input::placeholder{color:rgba(255,255,255,.34);}
+.search-wrap input::-webkit-search-cancel-button{display:none;}
+.search-shortcut{position:absolute;right:40px;top:50%;transform:translateY(-50%);padding:2px 6px;border:1px solid rgba(255,255,255,.09);border-radius:5px;color:rgba(255,255,255,.34);font-size:9px;pointer-events:none;}
+.clear-search{display:none;position:absolute;right:10px;top:50%;transform:translateY(-50%);width:26px;height:26px;border:0;border-radius:7px;background:#1b1b1b;color:var(--muted);cursor:pointer;font-size:15px;}
+.search-inner.has-value .clear-search{display:block;}
+.search-inner.has-value .search-shortcut{display:none;}
+.filter-list{display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none;}
+.filter-list::-webkit-scrollbar{display:none;}
+.filter-chip{white-space:nowrap;padding:8px 11px;border:1px solid var(--border);border-radius:999px;background:transparent;color:var(--muted);font:600 10px 'DM Sans',sans-serif;cursor:pointer;transition:.15s;}
+.filter-chip:hover{color:#fff;border-color:rgba(255,255,255,.16);}
+.filter-chip.active{color:#111;background:var(--yellow);border-color:var(--yellow);box-shadow:0 0 18px rgba(247,198,0,.18);}
+.search-summary{margin-left:auto;white-space:nowrap;color:var(--muted);font-size:10px;}
+main{padding:0 40px 90px;}
+.section{margin-bottom:54px;}
+.signboard{border-radius:18px;min-height:96px;box-shadow:none!important;transition:transform .2s ease,border-color .2s ease;}
+.signboard::before{animation-duration:5s;opacity:.55;}
+.sb-icon-panel{width:86px;}
+.sb-text{padding:17px 22px;}
+.sb-title{font-size:26px;letter-spacing:-.45px;}
+.grid{grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:12px;}
+.card{min-height:132px;padding:16px;border-radius:14px;display:flex;flex-direction:column;background:linear-gradient(145deg,rgba(23,23,23,.96),rgba(15,15,15,.96));box-shadow:0 1px 0 rgba(255,255,255,.025) inset;}
+.card h3{font-size:13px;font-weight:700;margin-bottom:5px;padding-right:18px;}
+.card p{font-size:10.5px;margin-bottom:25px;}
+.card-source{position:absolute;left:16px;bottom:12px;color:rgba(255,255,255,.28);font-size:8.5px;font-weight:700;letter-spacing:.75px;text-transform:uppercase;}
+.arrow{opacity:.5;right:14px;bottom:10px;font-size:15px;}
+.card:hover .arrow{opacity:1;color:#fff;}
+.card[data-status]::before{content:attr(data-status);position:absolute;right:12px;top:12px;padding:3px 6px;border:1px solid rgba(247,198,0,.22);border-radius:5px;background:rgba(247,198,0,.1);color:#ffe064;font-size:7.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.card[data-status]{border-color:rgba(247,198,0,.12);}
+.card.is-hidden,.section.is-empty{display:none;}
+body.is-filtering .dept-divider{display:none;}
+.no-results{display:none;margin:0 40px 40px;padding:28px;border:1px dashed rgba(255,255,255,.12);border-radius:16px;text-align:center;background:rgba(255,255,255,.02);}
+.no-results.visible{display:block;}
+.no-results strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:22px;text-transform:uppercase;}
+.no-results span{display:block;margin-top:5px;color:var(--muted);font-size:11px;}
+.back-to-top{position:fixed;right:24px;bottom:24px;width:42px;height:42px;border:1px solid rgba(247,198,0,.24);border-radius:12px;background:rgba(18,18,18,.92);color:var(--yellow);font-size:17px;cursor:pointer;opacity:0;transform:translateY(10px);pointer-events:none;transition:.18s;z-index:220;box-shadow:0 10px 30px rgba(0,0,0,.3);}
+.back-to-top.visible{opacity:1;transform:none;pointer-events:auto;}
+
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr;align-items:start;}.priority-panel{max-width:700px;}.search-toolbar{align-items:stretch;flex-wrap:wrap;}.search-inner{flex:1 1 100%;width:100%;}.filter-list{flex:1;}.search-summary{align-self:center;}
+}
+@media(max-width:900px){
+  .sidebar{display:flex;transform:translateX(-105%);transition:transform .24s ease;z-index:310;}.sidebar.open{transform:none;}.sidebar-close{display:block;}.sidebar-scrim.visible{display:block;}.content{margin-left:0;}header{padding:0 24px;}.menu-button{display:grid;place-items:center;}.header-logo{gap:10px;}.header-hub{padding-left:10px;}.site-label{display:none;}
+}
+@media(max-width:640px){
+  header,main,.hero,.search-wrap{padding-left:16px;padding-right:16px;}.hero{padding-top:40px;gap:24px;}.hero h2{font-size:44px;letter-spacing:-1.5px;}.priority-panel{padding:12px;}.hero-stat{flex:1;min-width:95px;}.search-toolbar{padding:8px;}.filter-list{width:100%;}.search-summary{width:100%;padding:2px 4px 0;}.grid{grid-template-columns:1fr;}.sb-icon-panel{width:62px;font-size:25px;}.sb-text{padding:15px 14px;}.sb-title{font-size:21px;}.sb-meta{padding:0 18px;}.sb-count{font-size:34px;}.no-results{margin-left:16px;margin-right:16px;}footer{padding:18px 16px;gap:16px;}.footer-credit{display:none;}
+}
+@media(max-width:480px){.sb-meta{display:none;}.header-pill{display:none;}.noon-badge{font-size:19px;}.header-hub h1{font-size:12px;}.hero h2{font-size:39px;}.dept-divider{display:none;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important;}}
 html{scroll-behavior:smooth;}
 </style>
 </head>
@@ -503,10 +600,11 @@ html{scroll-behavior:smooth;}
 <div class="layout">
 
 <!-- SIDEBAR -->
-<nav class="sidebar">
+<nav class="sidebar" id="sidebarNav" aria-label="Department navigation">
   <div class="sidebar-logo">
     <div class="noon-badge-sm">noon</div>
     <div class="sidebar-logo-text"><strong>Ops Hub</strong>KSA · JED</div>
+    <button class="sidebar-close" id="sidebarClose" type="button" aria-label="Close navigation">×</button>
   </div>
   <div class="sidebar-label">Departments</div>
   <ul class="nav-list">
@@ -515,11 +613,11 @@ html{scroll-behavior:smooth;}
     </li>
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
-      <a class="nav-link ob-nav" href="#sec-ob"><span class="nav-icon">📊</span><span class="nav-text">Outbound</span><span class="nav-count">28</span></a>
+      <a class="nav-link ob-nav" href="#sec-ob"><span class="nav-icon">📊</span><span class="nav-text">Outbound</span><span class="nav-count">32</span></a>
     </li>
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
-      <a class="nav-link ib-nav" href="#sec-ib"><span class="nav-icon">📥</span><span class="nav-text">Inbound</span><span class="nav-count">13</span></a>
+      <a class="nav-link ib-nav" href="#sec-ib"><span class="nav-icon">📥</span><span class="nav-text">Inbound</span><span class="nav-count">14</span></a>
     </li>
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
@@ -527,7 +625,7 @@ html{scroll-behavior:smooth;}
     </li>
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
-      <a class="nav-link inv-nav" href="#sec-inv"><span class="nav-icon">🗂️</span><span class="nav-text">Inventory</span><span class="nav-count">35</span></a>
+      <a class="nav-link inv-nav" href="#sec-inv"><span class="nav-icon">🗂️</span><span class="nav-text">Inventory</span><span class="nav-count">53</span></a>
     </li>
     <li class="nav-item"><div class="nav-divider"></div></li>
     <li class="nav-item">
@@ -546,14 +644,16 @@ html{scroll-behavior:smooth;}
     </li>
   </ul>
   <div class="sidebar-footer">
-    <div class="live-badge-sm"><span class="live-dot"></span>All Systems Live</div>
+    <div class="live-badge-sm"><span class="live-dot"></span>Resource Index · 2026</div>
   </div>
 </nav>
+<div class="sidebar-scrim" id="sidebarScrim" aria-hidden="true"></div>
 
 <!-- MAIN CONTENT -->
 <div class="content">
 
 <header>
+  <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation" aria-controls="sidebarNav" aria-expanded="false">☰</button>
   <div class="header-logo">
     <div class="noon-badge">noon</div>
     <div class="header-hub">
@@ -562,24 +662,63 @@ html{scroll-behavior:smooth;}
     </div>
   </div>
   <div class="header-right">
+    <div class="header-pill">Updated Sep 2026</div>
     <div class="site-label">KSA · JED</div>
   </div>
 </header>
 
 <section class="hero">
-  <div class="hero-eyebrow">noon · Fulfillment Center</div>
-  <h2>
-    <div>Noon</div>
-    <div class="line2">Operations URL &amp; Dashboard</div>
-  </h2>
-  <p>Centralized access point for all department operations trackers, dashboards, SOPs, attendance systems, and fulfillment platforms.</p>
+  <div class="hero-copy">
+    <div class="hero-eyebrow">noon · Jeddah Fulfillment Center</div>
+    <h2>
+      <div>Operations</div>
+      <div class="line2">Command Center</div>
+    </h2>
+    <p>One searchable workspace for JED operations trackers, live dashboards, SOPs, attendance systems, and fulfillment platforms.</p>
+    <div class="hero-stats" aria-label="Hub summary">
+      <div class="hero-stat"><strong id="totalResources">—</strong><span>Resources</span></div>
+      <div class="hero-stat"><strong id="workstreamCount">9</strong><span>Workstreams</span></div>
+      <div class="hero-stat"><strong>Sep 2026</strong><span>Latest refresh</span></div>
+    </div>
+  </div>
+  <aside class="priority-panel" aria-label="Priority access">
+    <div class="priority-head">Priority access <span>New &amp; updated</span></div>
+    <div class="priority-links">
+      <a class="priority-link" href="https://fbn-inbound-web.noon.team/dashboard" target="_blank" rel="noopener noreferrer">
+        <span class="priority-icon">📥</span><span class="priority-copy"><strong>Inbound Operations Dashboard</strong><small>FBN inbound · live workspace</small></span><span class="priority-arrow">↗</span>
+      </a>
+      <a class="priority-link" href="https://docs.google.com/spreadsheets/d/130WQflmMTlOvVZRQfYxz06IRk41WatlmVXlJE-Y91QU/edit?gid=640792802#gid=640792802" target="_blank" rel="noopener noreferrer">
+        <span class="priority-icon">📊</span><span class="priority-copy"><strong>Outbound IPP Tracking</strong><small>Updated metric source</small></span><span class="priority-arrow">↗</span>
+      </a>
+      <a class="priority-link" href="https://script.google.com/a/macros/noon.com/s/AKfycbwzmsiEYAxXQWqCotHK2FiyKse2eNtng_FwN4JY4h3XdljwtbjkFwJVeHkqN7zWJB-i/exec" target="_blank" rel="noopener noreferrer">
+        <span class="priority-icon">🗂️</span><span class="priority-copy"><strong>Inventory Adjustment Dashboard</strong><small>Inventory visibility · quick view</small></span><span class="priority-arrow">↗</span>
+      </a>
+    </div>
+  </aside>
 </section>
 
 <div class="search-wrap">
-  <div class="search-inner">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="Search trackers, dashboards, SOPs, platforms…">
+  <div class="search-toolbar">
+    <div class="search-inner">
+      <span class="search-icon">⌕</span>
+      <input type="search" id="searchInput" autocomplete="off" aria-label="Search all resources" placeholder="Search resource, team, system, or keyword…">
+      <span class="search-shortcut">/</span>
+      <button class="clear-search" id="clearSearch" type="button" aria-label="Clear search">×</button>
+    </div>
+    <div class="filter-list" role="group" aria-label="Filter by resource type">
+      <button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter-chip" type="button" data-filter="tracker" aria-pressed="false">Trackers</button>
+      <button class="filter-chip" type="button" data-filter="dashboard" aria-pressed="false">Dashboards</button>
+      <button class="filter-chip" type="button" data-filter="platform" aria-pressed="false">Platforms</button>
+      <button class="filter-chip" type="button" data-filter="reference" aria-pressed="false">SOP &amp; Audit</button>
+    </div>
+    <div class="search-summary" id="searchSummary" aria-live="polite">Loading resources…</div>
   </div>
+</div>
+
+<div class="no-results" id="noResults" role="status">
+  <strong>No matching resources</strong>
+  <span>Try a broader keyword or switch back to “All”.</span>
 </div>
 
 <main>
@@ -634,7 +773,7 @@ html{scroll-behavior:smooth;}
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1YdTke9BgtlLxwUrGVH2rRi12ERoSvDZ-wXJXZ2SVg5c/edit?gid=1649404506#gid=1649404506" target="_blank"><div class="card-top"><span class="badge">DE_Capacity</span></div><h3>DE Hourly Capacity — Last 15 Days</h3><p>Hourly capacity tracking for DE operations.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1kBPNnANnQ6ixeueInIFfjSGFIBG1jhk4CUJDGWLlw1k/edit?gid=1527141221#gid=1527141221" target="_blank"><div class="card-top"><span class="badge">DE_Yesterday</span></div><h3>Hourly DE Performance</h3><p>Daily outbound DE performance tracker.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1S8fQzNmMls72lpyJ5K6N6T75d_wkjEY3qernHm9WX-I/edit?gid=1939527628#gid=1939527628" target="_blank"><div class="card-top"><span class="badge">Job_Type_%</span></div><h3>Job Type &amp; IPS Rate</h3><p>Job type %, service type %, and IPS rate.</p><span class="arrow">↗</span></a>
-    <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1ERPRGyfkEEN7PK7rVhA4Hu1ALZiVIAVXqpAFoTlp3FY/edit?gid=1061931698#gid=1061931698" target="_blank"><div class="card-top"><span class="badge">IPP_JED_OB</span></div><h3>IPP Tracking</h3><p>Shift, calendar, and weekly IPP tracking.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" data-status="updated" href="https://docs.google.com/spreadsheets/d/130WQflmMTlOvVZRQfYxz06IRk41WatlmVXlJE-Y91QU/edit?gid=640792802#gid=640792802" target="_blank"><div class="card-top"><span class="badge">IPP_JED_OB</span></div><h3>IPP Tracking</h3><p>Updated outbound IPP performance and weekly visibility source.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1dUsFYJ6XqJvu_R34S02PrMiQLI7GdtxDgNV4aeJxMBY/edit?gid=485600298#gid=485600298" target="_blank"><div class="card-top"><span class="badge">Service_TAT</span></div><h3>OB Indicators — Leg-wise TAT</h3><p>Outbound leg-wise TAT indicator monitoring.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1yZ4VvbkeIOB7LKydr62YIoAY378lCZvRkrBA7-p7Jo0/edit#gid=0" target="_blank"><div class="card-top"><span class="badge">Cutoff_View</span></div><h3>Cutoff View — 7 Days</h3><p>Cutoff visibility for all MP operations.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1nfDQdTr7pyOAQz2axzWCC-sApQlyF86cF6LS60CAYWM/edit?gid=552931606#gid=552931606" target="_blank"><div class="card-top"><span class="badge">TPH</span></div><h3>OB Throughput Per Hour</h3><p>Throughput per hour operational indicator.</p><span class="arrow">↗</span></a>
@@ -809,15 +948,16 @@ html{scroll-behavior:smooth;}
       <div class="sb-text">
         <span class="sb-eyebrow">Inbound · Operational Platforms</span>
         <div class="sb-title">IB Frequently Used Platforms</div>
-        <div class="sb-subtitle">FBN scheduler, ASN putaway, NC tracker &amp; productivity</div>
+        <div class="sb-subtitle">Inbound command center, FBN scheduler, ASN putaway &amp; productivity</div>
       </div>
       <div class="sb-meta">
-        <div class="sb-stat-wrap"><div class="sb-count">6</div><div class="sb-count-label">Links</div></div>
+        <div class="sb-stat-wrap"><div class="sb-count">7</div><div class="sb-count-label">Links</div></div>
         <div class="sb-status"><span class="sb-status-dot"></span>Live</div>
       </div>
     </div>
   </div>
   <div class="grid">
+    <a class="card searchable" data-status="new" href="https://fbn-inbound-web.noon.team/dashboard" target="_blank"><div class="card-top"><span class="badge platform">FBN INBOUND</span></div><h3>Inbound Operations Dashboard</h3><p>Frequently used FBN inbound workspace and operational view.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://fbn-inbound-scheduler.noon.team/weekly?date=2026-05-28&warehouse=JED01" target="_blank"><div class="card-top"><span class="badge platform">PLATFORM</span></div><h3>FBN Scheduler</h3><p>Weekly, monthly, gate-in, QMS &amp; reports.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://wms-api-repl.noon.team/reports/asn_putaway_item_pendency_v2?warehouse_code=JED01&format=html" target="_blank"><div class="card-top"><span class="badge platform">API</span></div><h3>ASN Putaway</h3><p>ASN putaway item pendency — warehouse wise.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://fbn-ops.noon.team/picking/pendency" target="_blank"><div class="card-top"><span class="badge platform">PLATFORM</span></div><h3>FBN View</h3><p>Inbound ASN view.</p><span class="arrow">↗</span></a>
@@ -966,7 +1106,7 @@ html{scroll-behavior:smooth;}
   <div class="d-right"></div>
 </div>
 
-<!-- INVENTORY — METRIC TRACK (now 20 links with new 3 added) -->
+<!-- INVENTORY — METRIC TRACK -->
 <section id="sec-inv" class="section inv-section">
   <div class="signboard inv-board">
     <div class="sb-pillar"></div>
@@ -975,10 +1115,10 @@ html{scroll-behavior:smooth;}
       <div class="sb-text">
         <span class="sb-eyebrow">Inventory · Metrics &amp; Visibility</span>
         <div class="sb-title">Inventory Metric Track &amp; Visibility Source</div>
-        <div class="sb-subtitle">PST coverage, WT pendency, mislabel, ICQA, ageing, JLM &amp; activities</div>
+        <div class="sb-subtitle">PST coverage, transfers, mismatch, putaway, damage, projection &amp; adjustments</div>
       </div>
       <div class="sb-meta">
-        <div class="sb-stat-wrap"><div class="sb-count">20</div><div class="sb-count-label">Links</div></div>
+        <div class="sb-stat-wrap"><div class="sb-count">29</div><div class="sb-count-label">Links</div></div>
         <div class="sb-status"><span class="sb-status-dot"></span>Live</div>
       </div>
     </div>
@@ -1001,6 +1141,16 @@ html{scroll-behavior:smooth;}
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/11Fha9ggJMgHrGaT-feJsr3Aa8oCLqZ8v67M1IlbvRo4/edit?gid=1412486175#gid=1412486175" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Stocktake Productivity JED V3</h3><p>Stocktake productivity tracker for JED.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1VSImZxgbXEj168lxB8grrZwVSi2QSaZb41UfjSUXY9Q/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Stock Adjustment</h3><p>Inventory stock adjustment tracker.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1JZpTqIF8123Gxi0BihyW9B_qayWHy_5NfhvHZNXeq0g/edit?gid=1918891606#gid=1918891606" target="_blank"><div class="card-top"><span class="badge sheet">TRACKER</span></div><h3>Non-Live JED</h3><p>Non-live inventory tracker for JED.</p><span class="arrow">↗</span></a>
+    <!-- SEPTEMBER 2026 ADDITIONS -->
+    <a class="card searchable" data-status="new" href="https://docs.google.com/spreadsheets/d/1bgDEhEh961WG-aeg0PsuNkSLj6kapKGcliHeyx_ByNU/edit?usp=sharing" target="_blank"><div class="card-top"><span class="badge sheet">TXW</span></div><h3>Installation TXW Tracker</h3><p>Bulky regional transfer and VMS measurement based on girth logic.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" data-status="new" href="https://docs.google.com/spreadsheets/d/1h8LJHULiNn24oaq-nDEV9C_JDTRPip-ksatPEbkoVQI/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge sheet">MISMATCH</span></div><h3>Daily Mismatch — JED01 &amp; JED04</h3><p>2026 daily mismatch updates for JED01 and JED04.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" data-status="new" href="https://docs.google.com/spreadsheets/d/1LzHfuQJR-0R6l5W6M6N2g-CBluwqZ8PMADEpQEoXcIE/edit?gid=713031848#gid=713031848" target="_blank"><div class="card-top"><span class="badge sheet">10-DAY TREND</span></div><h3>Putaway &amp; Mispick Trend</h3><p>Last 10 days of putaway and JLM/mispick trend visibility.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" data-status="new" href="https://docs.google.com/spreadsheets/d/1KgIBsqpOC-XfjjKfPE0M5W5ImEXFPFXN8BS6aW5K2h0/edit?gid=1042309636#gid=1042309636" target="_blank"><div class="card-top"><span class="badge sheet">ACTION</span></div><h3>KSA Inventory Action Tracker</h3><p>Central action tracker for KSA inventory operations.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" data-status="new" href="https://docs.google.com/spreadsheets/d/1UjlQUcrJpKwB5aLlPIqiSYAHq5DJ8KAX0odghcM6Dnc/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge sheet">D-1</span></div><h3>BT Putaway D-1 Tracking</h3><p>2026 back-transfer putaway tracking for D-1 performance.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" data-status="new" href="https://docs.google.com/spreadsheets/d/1IJ4-5iPIG_OmoLtH5QmkVongoRhn01DxgskATjPERVk/edit?gid=692387379#gid=692387379" target="_blank"><div class="card-top"><span class="badge sheet">PST</span></div><h3>PST Coverage View Jul–Dec 2026</h3><p>PST coverage cycle view for the second half of 2026.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" data-status="new" href="https://docs.google.com/spreadsheets/d/1u_ByEwDeXEoPeWfuLttN9YO6M82oUOYcKU1eq4umdfM/edit?usp=sharing" target="_blank"><div class="card-top"><span class="badge sheet">DAMAGE</span></div><h3>KSA Damage Tracker</h3><p>WTDAM and pilferage data visibility at KSA level.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" data-status="new" href="https://docs.google.com/spreadsheets/d/1U7juv3PsDr1aoBsHEPHX4fr6LOsErJGdsw0I3lKyGEg/edit?gid=2063879404#gid=2063879404" target="_blank"><div class="card-top"><span class="badge sheet">PROJECTION</span></div><h3>Jeddah 2026 Projection</h3><p>Jeddah inventory projection and planning visibility for 2026.</p><span class="arrow">↗</span></a>
+    <a class="card searchable" data-status="new" href="https://script.google.com/a/macros/noon.com/s/AKfycbwzmsiEYAxXQWqCotHK2FiyKse2eNtng_FwN4JY4h3XdljwtbjkFwJVeHkqN7zWJB-i/exec" target="_blank"><div class="card-top"><span class="badge dashboard">ADJUSTMENT</span></div><h3>Inventory Adjustment Dashboard</h3><p>Interactive inventory adjustment visibility dashboard.</p><span class="arrow">↗</span></a>
     <!-- NEW LINKS -->
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1H73_z9k6joShkqSOEm4dt6GRrrwYn9ixfPrs1yORH68/edit?gid=0#gid=0" target="_blank"><div class="card-top"><span class="badge sheet">ACTIVITIES</span></div><h3>Inventory Activities 2026</h3><p>Full inventory activities log and tracker for 2026.</p><span class="arrow">↗</span></a>
     <a class="card searchable" href="https://docs.google.com/spreadsheets/d/1e-RJpU1XMlN9W6Jp7-IOI8pAHvyt1oCa4NcZbi_CICM/edit?usp=sharing" target="_blank"><div class="card-top"><span class="badge sheet">DAMAGE</span></div><h3>JED TRNST Damage — Supermall</h3><p>Transit damage tracking for Supermall operations at JED.</p><span class="arrow">↗</span></a>
@@ -1270,10 +1420,12 @@ html{scroll-behavior:smooth;}
 
 </main>
 
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+
 <footer>
   <div class="footer-left">
     <div class="footer-noon">noon</div>
-    <span class="footer-text">Jeddah Fulfillment Center · Operations Hub · 2026</span>
+    <span class="footer-text">Jeddah Fulfillment Center · Operations Command Center · 2026</span>
   </div>
   <span class="footer-credit">~Tamilarasan Vellaikaran~</span>
 </footer>
@@ -1283,16 +1435,122 @@ html{scroll-behavior:smooth;}
 
 <script>
 const searchInput = document.getElementById('searchInput');
-const cards = document.querySelectorAll('.searchable');
-searchInput.addEventListener('keyup', function(){
-  const value = this.value.toLowerCase();
-  cards.forEach(card => {
-    card.style.display = card.innerText.toLowerCase().includes(value) ? '' : 'none';
-  });
-});
-
+const clearSearch = document.getElementById('clearSearch');
+const searchSummary = document.getElementById('searchSummary');
+const noResults = document.getElementById('noResults');
+const cards = Array.from(document.querySelectorAll('.searchable'));
+const filterChips = Array.from(document.querySelectorAll('.filter-chip'));
+const sectionBlocks = Array.from(document.querySelectorAll('main > section'));
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+const sidebar = document.getElementById('sidebarNav');
+const sidebarScrim = document.getElementById('sidebarScrim');
+const menuButton = document.getElementById('menuButton');
+const sidebarClose = document.getElementById('sidebarClose');
+const backToTop = document.getElementById('backToTop');
+let activeFilter = 'all';
+
+function getCardKind(card){
+  const badge = card.querySelector('.badge');
+  if(!badge) return 'tracker';
+  if(badge.classList.contains('dashboard')) return 'dashboard';
+  if(badge.classList.contains('platform')) return 'platform';
+  if(badge.classList.contains('sop') || badge.classList.contains('audit')) return 'reference';
+  return 'tracker';
+}
+
+function getSourceLabel(url){
+  const host = url.hostname.replace(/^www\./,'');
+  if(host === 'docs.google.com'){
+    if(url.pathname.includes('/spreadsheets/')) return 'Google Sheets';
+    if(url.pathname.includes('/document/')) return 'Google Docs';
+    if(url.pathname.includes('/presentation/')) return 'Google Slides';
+    return 'Google Workspace';
+  }
+  if(host === 'drive.google.com') return 'Google Drive';
+  if(host === 'script.google.com') return 'Apps Script';
+  if(host === 'datastudio.google.com') return 'Looker Studio';
+  if(host.endsWith('noon.team')) return host.replace('.noon.team','') + ' · noon.team';
+  if(host.endsWith('noon.partners')) return 'noon partners';
+  if(host.endsWith('noon.com')) return 'noon.com';
+  return host;
+}
+
+cards.forEach(card => {
+  card.dataset.kind = getCardKind(card);
+  card.setAttribute('rel','noopener noreferrer');
+  try{
+    const source = document.createElement('span');
+    source.className = 'card-source';
+    source.textContent = getSourceLabel(new URL(card.href));
+    card.appendChild(source);
+  }catch(error){ /* Keep the card usable if a URL is malformed. */ }
+});
+
+function updateCounts(){
+  document.getElementById('totalResources').textContent = cards.length;
+  document.getElementById('workstreamCount').textContent = navLinks.length;
+
+  sectionBlocks.forEach(section => {
+    const count = section.querySelectorAll('.grid .card').length;
+    const countEl = section.querySelector('.sb-count');
+    if(countEl) countEl.textContent = count;
+  });
+
+  const mainChildren = Array.from(document.querySelector('main').children);
+  const links = Array.from(navLinks);
+  links.forEach((link,index) => {
+    const id = link.getAttribute('href').slice(1);
+    const start = mainChildren.findIndex(el => el.id === id);
+    const nextId = links[index + 1]?.getAttribute('href').slice(1);
+    const nextIndex = nextId ? mainChildren.findIndex(el => el.id === nextId) : mainChildren.length;
+    if(start < 0) return;
+    const count = mainChildren.slice(start,nextIndex).reduce((sum,el) => sum + el.querySelectorAll('.card').length,0);
+    const countEl = link.querySelector('.nav-count');
+    if(countEl) countEl.textContent = count;
+  });
+}
+
+function applyFilters(){
+  const query = searchInput.value.trim().toLowerCase();
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const matchesText = !query || card.innerText.toLowerCase().includes(query);
+    const matchesType = activeFilter === 'all' || card.dataset.kind === activeFilter;
+    const visible = matchesText && matchesType;
+    card.classList.toggle('is-hidden',!visible);
+    if(visible) visibleCount += 1;
+  });
+
+  const filtering = Boolean(query) || activeFilter !== 'all';
+  document.body.classList.toggle('is-filtering',filtering);
+  document.querySelector('.search-inner').classList.toggle('has-value',Boolean(query));
+
+  sectionBlocks.forEach(section => {
+    const sectionCards = Array.from(section.querySelectorAll('.card'));
+    if(sectionCards.length) section.classList.toggle('is-empty',filtering && !sectionCards.some(card => !card.classList.contains('is-hidden')));
+  });
+
+  noResults.classList.toggle('visible',visibleCount === 0);
+  searchSummary.textContent = filtering ? `${visibleCount} of ${cards.length} resources` : `${cards.length} resources indexed`;
+}
+
+searchInput.addEventListener('input',applyFilters);
+clearSearch.addEventListener('click',() => {
+  searchInput.value = '';
+  applyFilters();
+  searchInput.focus();
+});
+filterChips.forEach(chip => chip.addEventListener('click',() => {
+  activeFilter = chip.dataset.filter;
+  filterChips.forEach(item => {
+    const selected = item === chip;
+    item.classList.toggle('active',selected);
+    item.setAttribute('aria-pressed',String(selected));
+  });
+  applyFilters();
+}));
 
 function updateActiveNav(){
   let current = '';
@@ -1304,7 +1562,48 @@ function updateActiveNav(){
     link.classList.toggle('active', link.getAttribute('href') === '#' + current);
   });
 }
-window.addEventListener('scroll', updateActiveNav, {passive:true});
+
+function openSidebar(){
+  sidebar.classList.add('open');
+  sidebarScrim.classList.add('visible');
+  document.body.classList.add('nav-open');
+  menuButton.setAttribute('aria-expanded','true');
+}
+function closeSidebar(){
+  sidebar.classList.remove('open');
+  sidebarScrim.classList.remove('visible');
+  document.body.classList.remove('nav-open');
+  menuButton.setAttribute('aria-expanded','false');
+}
+menuButton.addEventListener('click',openSidebar);
+sidebarClose.addEventListener('click',closeSidebar);
+sidebarScrim.addEventListener('click',closeSidebar);
+navLinks.forEach(link => link.addEventListener('click',closeSidebar));
+
+document.addEventListener('keydown',event => {
+  const typing = /INPUT|TEXTAREA/.test(document.activeElement.tagName) || document.activeElement.isContentEditable;
+  if(event.key === '/' && !typing){
+    event.preventDefault();
+    searchInput.focus();
+  }
+  if(event.key === 'Escape'){
+    closeSidebar();
+    if(document.activeElement === searchInput || searchInput.value){
+      searchInput.value = '';
+      applyFilters();
+      searchInput.blur();
+    }
+  }
+});
+
+window.addEventListener('scroll',() => {
+  updateActiveNav();
+  backToTop.classList.toggle('visible',window.scrollY > 650);
+},{passive:true});
+backToTop.addEventListener('click',() => window.scrollTo({top:0,behavior:'smooth'}));
+
+updateCounts();
+applyFilters();
 updateActiveNav();
 </script>
 
